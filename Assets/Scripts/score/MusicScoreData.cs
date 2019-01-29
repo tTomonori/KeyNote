@@ -13,7 +13,7 @@ static public class MusicScoreData {
     static public Difficult mDifficult;
     ///曲データロード
     static public void load(string aFileName){
-        mMusicDate = new Arg(MyJson.deserializeFile(Application.dataPath + "/../data/score/" + aFileName + ".json"));
+        mMusicDate = new Arg(MyJson.deserializeFile(DataFolder.path + "/score/" + aFileName + ".json"));
         //keyTimeを生成して記録
         foreach(Arg tNoteData in mMusicDate.get<List<Arg>>("note")){
             tNoteData.set("keyTime", new KeyTime(tNoteData.get<float>("time")));

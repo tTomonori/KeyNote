@@ -18,9 +18,9 @@ public class DifficultDisplay : MonoBehaviour {
     public void set(int aNum){
         for (int i = 0; i < 10;i++){
             if(i<aNum){
-                mStars[i].sprite = Resources.Load<Sprite>("sprite/star/star");
+                mStars[i].sprite = Resources.Load<Sprite>("sprites/star/star");
             }else{
-                mStars[i].sprite = Resources.Load<Sprite>("sprite/star/star_empty");
+                mStars[i].sprite = Resources.Load<Sprite>("sprites/star/star_empty");
             }
         }
     }

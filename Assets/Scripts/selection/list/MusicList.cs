@@ -15,8 +15,8 @@ public class MusicList {
     public string mLastPlayDifficult;
     public MusicList(){
         mList = new List<Arg>();
-        FileInfo tInfo = new FileInfo(Application.dataPath + "/../data/list.json");
-        Arg tListData = new Arg(MyJson.deserializeFile(Application.dataPath + "/../data/list.json"));
+        //FileInfo tInfo = new FileInfo(Application.dataPath + "/../data/list.json");
+        Arg tListData = new Arg(MyJson.deserializeFile(DataFolder.path + "/list.json"));
         mList = tListData.get<List<Arg>>("list");
         mListLength = mList.Count;
         mLastPlayIndex = tListData.get<int>("lastPlayIndex");

@@ -30,6 +30,7 @@ sysinfo.txt
 
 # My Setting
 .DS_Store
+KeyNote.app
 data/back/*
 data/movie/*
 data/music/*

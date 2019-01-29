@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.IO;
 
 public class MusicDetailsDisplay : MonoBehaviour {
     private Arg mMusicData;
@@ -36,13 +38,22 @@ public class MusicDetailsDisplay : MonoBehaviour {
         gameObject.GetComponentInChildren<DifficultDisplay>().set(0);
         //最高得点
         gameObject.GetComponentInChildren<ScoreDisplay>().set(0);
+        //音声
+        AudioSource tAudio = GetComponentInChildren<AudioSource>();
+        tAudio.clip = null;
     }
     public void showMusic(string aFileName){
         mSelectedMusicFileName = aFileName;
-        mMusicData = new Arg(MyJson.deserializeFile(Application.dataPath + "/../data/score/" + aFileName + ".json"));
+        mMusicData = new Arg(MyJson.deserializeFile(DataFolder.path + "/score/" + aFileName + ".json"));
         //曲名
         GameObject.Find("title").GetComponent<TextMesh>().text = mMusicData.get<string>("title");
         changeDifficult(mButtons.difficult);
+        //音声
+        AudioSource tAudio = GetComponentInChildren<AudioSource>();
+        WWW tW = new WWW("file:///"+DataFolder.path + "/music/" + mMusicData.get<string>("music"));
+        while (!tW.isDone) { }//読み込み完了まで待機
+        tAudio.clip = tW.GetAudioClip();
+        tAudio.Play();
     }
     public void changeDifficult(string aDifficult){
         //難易度
