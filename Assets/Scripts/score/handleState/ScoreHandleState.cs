@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreHandleState : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+partial class ScoreHandler {
+    public abstract class ScoreHandleState{
+        protected ScoreHandler parent;
+        public ScoreHandleState(ScoreHandler aParent){
+            parent = aParent;
+        }
+        virtual public void enter(){
+            
+        }
+        virtual public void exit(){
+            
+        }
+    }
 }

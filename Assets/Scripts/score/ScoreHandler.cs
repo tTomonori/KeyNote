@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreHandler{
+public partial class ScoreHandler{
     private KeyNotPlayer mPlayer;
     private MusicScore mScore;
-    public ScoreHandler(string aFileName){
+    private ScoreHandleState mState;
+    public ScoreHandler(string aFileName,string aDifficult){
         mScore = MyBehaviour.create<MusicScore>();
-        mScore.load(aFileName);
+        MusicScoreData.load(aFileName);
+        MusicScoreData.mDifficult = EnumParser.parse<MusicScoreData.Difficult>(aDifficult);
+    }
+    //状態遷移
+    public void changeState(ScoreHandleState aState){
+        if (mState != null) mState.exit();
+        mState = aState;
+        mState.enter();
     }
 }

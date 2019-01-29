@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayState : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+partial class ScoreHandler {
+    public class PlayState : ScoreHandleState{
+        public PlayState(ScoreHandler aParent) : base(aParent){}
+        public override void enter(){
+            parent.mScore.show(new KeyTime(0));
+        }
+    }
 }

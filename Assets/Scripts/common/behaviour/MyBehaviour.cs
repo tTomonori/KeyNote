@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public partial class MyBehaviour : MonoBehaviour {
     static private MyBehaviour instance;
@@ -26,13 +27,34 @@ public partial class MyBehaviour : MonoBehaviour {
     /// 指定したパスのプレハブを生成
     /// </summary>
     /// <returns>生成したプレハブがもつComponent</returns>
-    /// <param name="aFilePath">プレハブへのパス("prefab/" + X)</param>
+    /// <param name="aFilePath">プレハブへのパス("prefabs/" + X)</param>
     /// <typeparam name="Type">取得するComponent</typeparam>
     public static Type createObjectFromPrefab<Type>(string aFilePath){
         // プレハブを取得
-        GameObject prefab = (GameObject)Resources.Load("prefab/" + aFilePath);
+        GameObject prefab = (GameObject)Resources.Load("prefabs/" + aFilePath);
         // プレハブからインスタンスを生成
         return Instantiate(prefab).GetComponent<Type>();
+    }
+    /// <summary>
+    /// 指定した名前の子要素を取得
+    /// </summary>
+    /// <returns>取得したGameObject(存在しなければNULL)</returns>
+    /// <param name="name">取得する要素の名前</param>
+    public GameObject findChild(string name){
+        foreach(Transform tObject in GetComponentsInChildren<Transform>()){
+            if(tObject.name==name){
+                return tObject.gameObject;
+            }
+        }
+        return null;
+    }
+    /// <summary>
+    /// GetComponentsInChildrenで自分自身を含まないようにする
+    /// </summary>
+    /// <returns>The components in children without self.</returns>
+    /// <typeparam name="T">Component</typeparam>
+    public T[] GetComponentsInChildrenWithoutSelf<T>() where T : Component{
+        return GetComponentsInChildren<T>().Where(c => this.gameObject != c.gameObject).ToArray();
     }
     /// <summary>
     /// aSecond秒後にaFunctionを実行
