@@ -1,10 +1,17 @@
 ﻿<Properties StartupConfiguration="{FAA2A704-9CBD-045F-2725-8A96BDA8B211}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/score/score/MusicScore.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/selection/details/DifficultButtons.cs">
     <Files>
       <File FileName="Assets/Scripts/score/score/MusicScore.cs" Line="36" Column="50" />
       <File FileName="Assets/Scripts/score/score/Bar.cs" Line="5" Column="31" />
       <File FileName="Assets/Scripts/score/score/Beat.cs" Line="17" Column="54" />
       <File FileName="Assets/Scripts/score/KeyTime.cs" Line="7" Column="30" />
+      <File FileName="Assets/Scripts/title/TitleMain.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/selection/details/MusicDetailsDisplay.cs" Line="25" Column="13" />
+      <File FileName="Assets/Scripts/selection/details/DifficultDisplay.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/selection/SelectionMain.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/common/ui/LightButton.cs" Line="13" Column="36" />
+      <File FileName="Assets/Scripts/common/myFramework/behaviour/myBehaviourAnimations.cs" Line="86" Column="37" />
+      <File FileName="Assets/Scripts/selection/details/DifficultButtons.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

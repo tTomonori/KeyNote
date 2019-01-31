@@ -20,20 +20,24 @@ public class DifficultButtons : MonoBehaviour {
 	}
 
     void push(string aButtonName){
-        UiButton[] tButtons = GetComponentsInChildren<UiButton>();
+        //同じ難易度を選択した
+        if (aButtonName == mPushedButtonName) return;
+        LightButton[] tButtons = GetComponentsInChildren<LightButton>();
         //選択中の難易度を選択解除
         if(mPushedButtonName!=null){
-            foreach(UiButton tButton in tButtons){
+            foreach(LightButton tButton in tButtons){
                 if(tButton.name == mPushedButtonName + "Button"){
-                    tButton.scaleBy(-mPushedRatio, 0.1f);
+                    //tButton.scaleBy(-mPushedRatio, 0.1f);
+                    tButton.lightOff();
                     break;
                 }
             }
         }
         //選択された難易度を設定
-        foreach (UiButton tButton in tButtons){
+        foreach (LightButton tButton in tButtons){
             if (tButton.name == aButtonName + "Button"){
-                tButton.scaleBy(mPushedRatio, 0.1f);
+                //tButton.scaleBy(mPushedRatio, 0.1f);
+                tButton.lightOn();
                 break;
             }
         }
