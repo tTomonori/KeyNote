@@ -11,8 +11,8 @@ public partial class MyBehaviour : MonoBehaviour{
     /// <param name="delta">変化量</param>
     /// <param name="duration">変化時間</param>
     /// <param name="callback">変化終了時関数</param>
-    public void scaleBy(Vector3 delta,float duration,Action callback=null){
-        StartCoroutine(scaleDelta(delta,duration,callback));
+    public Coroutine scaleBy(Vector3 delta,float duration,Action callback=null){
+        return StartCoroutine(scaleDelta(delta,duration,callback));
     }
     private IEnumerator scaleDelta(Vector3 delta,float duration,Action callback){
         float tLeftTime = duration;
@@ -36,8 +36,8 @@ public partial class MyBehaviour : MonoBehaviour{
     /// <param name="delta">移動量</param>
     /// <param name="duration">移動時間</param>
     /// <param name="callback">移動終了時関数</param>
-    public void moveBy(Vector3 delta, float duration, Action callback = null){
-        StartCoroutine(moveDelta(delta, duration, callback));
+    public Coroutine moveBy(Vector3 delta, float duration, Action callback = null){
+        return StartCoroutine(moveDelta(delta, duration, callback));
     }
     private IEnumerator moveDelta(Vector3 delta, float duration, Action callback){
         float tLeftTime = duration;
@@ -61,8 +61,8 @@ public partial class MyBehaviour : MonoBehaviour{
     /// <param name="delta">回転量</param>
     /// <param name="duration">回転時間</param>
     /// <param name="callback">回転終了時関数</param>
-    public void rotateBy(float delta, float duration, Action callback = null){
-        StartCoroutine(rotateDelta(delta, duration, callback));
+    public Coroutine rotateBy(float delta, float duration, Action callback = null){
+        return StartCoroutine(rotateDelta(delta, duration, callback));
     }
     private IEnumerator rotateDelta(float delta, float duration, Action callback){
         float tLeftTime = duration;
@@ -84,8 +84,8 @@ public partial class MyBehaviour : MonoBehaviour{
     /// 回転させ続ける
     /// </summary>
     /// <param name="speed">回転速度(度/s)</param>
-    public void rotateForever(float speed){
-        StartCoroutine(rotateForeverDelta(speed));
+    public Coroutine rotateForever(float speed){
+        return StartCoroutine(rotateForeverDelta(speed));
     }
     private IEnumerator rotateForeverDelta(float speed){
         while(true){

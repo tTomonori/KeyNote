@@ -19,7 +19,15 @@ public class MusicScore : MyBehaviour {
     //現在のQN
     public float mCurrentQuarterBeat{
         get { return (positionY - kScoreOffset) / kBarInterval / kScale * (MusicScoreData.mRhythm * 4); }
-        set { positionY = value / (MusicScoreData.mRhythm * 4) * kBarInterval * kScale + kScoreOffset; }
+        set { positionY = quarterBeatToScorePosition(value); }
+    }
+    //音声を流し始める時のpositionY
+    public float mStartMusicPosition{
+        get { return quarterBeatToScorePosition(MusicScoreData.mStartPlayMusicTime.mQuarterBeat); }
+    }
+    //QNを譜面のY座標に変換
+    public float quarterBeatToScorePosition(float aQuarterBeat){
+        return aQuarterBeat / (MusicScoreData.mRhythm * 4) * kBarInterval * kScale + kScoreOffset;
     }
     void Awake () {
         this.name = "score";

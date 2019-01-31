@@ -67,4 +67,24 @@ static public class MusicScoreData {
                        + KeyTime.secondsToQuarterBeat(aMusicTime - tTotalSeconds, tBpms[i].get<float>("bpm"))
                        + mStartPlayMusicTime.mQuarterBeat;
     }
+    //QNを曲の再生位置に変換
+    static public float quarterBeatToMusicTime(float aQuarterBeat){
+        if(aQuarterBeat<0)
+            return KeyTime.quarterBeatToSeconds(aQuarterBeat, mBpm[0].get<float>("bpm"));
+        
+        List<Arg> tBpms = mBpm;
+        int tLength = tBpms.Count;
+        float tTotalSeconds = 0;
+        int i;
+        for (i = 0; true; i++){
+            if (i + 1 == tLength) break;
+            if (aQuarterBeat <= mBpm[i + 1].get<float>("time")) break;
+
+            float tSeconds = KeyTime.quarterBeatToSeconds(tBpms[i + 1].get<float>("time") - tBpms[i].get<float>("time"), tBpms[i].get<float>("bpm"));
+            tTotalSeconds += tSeconds;
+        }
+        return tTotalSeconds
+                    + KeyTime.quarterBeatToSeconds(aQuarterBeat - tBpms[i].get<float>("time"), tBpms[i].get<float>("bpm"))
+                    - mMusicDate.get<float>("marign");
+    }
 }
