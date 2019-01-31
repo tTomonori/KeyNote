@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using System.IO;
 
-public class MusicDetailsDisplay : MonoBehaviour {
+public class MusicDetailsDisplay : MyBehaviour {
     private Arg mMusicData;
     private DifficultButtons mButtons{
         get { return GameObject.Find("difficultButtons").GetComponent<DifficultButtons>(); }
@@ -41,6 +41,8 @@ public class MusicDetailsDisplay : MonoBehaviour {
         //音声
         AudioSource tAudio = GetComponentInChildren<AudioSource>();
         tAudio.clip = null;
+        //サムネイル
+        findChild("thumbnail").GetComponent<SpriteRenderer>().sprite = null;
     }
     public void showMusic(string aFileName){
         mSelectedMusicFileName = aFileName;
@@ -50,10 +52,15 @@ public class MusicDetailsDisplay : MonoBehaviour {
         changeDifficult(mButtons.difficult);
         //音声
         AudioSource tAudio = GetComponentInChildren<AudioSource>();
-        WWW tW = new WWW("file:///"+DataFolder.path + "/music/" + mMusicData.get<string>("music"));
-        while (!tW.isDone) { }//読み込み完了まで待機
-        tAudio.clip = tW.GetAudioClip();
+        tAudio.clip = DataFolder.loadMusic(mMusicData.get<string>("music"));
         tAudio.Play();
+        //サムネイル
+        //findChild("thumbnail").GetComponent<SpriteRenderer>().sprite = DataFolder.loadThumbnail(mMusicData.get<string>("thumbnail"));
+        DataFolder.loadThumbnailAsync(mMusicData.get<string>("thumbnail"), (aSprite) =>{
+            SpriteRenderer tRenderer = findChild("thumbnail").GetComponent<SpriteRenderer>();
+            tRenderer.transform.localScale = new Vector3(7 / aSprite.bounds.size.x, 7 / aSprite.bounds.size.x, 1);
+            tRenderer.sprite = aSprite;
+        });
     }
     public void changeDifficult(string aDifficult){
         //難易度
