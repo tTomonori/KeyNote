@@ -6,18 +6,20 @@ using System.Linq;
 public class MusicScore : MyBehaviour {
     //Bar同士の間隔
     static float kBarInterval = 9f;
+    //現在のQNを表示する位置を弄る
+    static float kScoreOffset = 1f;
     //譜面のscale
     static float kScale = 0.3f;
     //小節のオブジェクト
     private List<Bar> mBars;
     //現在の中心のBar
     public int mCurrentBarNum{
-        get { return Mathf.FloorToInt(positionY / kBarInterval / kScale); }
+        get { return Mathf.FloorToInt((positionY - kScoreOffset) / kBarInterval / kScale); }
     }
-    //現在の
+    //現在のQN
     public float mCurrentQuarterBeat{
-        get { return positionY / kBarInterval / kScale * (MusicScoreData.mRhythm * 4); }
-        set { positionY = value / (MusicScoreData.mRhythm * 4) * kBarInterval * kScale; }
+        get { return (positionY - kScoreOffset) / kBarInterval / kScale * (MusicScoreData.mRhythm * 4); }
+        set { positionY = value / (MusicScoreData.mRhythm * 4) * kBarInterval * kScale + kScoreOffset; }
     }
     void Awake () {
         this.name = "score";
@@ -32,8 +34,13 @@ public class MusicScore : MyBehaviour {
     void Update () {
         updateBars();
 	}
+    //引数のQNに合わせてobjectの位置を調整
     public void show(KeyTime aTime){
         mCurrentQuarterBeat = aTime.mQuarterBeat;
+    }
+    //引数のQNに合わせてobjectの位置を調整
+    public void show(float aQuarterBeat){
+        mCurrentQuarterBeat = aQuarterBeat;
     }
     //小節生成
     private Bar createBar(KeyTime aBarNum){
@@ -79,5 +86,9 @@ public class MusicScore : MyBehaviour {
         for (int i = tCreatedTail + 1; i <= tTailNum; i++){
             mBars.Add(createBar(new KeyTime(i)));
         }
+    }
+    //音声の再生位置に合わせてpozitionを変更
+    public void adjustPozitionToMusicTime(float aMusicTime){
+        show(MusicScoreData.musicTimeToQuarterBeat(aMusicTime));
     }
 }

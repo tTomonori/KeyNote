@@ -29,8 +29,10 @@ static public class DataFolder {
         return SpriteLoader.load(DataFolder.path + "/thumbnail/" + aFileName);
     }
     static public void loadThumbnailAsync(string aFileName,Action<Sprite> aRes){
-        if (aFileName == "")
+        if (aFileName == ""){
             aRes(Resources.Load<Sprite>("sprites/default/defaultThumbnail"));
+            return;
+        }
         SpriteLoader.loadAsync(DataFolder.path + "/thumbnail/" + aFileName, aRes);
     }
     static public Sprite loadBackImage(string aFileName){

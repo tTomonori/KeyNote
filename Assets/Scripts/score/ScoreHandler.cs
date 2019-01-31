@@ -14,6 +14,7 @@ public partial class ScoreHandler{
         MusicScoreData.mDifficult = EnumParser.parse<MusicScoreData.Difficult>(aDifficult);
         //ミュージックプレイヤー
         MusicPlayer tPlayer = MyBehaviour.create<MusicPlayer>();
+        tPlayer.setAudio(DataFolder.loadMusic(MusicScoreData.mMusicFileName));
         //譜面と曲を同期させるシステム
         mPlayer = new KeyNotePlayer(mScore,tPlayer);
 

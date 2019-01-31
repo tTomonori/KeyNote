@@ -49,4 +49,12 @@ public struct KeyTime {
     public KeyTime(int aBarNum){
         mQuarterBeat = aBarNum * MusicScoreData.mRhythm * 4;
     }
+    //秒をQNに変換
+    static public float secondsToQuarterBeat(float aSecond,float aBpm){
+        return aSecond / (15 / aBpm);
+    }
+    //QNを秒に変換
+    static public float quarterBeatToSeconds(float aQuarterBeat,float aBpm){
+        return aQuarterBeat * (15 / aBpm);
+    }
 }

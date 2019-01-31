@@ -12,11 +12,13 @@ public static class MySceneManager {
             //SceneDataにSceneを記憶
             tData.scene = aScene;
             //カメラノードのAudioListenerを消す
-            foreach (GameObject tObject in aScene.GetRootGameObjects()){
-                AudioListener tAudioListener = tObject.GetComponent<AudioListener>();
-                if (tAudioListener != null){
-                    GameObject.Destroy(tAudioListener);
-                    break;
+            if (tData.additive){//additiveで開いた時のみ
+                foreach (GameObject tObject in aScene.GetRootGameObjects()){
+                    AudioListener tAudioListener = tObject.GetComponent<AudioListener>();
+                    if (tAudioListener != null){
+                        GameObject.Destroy(tAudioListener);
+                        break;
+                    }
                 }
             }
             //開いた時のcallback
@@ -36,12 +38,13 @@ public static class MySceneManager {
         };
     }
     public class SceneData{
-        public SceneData(string aName,Arg aArg,Action<Scene> aOpened=null,Action<Arg> aClosed=null){
+        public SceneData(string aName,Arg aArg,Action<Scene> aOpened=null,Action<Arg> aClosed=null,bool aAdditive=false){
             name = aName;
             arg = aArg;
             opened = aOpened;
             closed = aClosed;
             pausedBehaviour = new List<MonoBehaviour>();
+            additive = aAdditive;
         }
         public string name;//シーンの名前
         public Arg arg;//開いたシーンに渡す引数
@@ -49,6 +52,7 @@ public static class MySceneManager {
         public Action<Arg> closed;//シーンを閉じた時のcallback
         public Scene scene;//開いたシーン
         public List<MonoBehaviour> pausedBehaviour;//停止させたbehaviour
+        public bool additive;//additiveでシーンを開いた
     }
     ///開いている全てのシーン
     static private List<SceneData> mScenes = new List<SceneData>();
@@ -63,7 +67,7 @@ public static class MySceneManager {
     }
     ///シーンを開く
     static public void openScene(string aName, Arg aArg, Action<Scene> aOpened = null, Action<Arg> aClosed = null){
-        SceneData tData=new SceneData(aName,aArg,aOpened,aClosed);
+        SceneData tData = new SceneData(aName, aArg, aOpened, aClosed, true);
         mScenes.Add(tData);
         SceneManager.LoadSceneAsync(aName, LoadSceneMode.Additive);
         //SceneManager.LoadScene(aName,LoadSceneMode.Additive);
@@ -87,7 +91,8 @@ public static class MySceneManager {
     }
     ///シーン変更する
     static public void changeScene(string aName, Arg aArg, Action<Scene> aOpened = null, Action<Arg> aClosed = null){
-        SceneData tData = new SceneData(aName, aArg, aOpened, aClosed);
+        SceneData tData = new SceneData(aName, aArg, aOpened, aClosed, false);
+        mScenes.Clear();//シーンのデータを全て削除
         mScenes.Add(tData);
         SceneManager.LoadScene(aName);
     }

@@ -62,9 +62,12 @@ public partial class MyBehaviour : MonoBehaviour {
     /// <param name="aSeconds">aFunctionを実行するまでの時間(秒)</param>
     /// <param name="aFunction">実行する関数</param>
     public void setTimeout(float aSeconds,Action aFunction){
-        StartCoroutine(coroutine(aSeconds, aFunction));
+        StartCoroutine(waite(aSeconds, aFunction));
     }
-    private IEnumerator coroutine(float aSeconds, Action aFunction){
+    public static void setTimeoutToIns(float aSeconds, Action aFunction){
+        ins.StartCoroutine(ins.waite(aSeconds, aFunction));
+    }
+    private IEnumerator waite(float aSeconds, Action aFunction){
         yield return new WaitForSeconds(aSeconds);
         aFunction();
     }
