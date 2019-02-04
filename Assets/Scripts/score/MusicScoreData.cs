@@ -85,6 +85,6 @@ static public class MusicScoreData {
         }
         return tTotalSeconds
                     + KeyTime.quarterBeatToSeconds(aQuarterBeat - tBpms[i].get<float>("time"), tBpms[i].get<float>("bpm"))
-                    - mMusicDate.get<float>("marign");
+                    - mMusicDate.get<float>("margin");
     }
 }

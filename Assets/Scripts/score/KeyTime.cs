@@ -5,6 +5,15 @@ using UnityEngine;
 public struct KeyTime {
     //先頭の８分音符を0とした時の番号(QN)
     public float mQuarterBeat;
+    //正確なQN(三連符に影響)
+    public float mCorrectQuarterBeat{
+        get{
+            float tFew = mQuarterBeat - Mathf.Floor(mQuarterBeat);
+            if (tFew < 0.2) return Mathf.Floor(mQuarterBeat);
+            if (tFew < 0.4) return Mathf.Floor(mQuarterBeat)+1/3;
+            return Mathf.Floor(mQuarterBeat)+2/3;
+        }
+    }
     //三連符に属する
     public bool mIsInTriplet{
         get { return !(mQuarterBeat == Mathf.Floor(mQuarterBeat)); }
@@ -24,6 +33,9 @@ public struct KeyTime {
     //拍内での音符番号
     public float mQuarterBeatNumInBeat{
         get { return mQuarterBeat % 4; }
+    }
+    public int mQuarterBeatIndexInBeat{
+        get { return Mathf.FloorToInt(mQuarterBeat % 4); }
     }
     //拍内での音符番号(三連符に含まれる時)
     public int mQuarterBeatNumInTriplet{

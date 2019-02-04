@@ -14,5 +14,11 @@ partial class ScoreHandler {
         virtual public void exit(){
             
         }
+        virtual public void update(){
+            
+        }
+        virtual public void getMessage(Message aMessage){
+            
+        }
     }
 }

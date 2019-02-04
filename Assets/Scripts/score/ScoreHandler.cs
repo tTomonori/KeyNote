@@ -2,11 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class ScoreHandler{
+public partial class ScoreHandler : MyBehaviour{
     private KeyNotePlayer mPlayer;
     private MusicScore mScore;
     private ScoreHandleState mState;
-    public ScoreHandler(string aFileName,string aDifficult){
+    private void Awake(){
+        mState = new InitialState(this);
+        Subject.addObserver(new Observer("scoreHandler", (message) =>{
+            mState.getMessage(message);
+        }));
+    }
+    private void OnDestroy(){
+        Subject.removeObserver("scoreHandler");
+    }
+    public void load(string aFileName,string aDifficult){
         //譜面
         mScore = MyBehaviour.create<MusicScore>();
         //曲情報ロード
@@ -17,12 +26,14 @@ public partial class ScoreHandler{
         tPlayer.setAudio(DataFolder.loadMusic(MusicScoreData.mMusicFileName));
         //譜面と曲を同期させるシステム
         mPlayer = new KeyNotePlayer(mScore,tPlayer);
-
     }
     //状態遷移
     public void changeState(ScoreHandleState aState){
         if (mState != null) mState.exit();
         mState = aState;
         mState.enter();
+    }
+    private void Update(){
+        mState.update();
     }
 }

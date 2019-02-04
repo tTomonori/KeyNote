@@ -69,8 +69,8 @@ public class MusicScore : MyBehaviour {
     //現在のPositionYに応じてBarを削除・生成する
     private void updateBars(){
         int tCurrentNum = mCurrentBarNum;
-        int tTopNum = tCurrentNum - 5;
-        int tTailNum = tCurrentNum + 5;
+        int tTopNum = tCurrentNum - 2;
+        int tTailNum = tCurrentNum + 4;
         //はみ出たBar削除
         List<Bar> tDeleted = new List<Bar>();
         foreach (Bar tBar in mBars){
@@ -98,5 +98,11 @@ public class MusicScore : MyBehaviour {
     //音声の再生位置に合わせてpozitionを変更
     public void adjustPozitionToMusicTime(float aMusicTime){
         show(MusicScoreData.musicTimeToQuarterBeat(aMusicTime));
+    }
+    public void hit(KeyCode aKey,float aSecond,Note.HitNoteType aType){
+        foreach(Bar tBar in mBars){
+            if (tBar.hit(aKey,aSecond,aType))
+                return;
+        }
     }
 }

@@ -13,6 +13,10 @@ public class KeyNotePlayer {
     private Coroutine mAdjustScoreCoroutine;
     //音声なしで譜面を移動させるコルーチン
     private Coroutine mMoveScoreCoroutine;
+    //現在の音声の位置
+    public float mCurrentSecond{
+        get { return mPlayer.mCurrentSecond; }
+    }
     public KeyNotePlayer(MusicScore aScore,MusicPlayer aPlayer){
         mScore = aScore;
         mPlayer = aPlayer;

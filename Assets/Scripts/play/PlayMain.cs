@@ -11,11 +11,13 @@ public class PlayMain : MonoBehaviour {
         string tFileName = tArg.get<string>("file");
         string tDifficult = tArg.get<string>("difficult");
 
-        tHandler = new ScoreHandler(tFileName,tDifficult);
+        //tHandler = new ScoreHandler(tFileName,tDifficult);
+        tHandler = MyBehaviour.create<ScoreHandler>();
+        tHandler.load(tFileName, tDifficult);
         tHandler.changeState(new ScoreHandler.PlayState(tHandler));
 	}
 
 	void Update () {
-		
+
 	}
 }

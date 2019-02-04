@@ -9,5 +9,13 @@ partial class ScoreHandler {
             parent.mScore.show(new KeyTime(-3));
             parent.mPlayer.play();
         }
+        public override void update(){
+            foreach(KeyCode tKey in KeyMonitor.getInputKey()){
+                parent.mScore.hit(tKey,parent.mPlayer.mCurrentSecond,Note.HitNoteType.delete);
+            }
+        }
+        public override void getMessage(Message aMessage){
+
+        }
     }
 }

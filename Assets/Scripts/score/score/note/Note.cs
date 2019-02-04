@@ -3,7 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public abstract class Note : MonoBehaviour {
+public abstract class Note : MyBehaviour {
+    public enum HitNoteType{
+        delete,decolorize
+    }
+    //音符データ
+    protected Arg mData;
+    //正確なQN
+    public float mCorrectQuarterBeat{
+        get { return mData.get<KeyTime>("keyTime").mCorrectQuarterBeat; }
+    }
     static public Note create(){
         switch(MusicScoreData.mDifficult){
             case MusicScoreData.Difficult.child:
@@ -18,7 +27,13 @@ public abstract class Note : MonoBehaviour {
                 throw new Exception("Note : 未定義の難易度「" + MusicScoreData.mDifficult + "」");
         }
     }
-    public abstract void setData(Arg aNoteData);
+    //音符データ適用
+    public void setData(Arg aNoteData){
+        mData = aNoteData;
+        display(aNoteData);
+    }
+    protected abstract void display(Arg aNoteData);
+    //音符の画像取得
     public Sprite getNoteSprite(string aVowel){
         string tNum;
         switch(aVowel){
@@ -31,6 +46,7 @@ public abstract class Note : MonoBehaviour {
         }
         return Resources.Load<Sprite>("sprites/score/note/note" + tNum);
     }
+    //小さい音符の画像取得
     public Sprite getMininoteSprite(string aVowel){
         string tNum;
         switch(aVowel){
@@ -42,5 +58,26 @@ public abstract class Note : MonoBehaviour {
             default:tNum = "8"; break;
         }
         return Resources.Load<Sprite>("sprites/score/mininote/mininote" + tNum);
+    }
+    //音符にhitするか
+    public abstract bool hit(KeyCode aKey,HitNoteType aType);
+    //音符にhitした
+    protected void hitted(GameObject aNoteObject,HitNoteType aType){
+        switch(aType){
+            case HitNoteType.delete:
+                hitAndDelete(aNoteObject);
+                break;
+            case HitNoteType.decolorize:
+                hitAndDecolorize(aNoteObject);
+                break;
+        }
+    }
+    //消滅
+    protected void hitAndDelete(GameObject aNoteObject){
+        aNoteObject.GetComponent<MyBehaviour>().delete();
+    }
+    //脱色
+    protected void hitAndDecolorize(GameObject aNoteObject){
+        Debug.Log("decolorize");
     }
 }
