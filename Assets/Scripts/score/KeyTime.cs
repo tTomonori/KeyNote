@@ -24,11 +24,15 @@ public struct KeyTime {
     }
     //所属する拍の小節内での番号
     public int mBeatNumInBar{
-        get { return Mathf.FloorToInt(mQuarterBeatNumInBar / 4); }
+        get { return Mathf.FloorToInt(mQuarterBeatInBar / 4); }
     }
     //小節内での音符番号
-    public float mQuarterBeatNumInBar{
-        get { return mQuarterBeat % (MusicScoreData.mRhythm * 4); }
+    public float mQuarterBeatInBar{
+        get {
+            float tQN = mQuarterBeat % (MusicScoreData.mRhythm * 4);
+            if (tQN < 0) return MusicScoreData.mRhythm * 4 + tQN;
+            else return tQN;
+        }
     }
     //拍内での音符番号
     public float mQuarterBeatNumInBeat{

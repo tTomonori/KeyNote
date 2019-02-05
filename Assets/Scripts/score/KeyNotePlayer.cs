@@ -8,7 +8,7 @@ public class KeyNotePlayer {
     //音声再生クラス
     private MusicPlayer mPlayer;
     //コルーチン実行用オブジェクト
-    private MyBehaviour mBehaviour = MyBehaviour.create<MyBehaviour>();
+    private MyBehaviour mBehaviour;
     //譜面の位置調整コルーチン
     private Coroutine mAdjustScoreCoroutine;
     //音声なしで譜面を移動させるコルーチン
@@ -18,6 +18,8 @@ public class KeyNotePlayer {
         get { return mPlayer.mCurrentSecond; }
     }
     public KeyNotePlayer(MusicScore aScore,MusicPlayer aPlayer){
+        mBehaviour = MyBehaviour.create<MyBehaviour>();
+        mBehaviour.name = "KeyNotePlayer's CoroutineRunner";
         mScore = aScore;
         mPlayer = aPlayer;
     }

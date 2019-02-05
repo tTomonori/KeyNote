@@ -7,6 +7,7 @@ public partial class ScoreHandler : MyBehaviour{
     private MusicScore mScore;
     private ScoreHandleState mState;
     private void Awake(){
+        name = "scoreHandler";
         mState = new InitialState(this);
         Subject.addObserver(new Observer("scoreHandler", (message) =>{
             mState.getMessage(message);

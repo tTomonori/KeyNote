@@ -4,6 +4,8 @@ using UnityEngine;
 using System.Linq;
 
 public class MusicScore : MyBehaviour {
+    //一拍分の五線譜のサイズ
+    static public Vector2 kNotationSize = new Vector2(8.4f, 6.3f);
     //Bar同士の間隔
     static float kBarInterval = 9f;
     //現在のQNを表示する位置を弄る
@@ -12,6 +14,8 @@ public class MusicScore : MyBehaviour {
     static float kScale = 0.3f;
     //小節のオブジェクト
     private List<Bar> mBars;
+    //現在のQNを指すオブジェクト
+    public MetroArrow mMetro;
     //現在の中心のBar
     public int mCurrentBarNum{
         get { return Mathf.FloorToInt((positionY - kScoreOffset) / kBarInterval / kScale); }
@@ -30,7 +34,7 @@ public class MusicScore : MyBehaviour {
         return aQuarterBeat / (MusicScoreData.mRhythm * 4) * kBarInterval * kScale + kScoreOffset;
     }
     void Awake () {
-        this.name = "score";
+        name = "musicScore";
         this.transform.localScale = new Vector3(kScale, kScale, 1f);
         mBars = new List<Bar>();
 	}
@@ -38,6 +42,8 @@ public class MusicScore : MyBehaviour {
         for (int i = mCurrentBarNum - 4; i < mCurrentBarNum + 5;i++){
             mBars.Add(createBar(new KeyTime(i)));
         }
+        mMetro = MyBehaviour.create<MetroArrow>();
+        mMetro.setParentScore(this);
     }
     void Update () {
         updateBars();
@@ -61,10 +67,14 @@ public class MusicScore : MyBehaviour {
         }
         //位置調整
         tBar.transform.parent = gameObject.transform;
-        tBar.transform.localPosition = new Vector3(0, -tBar.mTime.mBarNum * kBarInterval, 0);
+        tBar.transform.localPosition = new Vector3(0, convertToPositionY(tBar.mTime.mBarNum), 0);
         tBar.transform.localScale = new Vector3(1f, 1f, 1f);
         tBar.name = "bar:" + aBarNum.mBarNum;
         return tBar;
+    }
+    //小節番号をY座標に変換
+    public float convertToPositionY(int aBarNum){
+        return -aBarNum * kBarInterval;
     }
     //現在のPositionYに応じてBarを削除・生成する
     private void updateBars(){

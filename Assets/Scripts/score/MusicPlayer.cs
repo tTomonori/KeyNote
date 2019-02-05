@@ -10,6 +10,7 @@ public class MusicPlayer : MonoBehaviour {
         set { mAudio.time = value; }
     }
 	void Awake () {
+        name = "musicPlayer";
         mAudio = gameObject.AddComponent<AudioSource>();
 	}
     //音声ファイル読み込み
