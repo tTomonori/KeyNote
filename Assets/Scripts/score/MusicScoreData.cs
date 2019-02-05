@@ -85,8 +85,8 @@ static public class MusicScoreData {
     }
     //QNを曲の再生位置に変換
     static public float quarterBeatToMusicTime(float aQuarterBeat){
-        if(aQuarterBeat<0)
-            return KeyTime.quarterBeatToSeconds(aQuarterBeat, mBpm[0].get<float>("bpm"));
+        if (aQuarterBeat < 0)
+            return KeyTime.quarterBeatToSeconds(aQuarterBeat, mBpm[0].get<float>("bpm")) - mMusicDate.get<float>("margin");
         
         List<Arg> tBpms = mBpm;
         int tLength = tBpms.Count;

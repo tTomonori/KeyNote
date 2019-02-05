@@ -6,7 +6,6 @@ partial class ScoreHandler {
     public class PlayState : ScoreHandleState{
         public PlayState(ScoreHandler aParent) : base(aParent){}
         public override void enter(){
-            parent.mScore.show(new KeyTime(-3));
             parent.mPlayer.play();
         }
         public override void update(){
@@ -15,7 +14,9 @@ partial class ScoreHandler {
             }
         }
         public override void getMessage(Message aMessage){
-
+            if(aMessage.name=="pauseButtonPushed"){
+                parent.changeState(new PauseState(parent));
+            }
         }
     }
 }

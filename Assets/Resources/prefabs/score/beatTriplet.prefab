@@ -130,6 +130,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4696059715445746}
+  - component: {fileID: 114721044141845474}
   m_Layer: 0
   m_Name: lyricses
   m_TagString: Untagged
@@ -739,6 +740,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 203e5b4a11bc04b109e8f22c5447ae21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114721044141845474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262146873445778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b43997169c2e4a8d89b355c72c912a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114796236521294626

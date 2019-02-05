@@ -11,9 +11,9 @@ public class PlayMain : MonoBehaviour {
         string tFileName = tArg.get<string>("file");
         string tDifficult = tArg.get<string>("difficult");
 
-        //tHandler = new ScoreHandler(tFileName,tDifficult);
         tHandler = MyBehaviour.create<ScoreHandler>();
         tHandler.load(tFileName, tDifficult);
+        tHandler.show(new KeyTime(-3));
         tHandler.changeState(new ScoreHandler.PlayState(tHandler));
 	}
 

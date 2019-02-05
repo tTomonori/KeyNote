@@ -25,7 +25,7 @@ public class MusicPlayer : MonoBehaviour {
         mAudio.Play();
     }
     public void pause(){
-        mAudio.Pause();
+        mAudio.Stop();
     }
     public void playDelayed(float aDelay){
         mAudio.PlayDelayed(aDelay);

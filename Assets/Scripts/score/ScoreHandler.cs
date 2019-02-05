@@ -28,6 +28,10 @@ public partial class ScoreHandler : MyBehaviour{
         //譜面と曲を同期させるシステム
         mPlayer = new KeyNotePlayer(mScore,tPlayer);
     }
+    //譜面の位置
+    public void show(KeyTime aTime){
+        mScore.show(aTime);
+    }
     //状態遷移
     public void changeState(ScoreHandleState aState){
         if (mState != null) mState.exit();
