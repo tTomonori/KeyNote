@@ -58,12 +58,17 @@ public class MusicScore : MyBehaviour {
     }
     //小節生成
     private Bar createBar(KeyTime aBarNum){
-        List<Arg> tNotes = MusicScoreData.getNotesInBar(aBarNum);
         Bar tBar = MyBehaviour.createObjectFromPrefab<Bar>("score/bar" + MusicScoreData.mRhythm.ToString());
         tBar.mTime = aBarNum;
         //音符追加
+        List<Arg> tNotes = MusicScoreData.getNotesInBar(aBarNum);
         foreach(Arg tNoteData in tNotes){
             tBar.addNote(tNoteData);
+        }
+        //歌詞追加
+        List<Arg> tLyrics = MusicScoreData.getLyricsInBar(aBarNum);
+        foreach (Arg tLyricsData in tLyrics){
+            tBar.addLyrics(tLyricsData);
         }
         //位置調整
         tBar.transform.parent = gameObject.transform;

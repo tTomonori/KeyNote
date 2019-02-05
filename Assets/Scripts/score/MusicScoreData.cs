@@ -33,6 +33,9 @@ static public class MusicScoreData {
         foreach(Arg tNoteData in mMusicDate.get<List<Arg>>("note")){
             tNoteData.set("keyTime", new KeyTime(tNoteData.get<float>("time")));
         }
+        foreach (Arg tLyricsData in mMusicDate.get<List<Arg>>("lyrics")){
+            tLyricsData.set("keyTime", new KeyTime(tLyricsData.get<float>("time")));
+        }
         //音声を再生開始するquarterBeat
         mStartPlayMusicTime = new KeyTime(KeyTime.secondsToQuarterBeat(mMusicDate.get<float>("margin"), mMusicDate.get<List<Arg>>("bpm")[0].get<float>("bpm")));
     }
@@ -48,6 +51,19 @@ static public class MusicScoreData {
             tNotes.Add(tNote);
         }
         return tNotes;
+    }
+    //指定した小節に含まれる歌詞のデータを返す
+    static public List<Arg> getLyricsInBar(KeyTime aTime){
+        List<Arg> tLyricsList = new List<Arg>();
+        int tTopTime = (int)aTime.mTopQuarterBeatInBar;
+        int tTailTime = (int)aTime.mTailQuarterBeatInBar;
+        foreach (Arg tLyrics in mMusicDate.get<List<Arg>>("lyrics")){
+            float tNoteTime = tLyrics.get<float>("time");
+            if (tNoteTime < tTopTime) continue;
+            if (tTailTime < tNoteTime) break;
+            tLyricsList.Add(tLyrics);
+        }
+        return tLyricsList;
     }
     //曲の再生位置をQNに変換
     static public float musicTimeToQuarterBeat(float aMusicTime){

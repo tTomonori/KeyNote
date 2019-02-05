@@ -1,31 +1,21 @@
 ﻿<Properties StartupConfiguration="{FAA2A704-9CBD-045F-2725-8A96BDA8B211}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/score/KeyNotePlayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/score/score/LyricsBubble.cs">
     <Files>
       <File FileName="Assets/Scripts/play/PlayMain.cs" Line="16" Column="46" />
       <File FileName="Assets/Scripts/score/ScoreHandler.cs" Line="10" Column="31" />
       <File FileName="Assets/Scripts/common/KeyMonitor.cs" Line="25" Column="31" />
       <File FileName="Assets/Scripts/score/handleState/PlayState.cs" Line="14" Column="93" />
-      <File FileName="Assets/Scripts/score/score/MusicScore.cs" Line="37" Column="29" />
-      <File FileName="Assets/Scripts/score/score/Bar.cs" Line="20" Column="47" />
-      <File FileName="Assets/Scripts/score/score/Beat.cs" Line="51" Column="1" />
+      <File FileName="Assets/Scripts/score/score/MusicScore.cs" Line="71" Column="39" />
+      <File FileName="Assets/Scripts/score/score/Bar.cs" Line="19" Column="11" />
+      <File FileName="Assets/Scripts/score/score/Beat.cs" Line="59" Column="67" />
+      <File FileName="Assets/Scripts/score/MusicScoreData.cs" Line="41" Column="44" />
+      <File FileName="Assets/Scripts/score/score/LyricsBubble.cs" Line="6" Column="14" />
       <File FileName="Assets/Scripts/score/score/note/Note.cs" Line="77" Column="58" />
-      <File FileName="Assets/Scripts/score/score/note/NoteChild.cs" Line="20" Column="1" />
-      <File FileName="Assets/Scripts/score/score/note/NoteStudent.cs" Line="16" Column="33" />
-      <File FileName="Assets/Scripts/score/score/note/NoteScholar.cs" Line="12" Column="72" />
-      <File FileName="Assets/Scripts/score/score/note/NoteGuru.cs" Line="34" Column="48" />
-      <File FileName="Assets/Scripts/score/KeyTime.cs" Line="27" Column="51" />
-      <File FileName="Assets/Scripts/score/TypeEvaluation.cs" Line="12" Column="6" />
-      <File FileName="Assets/Scripts/score/MusicScoreData.cs" Line="88" Column="52" />
-      <File FileName="Assets/Scripts/score/MetroArrow.cs" Line="12" Column="29" />
-      <File FileName="Assets/Scripts/score/MusicPlayer.cs" Line="13" Column="30" />
-      <File FileName="Assets/Scripts/score/KeyNotePlayer.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/tomo/Desktop/game/KeyNote/Assets/Scripts/score/score/Beat.cs" relfile="Assets/Scripts/score/score/Beat.cs" line="51" column="15" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.KeyNote PreferredExecutionTarget="Unity.Editor" />

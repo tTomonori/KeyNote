@@ -7,7 +7,9 @@ public class Beat : MyBehaviour {
     private bool mTriplet=false;
     private MyBehaviour mBeatObject;
     private Note[] mNotes;
+    private LyricsBubble[] mLyricses;
     private Transform[] mNotePositions;
+    private Transform[] mLyricsPositions;
 	void Awake () {
         createBeatObject();
 	}
@@ -20,9 +22,16 @@ public class Beat : MyBehaviour {
         mBeatObject.transform.parent = this.gameObject.transform;
         mBeatObject.transform.localPosition = new Vector3(0, 0, 0);
 
-        if (aTriplet) mNotes = new Note[3];
-        else mNotes = new Note[4];
+        if (aTriplet) { 
+            mNotes = new Note[3];
+            mLyricses = new LyricsBubble[3];
+        }
+        else { 
+            mNotes = new Note[4];
+            mLyricses = new LyricsBubble[4];
+        }
         mNotePositions = mBeatObject.findChild("notes").GetComponent<MyBehaviour>().GetComponentsInChildrenWithoutSelf<Transform>();
+        mLyricsPositions = mBeatObject.findChild("lyricses").GetComponent<MyBehaviour>().GetComponentsInChildrenWithoutSelf<Transform>();
     }
     private void checkTriplet(bool aTriplet){
         if (mTriplet == aTriplet) return;
@@ -43,6 +52,21 @@ public class Beat : MyBehaviour {
         tNote.transform.localPosition = new Vector3(0, 0, -1);
 
         mNotes[tTime.mQuarterBeatIndexInBeat] = tNote;
+    }
+    //歌詞追加
+    public void addLyrics(Arg aLyricsData){
+        //歌詞生成
+        LyricsBubble tLyrics = MyBehaviour.createObjectFromPrefab<LyricsBubble>("score/lyricsBubble");
+        tLyrics.setData(aLyricsData);
+
+        KeyTime tTime = aLyricsData.get<KeyTime>("keyTime");
+        //三連符判定
+        checkTriplet(tTime.mIsInTriplet);
+        //座標
+        tLyrics.transform.parent = mLyricsPositions[(mTriplet) ? tTime.mQuarterBeatNumInTriplet : (int)tTime.mQuarterBeatNumInBeat];
+        tLyrics.transform.localPosition = new Vector3(0, 0, -1);
+
+        mLyricses[tTime.mQuarterBeatIndexInBeat] = tLyrics;
     }
     public bool hit(KeyCode aKey,float aSecond,Note.HitNoteType aType){
         int tLength = (mTriplet) ? 3 : 4;
