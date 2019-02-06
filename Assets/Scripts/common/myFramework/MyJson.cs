@@ -300,7 +300,8 @@ public static class MyJson {
                 case '"'://文字列
                     return readString();
                 case '{'://Dictionary
-                    return readDictionary();
+                    //return readDictionary();
+                    return readDictionaryOfObject();
                 case '['://配列
                     return readList();
                 case 't'://bool

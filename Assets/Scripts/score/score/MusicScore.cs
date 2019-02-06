@@ -70,6 +70,11 @@ public class MusicScore : MyBehaviour {
         foreach (Arg tLyricsData in tLyrics){
             tBar.addLyrics(tLyricsData);
         }
+        //bpm変化を示すオブジェクト追加
+        List<Arg> tBpms = MusicScoreData.getChangeBpmInBar(aBarNum);
+        foreach(Arg tBpm in tBpms){
+            tBar.addChangeBpm(tBpm);
+        }
         //位置調整
         tBar.transform.parent = gameObject.transform;
         tBar.transform.localPosition = new Vector3(0, convertToPositionY(tBar.mTime.mBarNum), 0);

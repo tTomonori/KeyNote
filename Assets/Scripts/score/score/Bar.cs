@@ -21,6 +21,11 @@ public class Bar : MyBehaviour {
         KeyTime tTime = new KeyTime(aLyricsData.get<float>("time"));
         mBeats[tTime.mBeatNumInBar].addLyrics(aLyricsData);
     }
+    //bpm変化を示すオブジェクト追加
+    public void addChangeBpm(Arg aBpmData){
+        KeyTime tTime = new KeyTime(aBpmData.get<float>("time"));
+        mBeats[tTime.mBeatNumInBar].addChangeBpm(aBpmData);
+    }
     public bool hit(KeyCode aKey,float aSecond,Note.HitNoteType aType){
         foreach(Beat tBeat in mBeats){
             if (tBeat.hit(aKey, aSecond, aType))

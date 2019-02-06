@@ -8,8 +8,10 @@ public class Beat : MyBehaviour {
     private MyBehaviour mBeatObject;
     private Note[] mNotes;
     private LyricsBubble[] mLyricses;
+    private ChangeBpmObject[] mBpms;
     private Transform[] mNotePositions;
     private Transform[] mLyricsPositions;
+    private Transform[] mBpmPositions;
 	void Awake () {
         createBeatObject();
 	}
@@ -25,13 +27,16 @@ public class Beat : MyBehaviour {
         if (aTriplet) { 
             mNotes = new Note[3];
             mLyricses = new LyricsBubble[3];
+            mBpms = new ChangeBpmObject[3];
         }
         else { 
             mNotes = new Note[4];
             mLyricses = new LyricsBubble[4];
+            mBpms = new ChangeBpmObject[4];
         }
         mNotePositions = mBeatObject.findChild("notes").GetComponent<MyBehaviour>().GetComponentsInChildrenWithoutSelf<Transform>();
         mLyricsPositions = mBeatObject.findChild("lyricses").GetComponent<MyBehaviour>().GetComponentsInChildrenWithoutSelf<Transform>();
+        mBpmPositions = mBeatObject.findChild("bpms").GetComponent<MyBehaviour>().GetComponentsInChildrenWithoutSelf<Transform>();
     }
     private void checkTriplet(bool aTriplet){
         if (mTriplet == aTriplet) return;
@@ -67,6 +72,21 @@ public class Beat : MyBehaviour {
         tLyrics.transform.localPosition = new Vector3(0, 0, -1);
 
         mLyricses[tTime.mQuarterBeatIndexInBeat] = tLyrics;
+    }
+    //bpm変化を示すオブジェクト追加
+    public void addChangeBpm(Arg aBpmData){
+        //オブジェクト生成
+        ChangeBpmObject tObject = MyBehaviour.createObjectFromPrefab<ChangeBpmObject>("score/changeBpmObject");
+        tObject.setData(aBpmData);
+
+        KeyTime tTime = new KeyTime(aBpmData.get<float>("time"));
+        //三連符判定
+        checkTriplet(tTime.mIsInTriplet);
+        //座標
+        tObject.transform.parent = mBpmPositions[(mTriplet) ? tTime.mQuarterBeatNumInTriplet : (int)tTime.mQuarterBeatNumInBeat];
+        tObject.transform.localPosition = new Vector3(0, 0, -1);
+
+        mBpms[tTime.mQuarterBeatIndexInBeat] = tObject;
     }
     public bool hit(KeyCode aKey,float aSecond,Note.HitNoteType aType){
         int tLength = (mTriplet) ? 3 : 4;

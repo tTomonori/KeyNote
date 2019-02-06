@@ -1,18 +1,16 @@
 ﻿<Properties StartupConfiguration="{FAA2A704-9CBD-045F-2725-8A96BDA8B211}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/play/EvaluationDisplay.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/score/score/ChangeBpmObject.cs">
     <Files>
       <File FileName="Assets/Scripts/play/PlayMain.cs" Line="17" Column="68" />
       <File FileName="Assets/Scripts/score/ScoreHandler.cs" Line="33" Column="28" />
       <File FileName="Assets/Scripts/score/handleState/PlayState.cs" Line="12" Column="46" />
       <File FileName="Assets/Scripts/score/handleState/PauseState.cs" Line="26" Column="59" />
-      <File FileName="Assets/Scripts/score/score/MusicScore.cs" Line="25" Column="23" />
-      <File FileName="Assets/Scripts/score/MusicScoreData.cs" Line="89" Column="124" />
-      <File FileName="Assets/Scripts/score/KeyTime.cs" Line="74" Column="43" />
-      <File FileName="Assets/Scripts/score/KeyNotePlayer.cs" Line="33" Column="16" />
-      <File FileName="Assets/Scripts/common/myFramework/MySceneManager.cs" Line="36" Column="33" />
-      <File FileName="Assets/Scripts/common/ui/LightButton.cs" Line="11" Column="113" />
-      <File FileName="Assets/Scripts/score/score/Beat.cs" Line="88" Column="25" />
-      <File FileName="Assets/Scripts/play/EvaluationDisplay.cs" Line="5" Column="31" />
+      <File FileName="Assets/Scripts/score/score/MusicScore.cs" Line="76" Column="37" />
+      <File FileName="Assets/Scripts/score/score/Bar.cs" Line="27" Column="60" />
+      <File FileName="Assets/Scripts/score/score/Beat.cs" Line="82" Column="66" />
+      <File FileName="Assets/Scripts/score/MusicScoreData.cs" Line="77" Column="38" />
+      <File FileName="Assets/Scripts/score/score/ChangeBpmObject.cs" Line="24" Column="71" />
+      <File FileName="Assets/Scripts/score/score/LyricsBubble.cs" Line="6" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
