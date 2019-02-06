@@ -7,6 +7,7 @@ partial class ScoreHandler{
         public PauseState(ScoreHandler aParent) : base(aParent) { }
         public override void enter(){
             parent.mPlayer.pause();
+            MySceneManager.openScene("pause");
         }
         public override void update(){
             
@@ -14,6 +15,16 @@ partial class ScoreHandler{
         public override void getMessage(Message aMessage){
             if (aMessage.name == "pauseButtonPushed"){
                 parent.changeState(new PlayState(parent));
+                return;
+            }
+            if(aMessage.name=="endButtonPushed"){
+                MySceneManager.changeScene("selection");
+                return;
+            }
+            if(aMessage.name=="continueButtonPushed"){
+                MySceneManager.closeScene("pause");
+                parent.changeState(new PlayState(parent));
+                return;
             }
         }
     }

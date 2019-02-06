@@ -8,7 +8,7 @@ public class LightButton : UiButton {
     public void lightOn(){
         mLight = MyBehaviour.create<MyBehaviour>();
         mLight.name = "light";
-        mLight.gameObject.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/button/light/light");
+        mLight.gameObject.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/button/electro/light");
         mLight.transform.parent = this.gameObject.transform;
         mLight.transform.localPosition = new Vector3(0, 0, -1);
         mLight.transform.localScale = new Vector3(1, 1, 1);

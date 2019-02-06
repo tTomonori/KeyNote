@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/selection.unity
     guid: 611a05bfa6c3c42a69680aafef59c344
   - enabled: 1
-    path: Assets/Scenes/play.unity
+    path: Assets/Scenes/play/play.unity
     guid: 5c792e894c88e44759fca4de29fe473d
   - enabled: 1
     path: Assets/Scenes/menu.unity
@@ -20,3 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/edit.unity
     guid: 9bfe69e703b824e8e854cc4e46ef2944
+  - enabled: 1
+    path: Assets/Scenes/play/pause.unity
+    guid: 73f6dde0879de4dd59247ff949e3868f

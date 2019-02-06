@@ -33,6 +33,7 @@ public static class MySceneManager {
                 if (tData.name != tName) continue;
                 mScenes.RemoveAt(i);
                 //閉じた時のcallback
+                if (tData.closed != null)
                 tData.closed(tData.arg);
             }
         };
@@ -66,18 +67,18 @@ public static class MySceneManager {
         throw new KeyNotFoundException("SceneManager:「"+aName+"」なんて名前のシーンはないよ");
     }
     ///シーンを開く
-    static public void openScene(string aName, Arg aArg, Action<Scene> aOpened = null, Action<Arg> aClosed = null){
-        SceneData tData = new SceneData(aName, aArg, aOpened, aClosed, true);
+    static public void openScene(string aName, Arg aArg=null, Action<Scene> aOpened = null, Action<Arg> aClosed = null){
+        SceneData tData = new SceneData(aName, (aArg == null) ? new Arg() : aArg, aOpened, aClosed, true);
         mScenes.Add(tData);
         SceneManager.LoadSceneAsync(aName, LoadSceneMode.Additive);
         //SceneManager.LoadScene(aName,LoadSceneMode.Additive);
     }
     ///シーンを閉じる
-    static public void closeScene(string aName,Arg aArg,Action<Arg> aClosed=null){
+    static public void closeScene(string aName,Arg aArg=null,Action<Arg> aClosed=null){
         for (int i = 0; i < mScenes.Count;i++){
             SceneData tData = mScenes[i];
             if (tData.name != aName) continue;
-            tData.arg = aArg;
+            tData.arg = (aArg == null) ? new Arg() : aArg;
             if (aClosed != null){
                 if (tData.closed != null)
                     Debug.Log("SceneManager:「" + aName + "」ってシーンを閉じた時のcallbak上書きしちゃった");
@@ -90,8 +91,8 @@ public static class MySceneManager {
         throw new KeyNotFoundException("SceneManager:「" + aName + "」なんて名前のシーンはないから閉じれない");
     }
     ///シーン変更する
-    static public void changeScene(string aName, Arg aArg, Action<Scene> aOpened = null, Action<Arg> aClosed = null){
-        SceneData tData = new SceneData(aName, aArg, aOpened, aClosed, false);
+    static public void changeScene(string aName, Arg aArg=null, Action<Scene> aOpened = null, Action<Arg> aClosed = null){
+        SceneData tData = new SceneData(aName, (aArg == null) ? new Arg() : aArg, aOpened, aClosed, false);
         mScenes.Clear();//シーンのデータを全て削除
         mScenes.Add(tData);
         SceneManager.LoadScene(aName);
