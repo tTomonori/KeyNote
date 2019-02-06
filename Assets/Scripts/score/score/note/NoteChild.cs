@@ -10,10 +10,10 @@ public class NoteChild : Note {
     }
     //音符にhit済みかどうか
     private bool mHitted=false;
-    public override bool hit(KeyCode aKey,HitNoteType aType){
-        if (mHitted) return false;//hit済み
+    public override HitResult hit(KeyCode aKey,HitNoteType aType){
+        if (mHitted) return HitResult.miss;//hit済み
         mHitted = true;
         hitted(this.gameObject, aType);
-        return true;
+        return HitResult.consonant;
     }
 }

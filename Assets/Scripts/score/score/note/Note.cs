@@ -60,7 +60,7 @@ public abstract class Note : MyBehaviour {
         return Resources.Load<Sprite>("sprites/score/mininote/mininote" + tNum);
     }
     //音符にhitするか
-    public abstract bool hit(KeyCode aKey,HitNoteType aType);
+    public abstract HitResult hit(KeyCode aKey,HitNoteType aType);
     //音符にhitした
     protected void hitted(GameObject aNoteObject,HitNoteType aType){
         switch(aType){
@@ -79,5 +79,8 @@ public abstract class Note : MyBehaviour {
     //脱色
     protected void hitAndDecolorize(GameObject aNoteObject){
         Debug.Log("decolorize");
+    }
+    public enum HitResult{
+        consonantAndVowel,consonant,vowel,miss
     }
 }

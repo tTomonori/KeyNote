@@ -13,12 +13,12 @@ public class NoteScholar : Note {
     }
     //音符にhit済みかどうか
     private bool mHitted = false;
-    public override bool hit(KeyCode aKey,HitNoteType aType){
-        if (mHitted) return false;//hit済み
+    public override HitResult hit(KeyCode aKey,HitNoteType aType){
+        if (mHitted) return HitResult.miss;//hit済み
         if (KeyMonitor.convertToCode(mData.get<string>("consonant")) != aKey)
-            return false;//タイプミス
+            return HitResult.miss;//タイプミス
         mHitted = true;
         hitted(this.gameObject, aType);
-        return true;
+        return HitResult.consonant;
     }
 }

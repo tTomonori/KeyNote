@@ -18,13 +18,13 @@ public class NoteGuru : Note {
     //音符にhit済みかどうか
     private bool mHittedConsonant = false;
     private bool mHittedVowel = false;
-    public override bool hit(KeyCode aKey,HitNoteType aType){
+    public override HitResult hit(KeyCode aKey,HitNoteType aType){
         //子音hit判定
         if(!mHittedConsonant){
             if (EnumParser.parse<KeyCode>(mData.get<string>("consonant")) == aKey){
                 mHittedConsonant = true;
                 hitted(findChild("consonant"),aType);
-                return true;
+                return HitResult.consonant;
             }
         }
         //母音hit判定
@@ -32,9 +32,9 @@ public class NoteGuru : Note {
             if (EnumParser.parse<KeyCode>(mData.get<string>("vowel")) == aKey){
                 mHittedVowel = true;
                 hitted(findChild("vowel"),aType);
-                return true;
+                return HitResult.vowel;
             }
         }
-        return false;
+        return HitResult.miss;
     }
 }

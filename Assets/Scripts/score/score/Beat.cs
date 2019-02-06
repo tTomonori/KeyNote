@@ -76,7 +76,16 @@ public class Beat : MyBehaviour {
             if (tEvaluation == TypeEvaluation.Evaluation.miss) continue;//タイミングがあってない
 
             //タイミングOK
-            if (mNotes[i].hit(aKey, aType)) return true;//音符にhitしたか
+            Note.HitResult tHitResult = mNotes[i].hit(aKey, aType);
+            if (tHitResult == Note.HitResult.miss) continue;//hitしなかった
+
+            //hitしたメッセージ送信
+            Subject.sendMessage(new Message("hittedNote", new Arg(new Dictionary<string, object>() {
+                { "note", mNotes[i] } ,
+                {"evaluation", tEvaluation },
+                {"hitResult", tHitResult}
+            })));
+            return true;
         }
         return false;
     }
