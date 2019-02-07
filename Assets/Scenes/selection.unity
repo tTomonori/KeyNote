@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb4fbe6b13fb4cfd8a62c044b71e6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mName: 
+  mName: menuButtonPushed
   mGroup: 
 --- !u!70 &59202193
 CapsuleCollider2D:
