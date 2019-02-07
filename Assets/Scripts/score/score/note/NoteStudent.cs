@@ -18,4 +18,10 @@ public class NoteStudent : Note {
         hitted(this.gameObject, aType);
         return HitResult.consonant;
     }
+    //キー入力失敗(この音符をmiss判定にできるならtrue(既に評価がされていたらfalse))
+    public override HitResult missHit(){
+        if (mHitted) return HitResult.miss;
+        mHitted = true;
+        return HitResult.consonant;
+    }
 }

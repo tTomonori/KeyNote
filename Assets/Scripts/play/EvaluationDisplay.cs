@@ -24,23 +24,39 @@ public class EvaluationDisplay : MyBehaviour {
 
         //メッセージ監視
         Subject.addObserver(new Observer("playPoint", (message) =>{
-            if (message.name != "hittedNote") return;
-            switch(message.getParameter<TypeEvaluation.Evaluation>("evaluation")){
-                case TypeEvaluation.Evaluation.perfect:
-                    mPerfectPoint.text = (int.Parse(mPerfectPoint.text) + 1).ToString();
-                    break;
-                case TypeEvaluation.Evaluation.great:
-                    mGreatPoint.text = (int.Parse(mGreatPoint.text) + 1).ToString();
-                    break;
-                case TypeEvaluation.Evaluation.good:
-                    mGoodPoint.text = (int.Parse(mGoodPoint.text) + 1).ToString();
-                    break;
-                case TypeEvaluation.Evaluation.bad:
-                    mBadPoint.text = (int.Parse(mBadPoint.text) + 1).ToString();
-                    break;
-                case TypeEvaluation.Evaluation.miss:
-                    mMissPoint.text = (int.Parse(mMissPoint.text) + 1).ToString();
-                    break;
+            //hit評価
+            if (message.name == "hittedNote"){
+                switch (message.getParameter<TypeEvaluation.Evaluation>("evaluation")){
+                    case TypeEvaluation.Evaluation.perfect:
+                        mPerfectPoint.text = (int.Parse(mPerfectPoint.text) + 1).ToString();
+                        break;
+                    case TypeEvaluation.Evaluation.great:
+                        mGreatPoint.text = (int.Parse(mGreatPoint.text) + 1).ToString();
+                        break;
+                    case TypeEvaluation.Evaluation.good:
+                        mGoodPoint.text = (int.Parse(mGoodPoint.text) + 1).ToString();
+                        break;
+                    case TypeEvaluation.Evaluation.bad:
+                        mBadPoint.text = (int.Parse(mBadPoint.text) + 1).ToString();
+                        break;
+                    case TypeEvaluation.Evaluation.miss:
+                        mMissPoint.text = (int.Parse(mMissPoint.text) + 1).ToString();
+                        break;
+                }
+                return;
+            }
+            //miss評価
+            if (message.name == "missedNote"){
+                switch(message.getParameter<Note.HitResult>("hitResult")){
+                    case Note.HitResult.consonantAndVowel:
+                        mMissPoint.text = (int.Parse(mMissPoint.text) + 2).ToString();
+                        break;
+                    case Note.HitResult.consonant:
+                    case Note.HitResult.vowel:
+                        mMissPoint.text = (int.Parse(mMissPoint.text) + 1).ToString();
+                        break;
+                }
+                return;
             }
         }));
 	}

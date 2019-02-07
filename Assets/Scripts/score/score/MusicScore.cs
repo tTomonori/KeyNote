@@ -119,10 +119,25 @@ public class MusicScore : MyBehaviour {
     public void adjustPozitionToMusicTime(float aMusicTime){
         show(MusicScoreData.musicTimeToQuarterBeat(aMusicTime));
     }
+    //キー入力
     public void hit(KeyCode aKey,float aSecond,Note.HitNoteType aType){
         foreach(Bar tBar in mBars){
             if (tBar.hit(aKey,aSecond,aType))
                 return;
         }
+    }
+    //miss判定
+    public void missHit(float aSecond){
+        KeyTime tTime = new KeyTime(MusicScoreData.musicTimeToQuarterBeat(aSecond));
+        int tLength = mBars.Count;
+        int i;
+        Bar tBar;
+        for (i = 1; i < tLength;i++){
+            tBar = mBars[i];
+            if (tTime.mQuarterBeat < tBar.mTime.mTopQuarterBeatInBar)
+                break;
+        }
+        tBar = mBars[i - 1];
+        tBar.missHit(tTime);
     }
 }

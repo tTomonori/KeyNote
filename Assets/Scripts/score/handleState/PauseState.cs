@@ -13,15 +13,15 @@ partial class ScoreHandler{
             
         }
         public override void getMessage(Message aMessage){
-            if (aMessage.name == "pauseButtonPushed"){
+            if (aMessage.name == "pauseButtonPushed"){//ポーズ
                 parent.changeState(new PlayState(parent));
                 return;
             }
-            if(aMessage.name=="endButtonPushed"){
+            if(aMessage.name=="endButtonPushed"){//中断
                 MySceneManager.changeScene("selection");
                 return;
             }
-            if(aMessage.name=="continueButtonPushed"){
+            if(aMessage.name=="continueButtonPushed"){//継続
                 MySceneManager.closeScene("pause");
                 parent.changeState(new PlayState(parent));
                 return;

@@ -88,6 +88,7 @@ public class Beat : MyBehaviour {
 
         mBpms[tTime.mQuarterBeatIndexInBeat] = tObject;
     }
+    //キー入力
     public bool hit(KeyCode aKey,float aSecond,Note.HitNoteType aType){
         int tLength = (mTriplet) ? 3 : 4;
         for (int i = 0; i < tLength;i++){
@@ -101,12 +102,29 @@ public class Beat : MyBehaviour {
 
             //hitしたメッセージ送信
             Subject.sendMessage(new Message("hittedNote", new Arg(new Dictionary<string, object>() {
-                { "note", mNotes[i] } ,
+                {"note", mNotes[i] } ,
                 {"evaluation", tEvaluation },
                 {"hitResult", tHitResult}
             })));
             return true;
         }
         return false;
+    }
+    //miss判定
+    public void missHit(KeyTime aTime){
+        foreach(Note tNote in mNotes){
+            if (tNote == null) continue;//音符なし
+            if (!(tNote.mCorrectQuarterBeat < aTime.mQuarterBeat)) continue;//キー入力のタイミングが過ぎていない
+
+            Note.HitResult tResult = tNote.missHit();
+            if (tResult == Note.HitResult.miss)
+                continue;//既に評価されていた
+            
+            //missの評価にする
+            Subject.sendMessage(new Message("missedNote", new Arg(new Dictionary<string, object>(){
+                {"note",tNote},
+                {"hitResult",tResult}
+            })));
+        }
     }
 }

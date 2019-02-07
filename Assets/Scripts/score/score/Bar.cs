@@ -26,11 +26,18 @@ public class Bar : MyBehaviour {
         KeyTime tTime = new KeyTime(aBpmData.get<float>("time"));
         mBeats[tTime.mBeatNumInBar].addChangeBpm(aBpmData);
     }
+    //キー入力
     public bool hit(KeyCode aKey,float aSecond,Note.HitNoteType aType){
         foreach(Beat tBeat in mBeats){
             if (tBeat.hit(aKey, aSecond, aType))
                 return true;
         }
         return false;
+    }
+    //miss判定
+    public void missHit(KeyTime aTime){
+        foreach(Beat tBeat in mBeats){
+            tBeat.missHit(aTime);
+        }
     }
 }

@@ -72,6 +72,8 @@ public abstract class Note : MyBehaviour {
                 break;
         }
     }
+    //キー入力失敗(この音符をmiss判定にできるならtrue(既に評価がされていたらfalse))
+    public abstract HitResult missHit();
     //消滅
     protected void hitAndDelete(GameObject aNoteObject){
         aNoteObject.GetComponent<MyBehaviour>().delete();

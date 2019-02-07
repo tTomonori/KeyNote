@@ -37,4 +37,21 @@ public class NoteGuru : Note {
         }
         return HitResult.miss;
     }
+    //キー入力失敗(この音符をmiss判定にできるならtrue(既に評価がされていたらfalse))
+    public override HitResult missHit(){
+        if(!mHittedConsonant && !mHittedVowel){
+            mHittedConsonant = true;
+            mHittedVowel = true;
+            return HitResult.consonantAndVowel;
+        }
+        if(!mHittedConsonant){
+            mHittedConsonant = true;
+            return HitResult.consonant;
+        }
+        if(!mHittedVowel){
+            mHittedVowel = true;
+            return HitResult.vowel;
+        }
+        return HitResult.miss;
+    }
 }
