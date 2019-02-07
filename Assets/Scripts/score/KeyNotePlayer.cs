@@ -7,6 +7,10 @@ public class KeyNotePlayer {
     private MusicScore mScore;
     //音声再生クラス
     private MusicPlayer mPlayer;
+    //音声のながさ
+    public float mMusicLength{
+        get { return mPlayer.mLength; }
+    }
     //コルーチン実行用オブジェクト
     private MyBehaviour mBehaviour;
     //譜面の位置調整コルーチン
@@ -48,6 +52,12 @@ public class KeyNotePlayer {
     }
     private IEnumerator adjustScoreToPlayer(){
         while(true){
+            if(!mPlayer.mIsPlaying){
+                //再生終了
+                mAdjustScoreCoroutine = null;
+                Subject.sendMessage(new Message("finishedMusic", new Arg()));//曲終了メッセージ
+                yield break;
+            }
             mScore.adjustPozitionToMusicTime(mPlayer.mCurrentSecond);
             yield return null;
         }

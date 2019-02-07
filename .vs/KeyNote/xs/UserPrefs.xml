@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{FAA2A704-9CBD-045F-2725-8A96BDA8B211}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/score/MusicPlayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/score/TypeEvaluation.cs">
     <Files>
-      <File FileName="Assets/Scripts/play/PlayMain.cs" Line="17" Column="68" />
+      <File FileName="Assets/Scripts/play/PlayMain.cs" Line="9" Column="9" />
       <File FileName="Assets/Scripts/score/ScoreHandler.cs" Line="33" Column="28" />
-      <File FileName="Assets/Scripts/score/handleState/PlayState.cs" Line="17" Column="100" />
-      <File FileName="Assets/Scripts/score/handleState/PauseState.cs" Line="24" Column="59" />
+      <File FileName="Assets/Scripts/score/handleState/PlayState.cs" Line="31" Column="21" />
+      <File FileName="Assets/Scripts/score/handleState/PauseState.cs" Line="15" Column="59" />
       <File FileName="Assets/Scripts/score/score/MusicScore.cs" Line="129" Column="13" />
       <File FileName="Assets/Scripts/score/score/Bar.cs" Line="37" Column="13" />
       <File FileName="Assets/Scripts/score/score/Beat.cs" Line="123" Column="25" />
@@ -13,8 +13,12 @@
       <File FileName="Assets/Scripts/score/score/note/NoteGuru.cs" Line="41" Column="41" />
       <File FileName="Assets/Scripts/score/score/note/NoteStudent.cs" Line="22" Column="40" />
       <File FileName="Assets/Scripts/score/score/note/NoteScholar.cs" Line="25" Column="40" />
-      <File FileName="Assets/Scripts/play/EvaluationDisplay.cs" Line="59" Column="1" />
-      <File FileName="Assets/Scripts/score/MusicPlayer.cs" Line="15" Column="11" />
+      <File FileName="Assets/Scripts/play/EvaluationDisplay.cs" Line="63" Column="14" />
+      <File FileName="Assets/Scripts/score/MusicPlayer.cs" Line="18" Column="42" />
+      <File FileName="Assets/Scripts/score/KeyNotePlayer.cs" Line="12" Column="39" />
+      <File FileName="Assets/Scripts/result/ResultMain.cs" Line="32" Column="136" />
+      <File FileName="Assets/Scripts/common/myFramework/behaviour/MyBehaviour.cs" Line="51" Column="57" />
+      <File FileName="Assets/Scripts/score/TypeEvaluation.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

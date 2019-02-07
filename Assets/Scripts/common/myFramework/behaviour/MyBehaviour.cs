@@ -48,6 +48,14 @@ public partial class MyBehaviour : MonoBehaviour {
         }
         return null;
     }
+    public T findChild<T>(string name) where T:Component{
+        foreach (Transform tObject in GetComponentsInChildren<Transform>()){
+            if (tObject.name == name){
+                return tObject.GetComponent<T>();
+            }
+        }
+        return null;
+    }
     /// <summary>
     /// GetComponentsInChildrenで自分自身を含まないようにする
     /// </summary>

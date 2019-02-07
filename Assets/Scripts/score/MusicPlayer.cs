@@ -9,6 +9,14 @@ public class MusicPlayer : MonoBehaviour {
         get { return mAudio.time; }
         set { mAudio.time = value; }
     }
+    //再生中か
+    public bool mIsPlaying{
+        get { return mAudio.isPlaying; }
+    }
+    //音声のながさ
+    public float mLength{
+        get { return mAudio.clip.length; }
+    }
 	void Awake () {
         name = "musicPlayer";
         mAudio = gameObject.AddComponent<AudioSource>();

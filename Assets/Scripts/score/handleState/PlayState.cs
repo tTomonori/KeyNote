@@ -17,8 +17,18 @@ partial class ScoreHandler {
             parent.mScore.missHit(parent.mPlayer.mCurrentSecond - TypeEvaluation.kWorstDifference);
         }
         public override void getMessage(Message aMessage){
-            if(aMessage.name=="pauseButtonPushed"){
+            if(aMessage.name=="pauseButtonPushed"){//ポーズ
                 parent.changeState(new PauseState(parent));
+                return;
+            }
+            if(aMessage.name=="finishedMusic"){//曲終了
+                //残った音符を全てmiss評価にする
+                parent.mScore.missHit(parent.mPlayer.mMusicLength);
+                //評価合計
+                Arg tResult = GameObject.Find("evaluationDisplay").GetComponent<EvaluationDisplay>().getResult();
+                MySceneManager.changeScene("result", new Arg(new Dictionary<string, object>(){
+                    {"evaluation",tResult}
+                }));
             }
         }
     }

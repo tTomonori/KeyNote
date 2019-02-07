@@ -60,10 +60,16 @@ public class EvaluationDisplay : MyBehaviour {
             }
         }));
 	}
-
-	void Update () {
-		
-	}
+    //評価結果を返す
+    public Arg getResult(){
+        return new Arg(new Dictionary<string, object>(){
+            {"perfect",int.Parse(mPerfectPoint.text)},
+            {"great",int.Parse(mGreatPoint.text)},
+            {"good",int.Parse(mGoodPoint.text)},
+            {"bad",int.Parse(mBadPoint.text)},
+            {"miss",int.Parse(mMissPoint.text)}
+        });
+    }
     private void OnDestroy(){
         Subject.removeObserver("playPoint");
     }
