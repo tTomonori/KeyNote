@@ -6,7 +6,13 @@ public class MenuMain : MonoBehaviour {
 	void Start () {
         Subject.addObserver(new Observer("menuMain", (message) =>{
             if(message.name=="createScoreButtonPushed"){//譜面作成
-                MyBehaviour.createObjectFromPrefab<AlartWindow>("ui/alartWindow").set("未実装");
+                MySceneManager.changeScene("musicConfig", null, null, (aArg) =>{
+                    if(aArg.get<bool>("ok")){
+                        MySceneManager.changeScene("edit", aArg);
+                    }else{
+                        MySceneManager.changeScene("selection");
+                    }
+                });
                 return;
             }
             if(message.name=="editScoreButtonPushed"){//譜面編集

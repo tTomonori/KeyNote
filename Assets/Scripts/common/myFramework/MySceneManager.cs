@@ -84,7 +84,17 @@ public static class MySceneManager {
                     Debug.Log("SceneManager:「" + aName + "」ってシーンを閉じた時のcallbak上書きしちゃった");
                 tData.closed = aClosed;
             }
-            SceneManager.UnloadSceneAsync(aName);
+            if(SceneManager.sceneCount>1){
+                SceneManager.UnloadSceneAsync(aName);
+            }else{
+                //開かれているシーンが一つのみ
+                Action<Arg> tClosed = tData.closed;
+                tData.closed = null;
+                //シーンを閉じる前にコールバックを呼ぶ
+                tClosed(aArg);
+                SceneManager.UnloadSceneAsync(aName);
+            }
+            //SceneManager.UnloadSceneAsync(aName);
             //SceneManager.UnloadScene(aName);
             return;
         }
