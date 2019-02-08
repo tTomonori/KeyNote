@@ -1,14 +1,24 @@
 ﻿<Properties StartupConfiguration="{FAA2A704-9CBD-045F-2725-8A96BDA8B211}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/common/ui/AlartWindow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/common/ui/ToggleButtonMember.cs">
     <Files>
-      <File FileName="Assets/Scripts/menu/MenuMain.cs" Line="21" Column="51" />
-      <File FileName="Assets/Scripts/selection/SelectionMain.cs" Line="17" Column="50" />
-      <File FileName="Assets/Scripts/common/ui/AlartWindow.cs" Line="10" Column="36" />
+      <File FileName="Assets/Scripts/common/ui/ToggleButtonGroup.cs" Line="11" Column="1" />
+      <File FileName="Assets/Scripts/common/ui/ToggleButtonMember.cs" Line="15" Column="9" />
+      <File FileName="Assets/Scripts/common/ui/LightButton.cs" Line="8" Column="52" />
+      <File FileName="Assets/Scripts/common/myFramework/ui/MyButton.cs" Line="55" Column="1" />
+      <File FileName="Assets/Scripts/selection/details/MusicDetailsDisplay.cs" Line="22" Column="45" />
+      <File FileName="Assets/Scripts/selection/details/DifficultButtons.cs" Line="17" Column="36" />
+      <File FileName="Assets/Scripts/selection/SelectionMain.cs" Line="8" Column="47" />
+      <File FileName="Assets/Scripts/selection/list/MusicListDisplay.cs" Line="29" Column="73" />
+      <File FileName="Assets/Scripts/menu/MenuMain.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/score/handleState/PauseState.cs" Line="16" Column="1" />
+      <File FileName="Assets/Scripts/result/ResultMain.cs" Line="11" Column="53" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/tomo/Desktop/game/KeyNote/Assets/Scripts/selection/details/MusicDetailsDisplay.cs" relfile="Assets/Scripts/selection/details/MusicDetailsDisplay.cs" line="64" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.KeyNote PreferredExecutionTarget="Unity.Editor" />

@@ -15,7 +15,7 @@ public class ResultMain : MonoBehaviour {
                 MySceneManager.changeScene("selection");
             }
         }));
-        GameObject.Find("endButton").GetComponent<LightButton>().lightOn();
+        GameObject.Find("endButton").GetComponent<LightButton>().hold();
 	}
 	void Update () {
 		

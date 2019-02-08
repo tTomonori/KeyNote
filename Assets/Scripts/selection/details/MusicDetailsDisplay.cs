@@ -6,30 +6,27 @@ using System.IO;
 
 public class MusicDetailsDisplay : MyBehaviour {
     private Arg mMusicData;
-    private DifficultButtons mButtons{
-        get { return GameObject.Find("difficultButtons").GetComponent<DifficultButtons>(); }
+    private ToggleButtonGroup mButtons{
+        get { return findChild<ToggleButtonGroup>("difficultButtons"); }
     }
     //選択中の曲の譜面データファイル
     public string mSelectedMusicFileName;
     //選択中の難易度
     public string mDifficult{
-        get { return mButtons.difficult; }
+        get { return mButtons.pushedButtonName; }
     }
-
-
-	void Start () {
+	void Awake () {
         Subject.addObserver(new Observer("details",(message) => {
-            if (!message.isMemberOf("difficultButton")) return;
-            if (mMusicData == null) return;
-            changeDifficult(message.name);
+            if (message.isMemberOf("difficultButton")){
+                if (mMusicData == null) return;
+                changeDifficult(message.name);
+                return;
+            }
+            if(message.name=="initialDifficult"){
+                mButtons.memberPushed(message.getParameter<string>("difficult"));
+            }
         }));
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     public void initDetails(){
         mMusicData = null;
         //曲名
@@ -49,13 +46,13 @@ public class MusicDetailsDisplay : MyBehaviour {
         mMusicData = new Arg(MyJson.deserializeFile(DataFolder.path + "/score/" + aFileName + ".json"));
         //曲名
         GameObject.Find("title").GetComponent<TextMesh>().text = mMusicData.get<string>("title");
-        changeDifficult(mButtons.difficult);
+        //選択中の難易度に合わせて表示更新
+        changeDifficult(mDifficult);
         //音声
         AudioSource tAudio = GetComponentInChildren<AudioSource>();
         tAudio.clip = DataFolder.loadMusic(mMusicData.get<string>("music"));
         tAudio.Play();
         //サムネイル
-        //findChild("thumbnail").GetComponent<SpriteRenderer>().sprite = DataFolder.loadThumbnail(mMusicData.get<string>("thumbnail"));
         DataFolder.loadThumbnailAsync(mMusicData.get<string>("thumbnail"), (aSprite) =>{
             SpriteRenderer tRenderer = findChild("thumbnail").GetComponent<SpriteRenderer>();
             tRenderer.transform.localScale = new Vector3(7 / aSprite.bounds.size.x, 7 / aSprite.bounds.size.x, 1);

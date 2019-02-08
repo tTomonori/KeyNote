@@ -313,8 +313,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb4fbe6b13fb4cfd8a62c044b71e6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mName: menuButtonPushed
+  mPushedMessage: menuButtonPushed
   mGroup: 
+  mActivated: 1
 --- !u!70 &59202193
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -797,7 +798,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 396068592}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6738b0875e5a428db5ce88b7b36fdd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a4af16c0cc2a244e2958cbcfb821e586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &467914435
@@ -1489,7 +1490,7 @@ GameObject:
   - component: {fileID: 1000700854}
   - component: {fileID: 1000700853}
   m_Layer: 0
-  m_Name: childButton
+  m_Name: child
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1521,8 +1522,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d712fd07dcf44fe084b18f3d1792527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mName: child
+  mPushedMessage: child
   mGroup: difficultButton
+  mActivated: 1
+  mName: 
 --- !u!58 &1000700854
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1537,7 +1540,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.9
 --- !u!1 &1009868621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,8 +1584,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb4fbe6b13fb4cfd8a62c044b71e6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mName: play
+  mPushedMessage: playButtonPushed
   mGroup: 
+  mActivated: 1
 --- !u!58 &1009868624
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1597,7 +1601,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.9
 --- !u!1 &1080009976
 GameObject:
   m_ObjectHideFlags: 0
@@ -2235,7 +2239,7 @@ GameObject:
   - component: {fileID: 1260644894}
   - component: {fileID: 1260644893}
   m_Layer: 0
-  m_Name: studentButton
+  m_Name: student
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2267,8 +2271,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d712fd07dcf44fe084b18f3d1792527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mName: student
+  mPushedMessage: student
   mGroup: difficultButton
+  mActivated: 1
+  mName: 
 --- !u!58 &1260644894
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2283,7 +2289,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.9
 --- !u!1 &1321814100
 GameObject:
   m_ObjectHideFlags: 0
@@ -2423,7 +2429,7 @@ GameObject:
   - component: {fileID: 1436506752}
   - component: {fileID: 1436506751}
   m_Layer: 0
-  m_Name: guruButton
+  m_Name: guru
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2455,8 +2461,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d712fd07dcf44fe084b18f3d1792527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mName: guru
+  mPushedMessage: guru
   mGroup: difficultButton
+  mActivated: 1
+  mName: 
 --- !u!58 &1436506752
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2471,7 +2479,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.9
 --- !u!1 &1503019340
 GameObject:
   m_ObjectHideFlags: 0
@@ -2787,7 +2795,7 @@ GameObject:
   - component: {fileID: 1602668940}
   - component: {fileID: 1602668939}
   m_Layer: 0
-  m_Name: scholarButton
+  m_Name: scholar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2819,8 +2827,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d712fd07dcf44fe084b18f3d1792527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mName: scholar
+  mPushedMessage: scholar
   mGroup: difficultButton
+  mActivated: 1
+  mName: 
 --- !u!58 &1602668940
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2835,7 +2845,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.9
 --- !u!1 &1781842526
 GameObject:
   m_ObjectHideFlags: 0
@@ -3089,8 +3099,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb4fbe6b13fb4cfd8a62c044b71e6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mName: plactice
+  mPushedMessage: placticeButtonPushed
   mGroup: 
+  mActivated: 1
 --- !u!58 &2041100515
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3105,7 +3116,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.9
 --- !u!1 &2106878557
 GameObject:
   m_ObjectHideFlags: 0

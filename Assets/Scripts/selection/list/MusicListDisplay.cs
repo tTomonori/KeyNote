@@ -26,7 +26,7 @@ public class MusicListDisplay : MyBehaviour {
         }));
 
         //初期の設定の難易度を選択
-        Subject.sendMessage(new Message(mList.mLastPlayDifficult, new Arg(),"difficultButton"));
+        Subject.sendMessage(new Message("initialDifficult", new Arg(new Dictionary<string,object>(){ { "difficult", mList.mLastPlayDifficult } })));
         mDetails.showMusic(mList.get(mList.mLastPlayIndex).mFileName);
 	}
 	

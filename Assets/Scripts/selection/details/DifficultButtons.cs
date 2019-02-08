@@ -28,7 +28,7 @@ public class DifficultButtons : MonoBehaviour {
             foreach(LightButton tButton in tButtons){
                 if(tButton.name == mPushedButtonName + "Button"){
                     //tButton.scaleBy(-mPushedRatio, 0.1f);
-                    tButton.lightOff();
+                    tButton.release();
                     break;
                 }
             }
@@ -37,7 +37,7 @@ public class DifficultButtons : MonoBehaviour {
         foreach (LightButton tButton in tButtons){
             if (tButton.name == aButtonName + "Button"){
                 //tButton.scaleBy(mPushedRatio, 0.1f);
-                tButton.lightOn();
+                tButton.hold();
                 break;
             }
         }

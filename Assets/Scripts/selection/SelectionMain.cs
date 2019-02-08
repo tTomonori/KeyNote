@@ -5,7 +5,7 @@ using UnityEngine;
 public class SelectionMain : MonoBehaviour {
 	void Start () {
         Subject.addObserver(new Observer("selectionMain",(message) => {
-            if(message.name=="play"){//playボタン
+            if(message.name=="playButtonPushed"){//playボタン
                 MusicDetailsDisplay tDetails = GameObject.Find("detailsDisplay").GetComponent<MusicDetailsDisplay>();
                 MySceneManager.changeScene("play",new Arg(new Dictionary<string, object>() { 
                     { "file", tDetails.mSelectedMusicFileName } ,

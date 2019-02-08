@@ -48,6 +48,12 @@ public partial class MyBehaviour : MonoBehaviour {
         }
         return null;
     }
+    /// <summary>
+    /// 指定した名前の子要素を取得
+    /// </summary>
+    /// <returns>取得したGameObject(存在しなければNULL)</returns>
+    /// <param name="name">取得する要素の名前</param>
+    /// <typeparam name="T">Component</typeparam>
     public T findChild<T>(string name) where T:Component{
         foreach (Transform tObject in GetComponentsInChildren<Transform>()){
             if (tObject.name == name){
