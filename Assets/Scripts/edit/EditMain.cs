@@ -6,12 +6,13 @@ public class EditMain : MonoBehaviour {
 
 	void Start () {
         Arg tArg = MySceneManager.getArg("edit");
-        Debug.Log(tArg.get<string>("title"));
-        Debug.Log(tArg.get<string>("file"));
-        Debug.Log(tArg.get<string>("music"));
-        Debug.Log(tArg.get<string>("thumbnail"));
-        Debug.Log(tArg.get<string>("back"));
-        Debug.Log(tArg.get<string>("movie"));
+        MusicScoreFileData tData = tArg.get<MusicScoreFileData>("scoreData");
+        Debug.Log(tData.title);
+        Debug.Log(tData.fileName);
+        Debug.Log(tData.music);
+        Debug.Log(tData.thumbnail);
+        Debug.Log(tData.back);
+        Debug.Log(tData.movie);
 	}
 	
 	void Update () {

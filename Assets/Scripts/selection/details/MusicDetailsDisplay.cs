@@ -5,7 +5,7 @@ using System;
 using System.IO;
 
 public class MusicDetailsDisplay : MyBehaviour {
-    private Arg mMusicData;
+    private MusicScoreFileData mMusicData;
     private ToggleButtonGroup mButtons{
         get { return findChild<ToggleButtonGroup>("difficultButtons"); }
     }
@@ -43,17 +43,17 @@ public class MusicDetailsDisplay : MyBehaviour {
     }
     public void showMusic(string aFileName){
         mSelectedMusicFileName = aFileName;
-        mMusicData = new Arg(MyJson.deserializeFile(DataFolder.path + "/score/" + aFileName + ".json"));
+        mMusicData = DataFolder.loadScoreData(aFileName);
         //曲名
-        GameObject.Find("title").GetComponent<TextMesh>().text = mMusicData.get<string>("title");
+        GameObject.Find("title").GetComponent<TextMesh>().text = mMusicData.title;
         //選択中の難易度に合わせて表示更新
         changeDifficult(mDifficult);
         //音声
         AudioSource tAudio = GetComponentInChildren<AudioSource>();
-        tAudio.clip = DataFolder.loadMusic(mMusicData.get<string>("music"));
+        tAudio.clip = DataFolder.loadMusic(mMusicData.music);
         tAudio.Play();
         //サムネイル
-        DataFolder.loadThumbnailAsync(mMusicData.get<string>("thumbnail"), (aSprite) =>{
+        DataFolder.loadThumbnailAsync(mMusicData.thumbnail, (aSprite) =>{
             SpriteRenderer tRenderer = findChild("thumbnail").GetComponent<SpriteRenderer>();
             tRenderer.transform.localScale = new Vector3(7 / aSprite.bounds.size.x, 7 / aSprite.bounds.size.x, 1);
             tRenderer.sprite = aSprite;
@@ -61,9 +61,9 @@ public class MusicDetailsDisplay : MyBehaviour {
     }
     public void changeDifficult(string aDifficult){
         //難易度
-        gameObject.GetComponentInChildren<DifficultDisplay>().set(mMusicData.get<Arg>("difficult").get<int>(aDifficult));
+        gameObject.GetComponentInChildren<DifficultDisplay>().set(mMusicData.getDifficult(aDifficult));
         //最高得点
-        gameObject.GetComponentInChildren<ScoreDisplay>().set(mMusicData.get<Arg>("point").get<float>(aDifficult));
+        gameObject.GetComponentInChildren<ScoreDisplay>().set(mMusicData.getPoint(aDifficult));
     }
     private void OnDestroy(){
         Subject.removeObserver("details");

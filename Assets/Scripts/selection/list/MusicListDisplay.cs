@@ -20,6 +20,7 @@ public class MusicListDisplay : MyBehaviour {
                 if (message.getParameter<float>("num") == positionY) return;
                 mDetails.initDetails();
                 this.moveBy(new Vector3(0,message.getParameter<float>("num")-positionY,0),0.5f,() => {
+                    //曲が選択された
                     mDetails.showMusic(mList.get(message.getParameter<int>("num")).mFileName);
                 });
             }

@@ -1,19 +1,20 @@
 ﻿<Properties StartupConfiguration="{FAA2A704-9CBD-045F-2725-8A96BDA8B211}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/common/myFramework/MyJson.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/edit/config/ConfigMain.cs">
     <Files>
       <File FileName="Assets/Scripts/edit/EditMain.cs" Line="14" Column="42" />
-      <File FileName="Assets/Scripts/edit/config/ConfigMain.cs" Line="29" Column="20" />
-      <File FileName="Assets/Scripts/common/ui/AlartCreater.cs" Line="10" Column="24" />
-      <File FileName="Assets/Scripts/menu/MenuMain.cs" Line="19" Column="61" />
-      <File FileName="Assets/Scripts/common/DataFolder.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/common/myFramework/MyJson.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/score/MusicScoreData.cs" Line="129" Column="30" />
+      <File FileName="Assets/Scripts/common/MusicScoreFileData.cs" Line="25" Column="34" />
+      <File FileName="Assets/Scripts/common/DataFolder.cs" Line="22" Column="123" />
+      <File FileName="Assets/Scripts/selection/list/MusicListDisplay.cs" Line="23" Column="30" />
+      <File FileName="Assets/Scripts/selection/list/MusicList.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/selection/list/MusicLabel.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/selection/details/MusicDetailsDisplay.cs" Line="66" Column="93" />
+      <File FileName="Assets/Scripts/edit/config/ConfigMain.cs" Line="41" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/tomo/Desktop/game/KeyNote/Assets/Scripts/edit/config/ConfigMain.cs" relfile="Assets/Scripts/edit/config/ConfigMain.cs" line="29" column="20" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.KeyNote PreferredExecutionTarget="Unity.Editor" />

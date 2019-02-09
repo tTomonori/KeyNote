@@ -14,7 +14,7 @@ public abstract class Note : MyBehaviour {
         get { return mData.get<KeyTime>("keyTime").mCorrectQuarterBeat; }
     }
     static public Note create(){
-        switch(MusicScoreData.mDifficult){
+        switch(MusicScoreData.mSelectedDifficult){
             case MusicScoreData.Difficult.child:
                 return MyBehaviour.createObjectFromPrefab<NoteChild>("score/note/noteChild");
             case MusicScoreData.Difficult.student:
@@ -24,7 +24,7 @@ public abstract class Note : MyBehaviour {
             case MusicScoreData.Difficult.guru:
                 return MyBehaviour.createObjectFromPrefab<NoteGuru>("score/note/noteGuru");
             default:
-                throw new Exception("Note : 未定義の難易度「" + MusicScoreData.mDifficult + "」");
+                throw new Exception("Note : 未定義の難易度「" + MusicScoreData.mSelectedDifficult + "」");
         }
     }
     //音符データ適用

@@ -39,8 +39,16 @@ public class ConfigMain : MonoBehaviour {
                 return;
             }
             //必須条件クリア
-            tData.set("ok", true);
-            MySceneManager.closeScene("musicConfig", tData);
+            //譜面データ作成
+            MusicScoreFileData tNewScore = new MusicScoreFileData();
+            tNewScore.title = tData.get<string>("title");
+            tNewScore.fileName = tData.get<string>("file");
+            tNewScore.music = tData.get<string>("music");
+            tNewScore.thumbnail = tData.get<string>("thumbnail");
+            tNewScore.back = tData.get<string>("back");
+            tNewScore.movie = tData.get<string>("movie");
+            Arg tArgument = new Arg(new Dictionary<string, object>() { { "ok", true }, { "scoreData", tNewScore } });
+            MySceneManager.closeScene("musicConfig", tArgument);
         }));
     }
     //入力したデータを取得

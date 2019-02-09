@@ -21,7 +21,7 @@ public partial class ScoreHandler : MyBehaviour{
         mScore = MyBehaviour.create<MusicScore>();
         //曲情報ロード
         MusicScoreData.load(aFileName);
-        MusicScoreData.mDifficult = EnumParser.parse<MusicScoreData.Difficult>(aDifficult);
+        MusicScoreData.mSelectedDifficult = EnumParser.parse<MusicScoreData.Difficult>(aDifficult);
         //ミュージックプレイヤー
         MusicPlayer tPlayer = MyBehaviour.create<MusicPlayer>();
         tPlayer.setAudio(DataFolder.loadMusic(MusicScoreData.mMusicFileName));
