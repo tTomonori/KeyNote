@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LyricsCollider : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public float mQuarterBeat;
+    private void OnMouseDown(){
+        if(!(Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))){
+            Subject.sendMessage(new Message("clickLyrics", new Arg(new Dictionary<string, object>(){
+            {"time",mQuarterBeat}
+        })));
+        }else{
+            Subject.sendMessage(new Message("RightClickLyrics", new Arg(new Dictionary<string, object>(){
+            {"time",mQuarterBeat}
+        })));
+        }
+    }
 }

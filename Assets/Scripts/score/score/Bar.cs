@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bar : MyBehaviour {
-    public KeyTime mTime;
+    private KeyTime time;
+    public KeyTime mTime{
+        get { return time; }
+        set {
+            time = value;
+            sendTimeToBeats();
+        }
+    }
     private Beat[] mBeats;
 	void Awake () {
         mBeats = GetComponentsInChildren<Beat>();
 	}
-	void Update () {
-		
-	}
+    //timeをbeatに伝達
+    private void sendTimeToBeats(){
+        for (int i = 0; i < mBeats.Length;i++){
+            mBeats[i].mTime = new KeyTime(time.mQuarterBeat + i * 4);
+        }
+    }
     //音符追加
     public void addNote(Arg aNoteData){
         KeyTime tTime = new KeyTime(aNoteData.get<float>("time"));

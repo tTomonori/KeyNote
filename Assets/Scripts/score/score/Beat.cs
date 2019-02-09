@@ -4,6 +4,14 @@ using UnityEngine;
 using System.Linq;
 
 public class Beat : MyBehaviour {
+    private KeyTime time;
+    public KeyTime mTime{
+        get { return time; }
+        set {
+            time = value;
+            sendTimeToColliders();
+        }
+    }
     private bool mTriplet=false;
     private MyBehaviour mBeatObject;
     private Note[] mNotes;
@@ -24,6 +32,7 @@ public class Beat : MyBehaviour {
         mBeatObject.transform.parent = this.gameObject.transform;
         mBeatObject.transform.localPosition = new Vector3(0, 0, 0);
 
+        //配列初期化
         if (aTriplet) { 
             mNotes = new Note[3];
             mLyricses = new LyricsBubble[3];
@@ -34,10 +43,35 @@ public class Beat : MyBehaviour {
             mLyricses = new LyricsBubble[4];
             mBpms = new ChangeBpmObject[4];
         }
+        //behaviour取得
         mNotePositions = mBeatObject.findChild("notes").GetComponent<MyBehaviour>().GetComponentsInChildrenWithoutSelf<Transform>();
         mLyricsPositions = mBeatObject.findChild("lyricses").GetComponent<MyBehaviour>().GetComponentsInChildrenWithoutSelf<Transform>();
         mBpmPositions = mBeatObject.findChild("bpms").GetComponent<MyBehaviour>().GetComponentsInChildrenWithoutSelf<Transform>();
+        sendTimeToColliders();
     }
+    //colliderにtimeを伝達
+    private void sendTimeToColliders(){
+        NoteCollider[] tNCollider = mBeatObject.GetComponentsInChildren<NoteCollider>();
+        LyricsCollider[] tLCollider = mBeatObject.GetComponentsInChildren<LyricsCollider>();
+        if(mTriplet){
+            tNCollider[0].mQuarterBeat = time.mQuarterBeat + 0.1f;
+            tNCollider[1].mQuarterBeat = time.mQuarterBeat + 0.3f;
+            tNCollider[2].mQuarterBeat = time.mQuarterBeat + 0.6f;
+            tLCollider[0].mQuarterBeat = time.mQuarterBeat + 0.1f;
+            tLCollider[1].mQuarterBeat = time.mQuarterBeat + 0.3f;
+            tLCollider[2].mQuarterBeat = time.mQuarterBeat + 0.6f;
+        }else{
+            tNCollider[0].mQuarterBeat = time.mQuarterBeat + 0;
+            tNCollider[1].mQuarterBeat = time.mQuarterBeat + 1;
+            tNCollider[2].mQuarterBeat = time.mQuarterBeat + 2;
+            tNCollider[3].mQuarterBeat = time.mQuarterBeat + 3;
+            tLCollider[0].mQuarterBeat = time.mQuarterBeat + 0;
+            tLCollider[1].mQuarterBeat = time.mQuarterBeat + 1;
+            tLCollider[2].mQuarterBeat = time.mQuarterBeat + 2;
+            tLCollider[3].mQuarterBeat = time.mQuarterBeat + 3;
+        }
+    }
+    //三連符がついているか確認してbeatを生成し直す
     private void checkTriplet(bool aTriplet){
         if (mTriplet == aTriplet) return;
         mTriplet = !mTriplet;

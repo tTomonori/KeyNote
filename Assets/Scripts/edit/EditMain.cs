@@ -14,7 +14,7 @@ public class EditMain : MonoBehaviour {
         mHandler = MyBehaviour.create<ScoreHandler>();
         mHandler.set(tData, "guru");
         mHandler.show(new KeyTime(0));
-        mHandler.changeState(new ScoreHandler.PlayState(mHandler));
+        mHandler.changeState(new ScoreHandler.EditState(mHandler));
 
         //配置するオブジェクトの初期設定
         GameObject.Find("placeObjectToggle").GetComponent<ToggleButtonGroup>().memberPushed("note");
