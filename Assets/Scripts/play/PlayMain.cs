@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayMain : MonoBehaviour {
-    private ScoreHandler tHandler;
+    private ScoreHandler mHandler;
     
 	void Start () {
         Arg tArg = MySceneManager.getArg("play");
@@ -11,10 +11,10 @@ public class PlayMain : MonoBehaviour {
         string tFileName = tArg.get<string>("file");
         string tDifficult = tArg.get<string>("difficult");
 
-        tHandler = MyBehaviour.create<ScoreHandler>();
-        tHandler.load(tFileName, tDifficult);
-        tHandler.show(new KeyTime(-3));
-        tHandler.changeState(new ScoreHandler.PlayState(tHandler));
+        mHandler = MyBehaviour.create<ScoreHandler>();
+        mHandler.load(tFileName, tDifficult);
+        mHandler.show(new KeyTime(-3));
+        mHandler.changeState(new ScoreHandler.PlayState(mHandler));
 	}
 
 	void Update () {

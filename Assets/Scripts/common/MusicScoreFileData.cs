@@ -23,7 +23,7 @@ public class MusicScoreFileData {
         rust = 0;
         difficult = new Arg(new Dictionary<string, object>() { { "child", 0 }, { "student", 0 }, { "scholar", 0 }, { "guru", 0 } });
         point = new Arg(new Dictionary<string, object>() { { "child", 0 }, { "student", 0 }, { "scholar", 0 }, { "guru", 0 } });
-        bpm = new List<Arg>();
+        bpm = new List<Arg> { new Arg(new Dictionary<string, object>() { { "bpm", 100 }, { "time", 0 } }) };
         note = new List<Arg>();
         lyrics = new List<Arg>();
     }
@@ -70,7 +70,7 @@ public class MusicScoreFileData {
     // X / 4 拍子
     public int rhythm{
         get { return mData.get<int>("rhythm"); }
-        set { mData.set("rhytnm", value); }
+        set { mData.set("rhythm", value); }
     }
     //サビの開位置
     public float rust{

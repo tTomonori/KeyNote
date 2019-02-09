@@ -36,11 +36,19 @@ static public class MusicScoreData {
     //選択した難易度
     static public Difficult mSelectedDifficult;
     public enum Difficult{child, student, scholar, guru}
-    ///曲データロード
+    //曲データロード
     static public void load(string aFileName){
         mMusicDate = DataFolder.loadScoreData(aFileName);
-        //keyTimeを生成して記録
-        foreach(Arg tNoteData in mMusicDate.note){
+        setKeyTimeData();
+    }
+    //曲データセット
+    static public void set(MusicScoreFileData aData){
+        mMusicDate = aData;
+        setKeyTimeData();
+    }
+    //keyTimeを生成して記録
+    static public void setKeyTimeData(){
+        foreach (Arg tNoteData in mMusicDate.note){
             tNoteData.set("keyTime", new KeyTime(tNoteData.get<float>("time")));
         }
         foreach (Arg tLyricsData in mMusicDate.lyrics){
