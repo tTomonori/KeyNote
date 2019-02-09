@@ -54,9 +54,12 @@ public class KeyNotePlayer {
         while(true){
             if(!mPlayer.mIsPlaying){
                 //再生終了
-                mAdjustScoreCoroutine = null;
-                Subject.sendMessage(new Message("finishedMusic", new Arg()));//曲終了メッセージ
-                yield break;
+                yield return null;
+                if(!mPlayer.mIsPlaying){
+                    mAdjustScoreCoroutine = null;
+                    Subject.sendMessage(new Message("finishedMusic", new Arg()));//曲終了メッセージ
+                    yield break;
+                }
             }
             mScore.adjustPozitionToMusicTime(mPlayer.mCurrentSecond);
             yield return null;
