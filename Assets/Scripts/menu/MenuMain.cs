@@ -16,11 +16,11 @@ public class MenuMain : MonoBehaviour {
                 return;
             }
             if(message.name=="editScoreButtonPushed"){//譜面編集
-                MyBehaviour.createObjectFromPrefab<AlartWindow>("ui/alartWindow").set("未実装");
+                AlartCreater.alart("未実装");
                 return;
             }
             if(message.name=="sortScoreButtonPushed"){//譜面並び替え
-                MyBehaviour.createObjectFromPrefab<AlartWindow>("ui/alartWindow").set("未実装");
+                AlartCreater.alart("未実装");
                 return;
             }
             if(message.name=="backMenuButtonPushed"){//戻る

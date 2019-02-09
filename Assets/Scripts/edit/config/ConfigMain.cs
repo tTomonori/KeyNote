@@ -8,17 +8,39 @@ public class ConfigMain : MonoBehaviour {
     private void Start(){
         Arg tArg = MySceneManager.getArg("musicConfig");
         Subject.addObserver(new Observer("configMain", (message) =>{
+            if (message.name == "cancelButtonPushed"){
+                MySceneManager.closeScene("musicConfig", new Arg(new Dictionary<string, object>() { { "ok", false } }));
+                return;
+            }
+            if (message.name != "okButtonPushed") return;
             Arg tData = getData();
-            if(message.name=="okButtonPushed"){
-                tData.set("ok", true);
-                MySceneManager.closeScene("musicConfig", tData);
+            //必須のデータが入力されているか確認
+            //title
+            if(tData.get<string>("title")==""){
+                AlartCreater.alart("タイトルが入力されていません");
                 return;
             }
-            if(message.name=="cancelButtonPushed"){
-                tData.set("ok", false);
-                MySceneManager.closeScene("musicConfig", tData);
+            //file
+            if(tData.get<string>("file")==""){
+                AlartCreater.alart("譜面ファイル名が入力されていません");
                 return;
             }
+            if(DataFolder.existScoreData(tData.get<string>("file"))){
+                AlartCreater.alart("譜面ファイル名が既に使われています");
+                return;
+            }
+            //music
+            if(tData.get<string>("music")==".wav"){
+                AlartCreater.alart("音声ファイル名が入力されていません");
+                return;
+            }
+            if(!DataFolder.existMusic(tData.get<string>("music"))){
+                AlartCreater.alart("音声ファイルが見つかりません");
+                return;
+            }
+            //必須条件クリア
+            tData.set("ok", true);
+            MySceneManager.closeScene("musicConfig", tData);
         }));
     }
     //入力したデータを取得
@@ -26,7 +48,7 @@ public class ConfigMain : MonoBehaviour {
         return new Arg(new Dictionary<string,object>(){
             {"title",GameObject.Find("title").GetComponentInChildren<MyBehaviour>().GetComponent<Text>().text},
             {"file",GameObject.Find("file").GetComponentInChildren<MyBehaviour>().GetComponent<Text>().text},
-            {"music",GameObject.Find("music").GetComponentInChildren<MyBehaviour>().GetComponent<Text>().text},
+            {"music",GameObject.Find("music").GetComponentInChildren<MyBehaviour>().GetComponent<Text>().text + ".wav"},
             {"thumbnail",GameObject.Find("thumbnail").GetComponentInChildren<MyBehaviour>().GetComponent<Text>().text},
             {"back",GameObject.Find("back").GetComponentInChildren<MyBehaviour>().GetComponent<Text>().text},
             {"movie",GameObject.Find("movie").GetComponentInChildren<MyBehaviour>().GetComponent<Text>().text}
