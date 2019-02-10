@@ -25,6 +25,14 @@ partial class ScoreHandler{
         }
         //音符を削除する
         protected bool tryDeleteNote(KeyTime aTime){
+            float[] tNeighbor = parent.mScore.getNeighborTime(aTime);
+            foreach (float tQuarterBeat in tNeighbor){
+                if (parent.mScore.getNote(new KeyTime(tQuarterBeat)) == null) continue;//音符がない
+                //削除できる
+                mCommandList.run(new DeleteNoteCommand(new KeyTime(tQuarterBeat)));
+                parent.mScore.resetBars();
+                return true;
+            }
             return false;
         }
         //歌詞を生成する
