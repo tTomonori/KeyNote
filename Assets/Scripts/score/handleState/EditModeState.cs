@@ -100,10 +100,22 @@ partial class ScoreHandler{
         }
         //三連符を作成する
         protected bool tryCreateTriplet(KeyTime aTime){
+            if(parent.mScore.getBar(aTime).getBeat(aTime).isTriplet()){
+                //既に三連符がつけられている
+                return false;
+            }
+            mCommandList.run(new CreateTripletCommand(aTime));
+            parent.mScore.resetBars();
             return false;
         }
         //三連符を削除する
         protected bool tryDeleteTriplet(KeyTime aTime){
+            if (!parent.mScore.getBar(aTime).getBeat(aTime).isTriplet()){
+                //三連符がついていない
+                return false;
+            }
+            mCommandList.run(new DeleteTripletCommand(aTime));
+            parent.mScore.resetBars();
             return false;
         }
     }

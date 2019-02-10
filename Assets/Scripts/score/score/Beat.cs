@@ -56,11 +56,11 @@ public class Beat : MyBehaviour {
         LyricsCollider[] tLCollider = mBeatObject.GetComponentsInChildren<LyricsCollider>();
         if(mTriplet){
             tNCollider[0].mQuarterBeat = time.mQuarterBeat + 0.1f;
-            tNCollider[1].mQuarterBeat = time.mQuarterBeat + 0.3f;
-            tNCollider[2].mQuarterBeat = time.mQuarterBeat + 0.6f;
+            tNCollider[1].mQuarterBeat = time.mQuarterBeat + 1.3f;
+            tNCollider[2].mQuarterBeat = time.mQuarterBeat + 2.6f;
             tLCollider[0].mQuarterBeat = time.mQuarterBeat + 0.1f;
-            tLCollider[1].mQuarterBeat = time.mQuarterBeat + 0.3f;
-            tLCollider[2].mQuarterBeat = time.mQuarterBeat + 0.6f;
+            tLCollider[1].mQuarterBeat = time.mQuarterBeat + 1.3f;
+            tLCollider[2].mQuarterBeat = time.mQuarterBeat + 2.6f;
         }else{
             tNCollider[0].mQuarterBeat = time.mQuarterBeat + 0;
             tNCollider[1].mQuarterBeat = time.mQuarterBeat + 1;
