@@ -37,10 +37,26 @@ partial class ScoreHandler{
         }
         //歌詞を生成する
         protected bool tryCreateLyrics(KeyTime aTime){
+            float[] tNeighbor = parent.mScore.getNeighborTime(aTime);
+            foreach (float tQuarterBeat in tNeighbor){
+                if (parent.mScore.getLyrics(new KeyTime(tQuarterBeat)) != null) continue;//既に音符が存在する
+                //追加できる
+                mCommandList.run(new CreateLyricsCommand(new KeyTime(tQuarterBeat)));
+                parent.mScore.resetBars();
+                return true;
+            }
             return false;
         }
         //歌詞を削除する
         protected bool tryDeleteLyrics(KeyTime aTime){
+            float[] tNeighbor = parent.mScore.getNeighborTime(aTime);
+            foreach (float tQuarterBeat in tNeighbor){
+                if (parent.mScore.getLyrics(new KeyTime(tQuarterBeat)) == null) continue;//音符がない
+                //削除できる
+                mCommandList.run(new DeleteLyricsCommand(new KeyTime(tQuarterBeat)));
+                parent.mScore.resetBars();
+                return true;
+            }
             return false;
         }
         //bpm変更イベントを生成

@@ -167,4 +167,10 @@ public class MusicScore : MyBehaviour {
         if (tBar == null) return null;
         return tBar.getNote(aTime);
     }
+    //指定したKeyTimeの歌詞を取得
+    public LyricsBubble getLyrics(KeyTime aTime){
+        Bar tBar = getBar(aTime);
+        if (tBar == null) return null;
+        return tBar.getLyrics(aTime);
+    }
 }

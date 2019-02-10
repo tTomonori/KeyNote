@@ -71,4 +71,10 @@ public class Bar : MyBehaviour {
         if (tBeat == null) return null;
         return tBeat.getNote(aTime);
     }
+    //指定したKeyTimeの歌詞を取得
+    public LyricsBubble getLyrics(KeyTime aTime){
+        Beat tBeat = getBeat(aTime);
+        if (tBeat == null) return null;
+        return tBeat.getLyrics(aTime);
+    }
 }

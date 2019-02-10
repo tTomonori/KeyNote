@@ -173,4 +173,9 @@ public class Beat : MyBehaviour {
         if (mTriplet != aTime.mIsInTriplet) return null;
         return mNotes[aTime.mQuarterBeatIndexInBeat];
     }
+    //指定したKeyTimeの歌詞を取得
+    public LyricsBubble getLyrics(KeyTime aTime){
+        if (mTriplet != aTime.mIsInTriplet) return null;
+        return mLyricses[aTime.mQuarterBeatIndexInBeat];
+    }
 }
