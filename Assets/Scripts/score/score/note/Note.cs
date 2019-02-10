@@ -23,6 +23,8 @@ public abstract class Note : MyBehaviour {
                 return MyBehaviour.createObjectFromPrefab<NoteScholar>("score/note/noteScholar");
             case MusicScoreData.Difficult.guru:
                 return MyBehaviour.createObjectFromPrefab<NoteGuru>("score/note/noteGuru");
+            case MusicScoreData.Difficult.edit:
+                return MyBehaviour.createObjectFromPrefab<NoteEdit>("score/note/noteEdit");
             default:
                 throw new Exception("Note : 未定義の難易度「" + MusicScoreData.mSelectedDifficult + "」");
         }
@@ -79,7 +81,7 @@ public abstract class Note : MyBehaviour {
         aNoteObject.GetComponent<MyBehaviour>().delete();
     }
     //脱色
-    protected void hitAndDecolorize(GameObject aNoteObject){
+    protected virtual void hitAndDecolorize(GameObject aNoteObject){
         Debug.Log("decolorize");
     }
     public enum HitResult{

@@ -35,7 +35,7 @@ static public class MusicScoreData {
     }
     //選択した難易度
     static public Difficult mSelectedDifficult;
-    public enum Difficult{child, student, scholar, guru}
+    public enum Difficult{child, student, scholar, guru, edit}
     //曲データロード
     static public void load(string aFileName){
         mMusicDate = DataFolder.loadScoreData(aFileName);

@@ -115,6 +115,14 @@ public class MusicScore : MyBehaviour {
             mBars.Add(createBar(new KeyTime(i)));
         }
     }
+    //Barを全て生成し直す
+    public void resetBars(){
+        foreach(Bar tBar in mBars){
+            tBar.delete();
+        }
+        mBars = new List<Bar>();
+        updateBars();
+    }
     //音声の再生位置に合わせてpozitionを変更
     public void adjustPozitionToMusicTime(float aMusicTime){
         show(MusicScoreData.musicTimeToQuarterBeat(aMusicTime));

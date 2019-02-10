@@ -1,14 +1,16 @@
 ﻿<Properties StartupConfiguration="{FAA2A704-9CBD-045F-2725-8A96BDA8B211}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/score/KeyNotePlayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/score/score/note/NoteEdit.cs">
     <Files>
       <File FileName="Assets/Scripts/score/handleState/EditState.cs" Line="31" Column="55" />
       <File FileName="Assets/Scripts/score/handleState/EditPlayState.cs" Line="9" Column="38" />
+      <File FileName="Assets/Scripts/score/handleState/TestPlayState.cs" Line="16" Column="39" />
       <File FileName="Assets/Scripts/score/score/Beat.cs" Line="71" Column="63" />
       <File FileName="Assets/Scripts/score/score/Bar.cs" Line="11" Column="31" />
-      <File FileName="Assets/Scripts/score/score/MusicScore.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/score/handleState/MeasureBpmState.cs" Line="21" Column="57" />
-      <File FileName="Assets/Scripts/score/handleState/TestPlayState.cs" Line="21" Column="36" />
-      <File FileName="Assets/Scripts/score/KeyNotePlayer.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/score/score/MusicScore.cs" Line="124" Column="22" />
+      <File FileName="Assets/Scripts/score/KeyNotePlayer.cs" Line="32" Column="52" />
+      <File FileName="Assets/Scripts/score/score/note/Note.cs" Line="84" Column="22" />
+      <File FileName="Assets/Scripts/score/score/note/NoteEdit.cs" Line="59" Column="28" />
+      <File FileName="Assets/Scripts/score/handleState/PlayState.cs" Line="12" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
