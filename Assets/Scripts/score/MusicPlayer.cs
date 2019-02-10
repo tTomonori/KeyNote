@@ -7,7 +7,12 @@ public class MusicPlayer : MonoBehaviour {
     //音声の現在位置
     public float mCurrentSecond{
         get { return mAudio.time; }
-        set { mAudio.time = value; }
+        set {
+            if (value < 0)
+                mAudio.time = 0;
+            else
+                mAudio.time = value; 
+        }
     }
     //再生中か
     public bool mIsPlaying{

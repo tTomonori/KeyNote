@@ -29,6 +29,7 @@ public class KeyNotePlayer {
     }
     public void play(){
         float tCurrentMusicTime = MusicScoreData.quarterBeatToMusicTime(mScore.mCurrentQuarterBeat);
+        mPlayer.mCurrentSecond = tCurrentMusicTime;
         if(tCurrentMusicTime<0){
             mPlayer.playDelayed(-tCurrentMusicTime);
             mMoveScoreCoroutine = mScore.moveBy(new Vector3(0, (mScore.mStartMusicPosition-mScore.positionY)*(1-0.5f/tCurrentMusicTime), 0), -tCurrentMusicTime+0.5f,() => {
@@ -36,7 +37,6 @@ public class KeyNotePlayer {
                 mAdjustScoreCoroutine = mBehaviour.StartCoroutine(adjustScoreToPlayer());
             });
         }else{
-            mPlayer.mCurrentSecond = tCurrentMusicTime;
             mPlayer.play();
             mAdjustScoreCoroutine = mBehaviour.StartCoroutine(adjustScoreToPlayer());
         }
