@@ -9,10 +9,12 @@ partial class ScoreHandler{
         static protected MyCommandList mCommandList;
         public override void enter(){
             mCommandList = new MyCommandList();
+            GameObject.Find("musicSettingForm").GetComponent<MusicSettingForm>().reset();
             parent.changeState(new EditState(parent));
         }
         //音符を生成する
         protected bool tryCreateNote(KeyTime aTime){
+            if (aTime.mQuarterBeat < 0) return false;
             float[] tNeighbor = parent.mScore.getNeighborTime(aTime);
             foreach(float tQuarterBeat in tNeighbor){
                 if (parent.mScore.getNote(new KeyTime(tQuarterBeat)) != null) continue;//既に音符が存在する
@@ -25,6 +27,7 @@ partial class ScoreHandler{
         }
         //音符を削除する
         protected bool tryDeleteNote(KeyTime aTime){
+            if (aTime.mQuarterBeat < 0) return false;
             float[] tNeighbor = parent.mScore.getNeighborTime(aTime);
             foreach (float tQuarterBeat in tNeighbor){
                 if (parent.mScore.getNote(new KeyTime(tQuarterBeat)) == null) continue;//音符がない
@@ -37,6 +40,7 @@ partial class ScoreHandler{
         }
         //歌詞を生成する
         protected bool tryCreateLyrics(KeyTime aTime){
+            if (aTime.mQuarterBeat < 0) return false;
             float[] tNeighbor = parent.mScore.getNeighborTime(aTime);
             foreach (float tQuarterBeat in tNeighbor){
                 if (parent.mScore.getLyrics(new KeyTime(tQuarterBeat)) != null) continue;//既に歌詞が存在する
@@ -49,6 +53,7 @@ partial class ScoreHandler{
         }
         //歌詞を削除する
         protected bool tryDeleteLyrics(KeyTime aTime){
+            if (aTime.mQuarterBeat < 0) return false;
             float[] tNeighbor = parent.mScore.getNeighborTime(aTime);
             foreach (float tQuarterBeat in tNeighbor){
                 if (parent.mScore.getLyrics(new KeyTime(tQuarterBeat)) == null) continue;//歌詞がない
@@ -66,6 +71,11 @@ partial class ScoreHandler{
         }
         //bpm変更イベントを生成
         protected bool tryCreateChangeBpm(KeyTime aTime){
+            if (aTime.mQuarterBeat < 0) return false;
+            if(1<=aTime.mQuarterBeat && aTime.mQuarterBeat<MusicScoreData.mStartPlayMusicTime.mQuarterBeat){
+                AlartCreater.alart("音声再生位置より前には配置できません");
+                return false;
+            }
             //編集画面の操作を無効にする
             parent.changeState(new InitialState(parent));
             //変更前の値があるなら取得する
@@ -89,6 +99,7 @@ partial class ScoreHandler{
         }
         //bpm変更イベントを削除
         protected bool tryDeleteChangeBpm(KeyTime aTime){
+            if (aTime.mQuarterBeat < 0) return false;
             if(aTime.mQuarterBeat < 1){
                 AlartCreater.alart("先頭のBPMは削除できません");
                 return false;

@@ -7,11 +7,13 @@ partial class ScoreHandler{
     public class EditState : EditModeState{
         public EditState(ScoreHandler aParent) : base(aParent) { }
         private ToggleButtonGroup mPlaceTggle;
+        private MusicSettingForm mSettingForm;
         public CreateObjectType mCreateObjectType{
             get { return EnumParser.parse<CreateObjectType>(mPlaceTggle.pushedButtonName); }
         }
         public override void enter(){
             mPlaceTggle = GameObject.Find("placeObjectToggle").GetComponent<ToggleButtonGroup>();
+            mSettingForm = GameObject.Find("musicSettingForm").GetComponent<MusicSettingForm>();
         }
         public override void update(){
             //譜面スクロール
@@ -46,6 +48,35 @@ partial class ScoreHandler{
             }
             if (aMessage.name == "measureBpmButtonPushed"){//bpm測定ボタン
                 parent.changeState(new MeasureBpmState(parent));
+                return;
+            }
+            if(aMessage.name=="applySettingButtonPushed"){//設定適用ボタン
+                if(mSettingForm.isChanged()){//変更がある時だけ適用
+                    //marginが不正な値になっていないか
+                    if(mSettingForm.mMargin<0){
+                        AlartCreater.alart("Marginは0未満にできません");
+                        return;
+                    }
+                    if(KeyTime.secondsToQuarterBeat(mSettingForm.mMargin,MusicScoreData.mInitialBpm)>=mSettingForm.mRhythm*4){
+                        AlartCreater.alart("Marginが第一小節の長さを超えています");
+                        return;
+                    }
+                    //rustが不正な値になっていないか
+                    if(mSettingForm.mRust<0){
+                        AlartCreater.alart("サビの位置は0以上で指定してください");
+                        return;
+                    }
+                    if(parent.mPlayer.mMusicLength<=mSettingForm.mRust){
+                        AlartCreater.alart("サビの位置が音声の長さを超えています");
+                        return;
+                    }
+                    mCommandList.run(new ApplySettingCommand(mSettingForm));
+                    parent.mScore.resetBars();
+                }
+                return;
+            }
+            if(aMessage.name=="resetSettingButtonPushed"){//設定リセットボタン
+                mSettingForm.reset();
                 return;
             }
             switch(mCreateObjectType){

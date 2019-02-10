@@ -19,4 +19,12 @@ public class ListButton : MyButton {
         mSelectionIndex = (mSelectionIndex + 1) % mSelections.Length;
         mText.text = mSelections[mSelectionIndex];
     }
+    //指定した選択肢を選択している状態にする
+    public void select(string aChoice){
+        for (int i = 0; i < mSelections.Length;i++){
+            if (mSelections[i] != aChoice) continue;
+            mSelectionIndex = i;
+            mText.text = mSelections[mSelectionIndex];
+        }
+    }
 }

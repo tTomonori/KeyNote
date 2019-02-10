@@ -24,10 +24,17 @@ static public partial class MusicScoreData {
     //X / 4 拍子
     static public int mRhythm{
         get { return mMusicDate.rhythm; }
+        set { mMusicDate.rhythm = value; }
     }
     //小節の先頭から曲を再生するまでの時間(s)
     static public float mMargin{
         get { return mMusicDate.margin; }
+        set { mMusicDate.margin = value; }
+    }
+    //サビの開始位置(second)
+    static public float mRust{
+        get { return mMusicDate.rust; }
+        set { mMusicDate.rust = value; }
     }
     //音声を再生開始するquarterBeat
     static public KeyTime mStartPlayMusicTime{

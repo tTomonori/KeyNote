@@ -175,7 +175,8 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 0.4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 58950593311881758, guid: 65fefb6b571184db5b3624de6dc46aac, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 65fefb6b571184db5b3624de6dc46aac, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &7783856 stripped
@@ -375,7 +376,7 @@ GameObject:
   - component: {fileID: 53690248}
   - component: {fileID: 53690247}
   m_Layer: 5
-  m_Name: Text
+  m_Name: inputRustText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -673,6 +674,36 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &205069419 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1821187151102970, guid: 65fefb6b571184db5b3624de6dc46aac,
+    type: 2}
+  m_PrefabInternal: {fileID: 1277020726}
+--- !u!61 &205069420
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 205069419}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.8, y: 1.3}
+  m_EdgeRadius: 0
 --- !u!1 &212508826
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,6 +778,36 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 212508826}
+--- !u!1 &259866926 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1821187151102970, guid: 65fefb6b571184db5b3624de6dc46aac,
+    type: 2}
+  m_PrefabInternal: {fileID: 7783855}
+--- !u!61 &259866927
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 259866926}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.8, y: 1.3}
+  m_EdgeRadius: 0
 --- !u!1 &296762316
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,7 +1004,7 @@ GameObject:
   - component: {fileID: 416879795}
   - component: {fileID: 416879794}
   m_Layer: 5
-  m_Name: Text
+  m_Name: inputMarginText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1850,8 +1911,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1230069956}
+  - component: {fileID: 1230069957}
   m_Layer: 0
-  m_Name: musicSetting
+  m_Name: musicSettingForm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1876,6 +1938,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1230069957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1230069955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 112d108e9148b4a09a3773d53401e4e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1277020726
 Prefab:
   m_ObjectHideFlags: 0
@@ -1917,7 +1990,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1821187151102970, guid: 65fefb6b571184db5b3624de6dc46aac, type: 2}
       propertyPath: m_Name
-      value: restSettingButton
+      value: resetSettingButton
       objectReference: {fileID: 0}
     - target: {fileID: 212241987560444484, guid: 65fefb6b571184db5b3624de6dc46aac,
         type: 2}
@@ -1938,7 +2011,8 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 0.39999998
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 58950593311881758, guid: 65fefb6b571184db5b3624de6dc46aac, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 65fefb6b571184db5b3624de6dc46aac, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1277020727 stripped
