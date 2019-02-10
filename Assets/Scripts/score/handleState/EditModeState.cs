@@ -84,6 +84,10 @@ partial class ScoreHandler{
         }
         //bpm変更イベントを削除
         protected bool tryDeleteChangeBpm(KeyTime aTime){
+            if(aTime.mQuarterBeat==0){
+                AlartCreater.alart("先頭のBPMは削除できません");
+                return false;
+            }
             List<Arg> tList = MusicScoreData.getChangeBpmInBar(aTime);
             foreach (Arg tData in tList){
                 if (tData.get<float>("time") != aTime.mQuarterBeat) continue;
