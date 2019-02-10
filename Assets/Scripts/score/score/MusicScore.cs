@@ -148,4 +148,23 @@ public class MusicScore : MyBehaviour {
         tBar = mBars[i - 1];
         tBar.missHit(tTime);
     }
+    //指定したKeyTimeに接触するQNを近い順で返す
+    public float[] getNeighborTime(KeyTime aTime){
+        KeyTime tNextBeat = new KeyTime(aTime.mQuarterBeat + 4);
+        return aTime.getNeighborQuarterBeat(getBar(aTime).getBeat(aTime).isTriplet(), getBar(tNextBeat).getBeat(tNextBeat).isTriplet());
+    }
+    //指定したKeyTimeを含むBarを取得
+    public Bar getBar(KeyTime aTime){
+        foreach(Bar tBar in mBars){
+            if (tBar.isContainQuarterBeat(aTime))
+                return tBar;
+        }
+        return null;
+    }
+    //指定したKeyTimeの音符を取得
+    public Note getNote(KeyTime aTime){
+        Bar tBar = getBar(aTime);
+        if (tBar == null) return null;
+        return tBar.getNote(aTime);
+    }
 }

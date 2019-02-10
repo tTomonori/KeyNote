@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public struct KeyTime {
     //先頭の８分音符を0とした時の番号(QN)
@@ -35,11 +36,15 @@ public struct KeyTime {
         }
     }
     //拍内での音符番号
-    public float mQuarterBeatNumInBeat{
+    public float mQuarterBeatInBeat{
         get { return mQuarterBeat % 4; }
     }
     public int mQuarterBeatIndexInBeat{
-        get { return Mathf.FloorToInt(mQuarterBeat % 4); }
+        get {
+            int tIndex = Mathf.FloorToInt(mQuarterBeat % 4);
+            if (tIndex < 0) return tIndex + 4;
+            else return tIndex;
+        }
     }
     //拍内での音符番号(三連符に含まれる時)
     public int mQuarterBeatNumInTriplet{
@@ -57,6 +62,50 @@ public struct KeyTime {
     //所属する小節の末尾のQN
     public float mTailQuarterBeatInBar{
         get { return (mBarNum * MusicScoreData.mRhythm * 4) + (MusicScoreData.mRhythm * 4 - 1); }
+    }
+    //所属する拍の先頭のQN
+    public float mTopQuarterBeatInBeat{
+        get { return mTopQuarterBeatInBar + 4 * mBeatNumInBar; }
+    }
+    //接触しているQNを近い順で返す
+    public float[] getNeighborQuarterBeat(bool aIsTriplet, bool aNextIsTriplet){
+        //所属する拍の先頭のQN
+        float tTimeOfBeat = mTopQuarterBeatInBeat;
+        if (aIsTriplet){
+            if (mQuarterBeat == tTimeOfBeat) return new float[1] { tTimeOfBeat + 0.1f };
+            if (mQuarterBeat < tTimeOfBeat + 2/3) return new float[2] { tTimeOfBeat, tTimeOfBeat + 1.3f };
+            if (mQuarterBeat < tTimeOfBeat + 4/3) return new float[2] { tTimeOfBeat + 1.3f, tTimeOfBeat };
+            if (mQuarterBeat == tTimeOfBeat + 4/3) return new float[1] { tTimeOfBeat + 1.3f };
+            if (mQuarterBeat < tTimeOfBeat + 6/3) return new float[2] { tTimeOfBeat + 1.3f, tTimeOfBeat + 2.6f };
+            if (mQuarterBeat < tTimeOfBeat + 8/3) return new float[2] { tTimeOfBeat + 2.6f, tTimeOfBeat + 1.3f };
+            if (mQuarterBeat == tTimeOfBeat + 8/3) return new float[1] { tTimeOfBeat + 2.6f };
+            if (mQuarterBeat < tTimeOfBeat + 4){
+                if (aNextIsTriplet)
+                    return new float[2] { tTimeOfBeat + 2.6f, tTimeOfBeat + 4.1f };
+                else
+                    return new float[2] { tTimeOfBeat + 2.6f, tTimeOfBeat + 4 };
+            }
+        }
+        else{
+            if (mQuarterBeat == tTimeOfBeat) return new float[1] { tTimeOfBeat };
+            if (mQuarterBeat < tTimeOfBeat + 0.5f) return new float[2] { tTimeOfBeat, tTimeOfBeat + 1 };
+            if (mQuarterBeat < tTimeOfBeat + 1) return new float[2] { tTimeOfBeat + 1, tTimeOfBeat };
+            if (mQuarterBeat == tTimeOfBeat + 1) return new float[1] { tTimeOfBeat + 1 };
+            if (mQuarterBeat < tTimeOfBeat + 1.5f) return new float[2] { tTimeOfBeat + 1, tTimeOfBeat + 2 };
+            if (mQuarterBeat < tTimeOfBeat + 2) return new float[2] { tTimeOfBeat + 2, tTimeOfBeat + 1 };
+            if (mQuarterBeat == tTimeOfBeat + 2) return new float[1] { tTimeOfBeat + 2 };
+            if (mQuarterBeat < tTimeOfBeat + 2.5f) return new float[2] { tTimeOfBeat + 2, tTimeOfBeat + 3 };
+            if (mQuarterBeat < tTimeOfBeat + 3) return new float[2] { tTimeOfBeat + 3, tTimeOfBeat + 2 };
+            if (mQuarterBeat == tTimeOfBeat + 3) return new float[1] { tTimeOfBeat + 3 };
+            if (mQuarterBeat < tTimeOfBeat + 4) {
+                if(aNextIsTriplet)
+                    return new float[2] { tTimeOfBeat + 3, tTimeOfBeat + 4.1f };
+                else 
+                    return new float[2] { tTimeOfBeat + 3, tTimeOfBeat + 4 };
+            }
+        }
+        throw new Exception("KeyTime : 隣接したQN取得でエラー aIsTriplet = "+aIsTriplet+", aNextIsTriplet = "+aNextIsTriplet+
+                            ", mQuarterBeat = "+mQuarterBeat+" , tTimeOfBeat = "+tTimeOfBeat);
     }
 
     public KeyTime(float aQuarterBeatTime){

@@ -13,6 +13,7 @@ public class Beat : MyBehaviour {
         }
     }
     private bool mTriplet=false;
+    public bool isTriplet() { return mTriplet; }
     private MyBehaviour mBeatObject;
     private Note[] mNotes;
     private LyricsBubble[] mLyricses;
@@ -87,7 +88,7 @@ public class Beat : MyBehaviour {
         //三連符判定
         checkTriplet(tTime.mIsInTriplet);
         //座標
-        tNote.transform.parent = mNotePositions[(mTriplet) ? tTime.mQuarterBeatNumInTriplet : (int)tTime.mQuarterBeatNumInBeat];
+        tNote.transform.parent = mNotePositions[(mTriplet) ? tTime.mQuarterBeatNumInTriplet : (int)tTime.mQuarterBeatInBeat];
         tNote.transform.localPosition = new Vector3(0, 0, -1);
 
         mNotes[tTime.mQuarterBeatIndexInBeat] = tNote;
@@ -102,7 +103,7 @@ public class Beat : MyBehaviour {
         //三連符判定
         checkTriplet(tTime.mIsInTriplet);
         //座標
-        tLyrics.transform.parent = mLyricsPositions[(mTriplet) ? tTime.mQuarterBeatNumInTriplet : (int)tTime.mQuarterBeatNumInBeat];
+        tLyrics.transform.parent = mLyricsPositions[(mTriplet) ? tTime.mQuarterBeatNumInTriplet : (int)tTime.mQuarterBeatInBeat];
         tLyrics.transform.localPosition = new Vector3(0, 0, -1);
 
         mLyricses[tTime.mQuarterBeatIndexInBeat] = tLyrics;
@@ -117,10 +118,16 @@ public class Beat : MyBehaviour {
         //三連符判定
         checkTriplet(tTime.mIsInTriplet);
         //座標
-        tObject.transform.parent = mBpmPositions[(mTriplet) ? tTime.mQuarterBeatNumInTriplet : (int)tTime.mQuarterBeatNumInBeat];
+        tObject.transform.parent = mBpmPositions[(mTriplet) ? tTime.mQuarterBeatNumInTriplet : (int)tTime.mQuarterBeatInBeat];
         tObject.transform.localPosition = new Vector3(0, 0, -1);
 
         mBpms[tTime.mQuarterBeatIndexInBeat] = tObject;
+    }
+    //指定したQNを含むかどうか
+    public bool isContainQuarterBeat(KeyTime aTime){
+        if (aTime.mQuarterBeat < mTime.mQuarterBeat) return false;
+        if (aTime.mQuarterBeat < mTime.mQuarterBeat + 4) return true;
+        return false;
     }
     //キー入力
     public bool hit(KeyCode aKey,float aSecond,Note.HitNoteType aType){
@@ -160,5 +167,10 @@ public class Beat : MyBehaviour {
                 {"hitResult",tResult}
             })));
         }
+    }
+    //指定したKeyTimeの音符を取得
+    public Note getNote(KeyTime aTime){
+        if (mTriplet != aTime.mIsInTriplet) return null;
+        return mNotes[aTime.mQuarterBeatIndexInBeat];
     }
 }

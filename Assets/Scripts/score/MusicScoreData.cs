@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-static public class MusicScoreData {
+static public partial class MusicScoreData {
     //曲のデータ
     static private MusicScoreFileData mMusicDate;
     //曲名

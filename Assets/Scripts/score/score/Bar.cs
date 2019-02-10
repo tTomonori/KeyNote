@@ -36,6 +36,13 @@ public class Bar : MyBehaviour {
         KeyTime tTime = new KeyTime(aBpmData.get<float>("time"));
         mBeats[tTime.mBeatNumInBar].addChangeBpm(aBpmData);
     }
+    //指定したQNを含むかどうか
+    public bool isContainQuarterBeat(KeyTime aTime){
+        if (mTime.mQuarterBeat <= aTime.mQuarterBeat && aTime.mQuarterBeat < mTime.mQuarterBeat + MusicScoreData.mRhythm * 4)
+            return true;
+        else
+            return false;
+    }
     //キー入力
     public bool hit(KeyCode aKey,float aSecond,Note.HitNoteType aType){
         foreach(Beat tBeat in mBeats){
@@ -49,5 +56,19 @@ public class Bar : MyBehaviour {
         foreach(Beat tBeat in mBeats){
             tBeat.missHit(aTime);
         }
+    }
+    //指定したKeyTimeを含むBeatを取得
+    public Beat getBeat(KeyTime aTime){
+        foreach(Beat tBeat in mBeats){
+            if (tBeat.isContainQuarterBeat(aTime))
+                return tBeat;
+        }
+        return null;
+    }
+    //指定したKeyTimeの音符を取得
+    public Note getNote(KeyTime aTime){
+        Beat tBeat = getBeat(aTime);
+        if (tBeat == null) return null;
+        return tBeat.getNote(aTime);
     }
 }

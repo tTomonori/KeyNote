@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 partial class ScoreHandler{
-    public class TestPlayState : ScoreHandleState{
+    public class TestPlayState : EditModeState{
         public TestPlayState(ScoreHandler aParent) : base(aParent) { }
         public override void enter(){
             GameObject.Find("testPlayButton").GetComponent<LightButton>().hold();

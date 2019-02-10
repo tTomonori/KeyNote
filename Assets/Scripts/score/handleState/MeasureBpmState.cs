@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 partial class ScoreHandler{
-    public class MeasureBpmState : ScoreHandleState{
+    public class MeasureBpmState : EditModeState{
         public MeasureBpmState(ScoreHandler aParent) : base(aParent) { }
         public override void enter(){
             GameObject.Find("measureBpmButton").GetComponent<LightButton>().hold();

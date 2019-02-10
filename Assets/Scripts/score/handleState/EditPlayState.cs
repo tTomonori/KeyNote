@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 partial class ScoreHandler{
-    public class EditPlayState : ScoreHandleState{
+    public class EditPlayState : EditModeState{
 		public EditPlayState(ScoreHandler aParent) : base(aParent) { }
         public override void enter(){
             GameObject.Find("editPlayButton").GetComponent<LightButton>().hold();
@@ -15,7 +15,10 @@ partial class ScoreHandler{
             parent.mPlayer.pause();
         }
         public override void update(){
-			
+            //キー入力
+            foreach (KeyCode tKey in KeyMonitor.getInputKey()){
+                tryCreateNote(new KeyTime(parent.mScore.mCurrentQuarterBeat));
+            }
         }
         public override void getMessage(Message aMessage){
             if (aMessage.name == "editPlayButtonPushed"){//編曲編集ボタン

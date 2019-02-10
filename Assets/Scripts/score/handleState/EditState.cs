@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 partial class ScoreHandler{
-    public class EditState : ScoreHandleState{
+    public class EditState : EditModeState{
         public EditState(ScoreHandler aParent) : base(aParent) { }
         private ToggleButtonGroup mPlaceTggle;
+        public CreateObjectType mCreateObjectType{
+            get { return EnumParser.parse<CreateObjectType>(mPlaceTggle.pushedButtonName); }
+        }
         public override void enter(){
             mPlaceTggle = GameObject.Find("placeObjectToggle").GetComponent<ToggleButtonGroup>();
         }
@@ -17,6 +20,19 @@ partial class ScoreHandler{
             //負の位置まではスクロールできないようにする
             if (parent.mScore.mCurrentQuarterBeat < 0)
                 parent.mScore.mCurrentQuarterBeat = 0;
+            //command操作
+            if(Input.GetKeyDown(KeyCode.Z)){
+                //cmd or ctr を押しているか
+                if(Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand) || 
+                   Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)){
+                    //shiftを押しているか
+                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                        mCommandList.redo();
+                    else
+                        mCommandList.undo();
+                    parent.mScore.resetBars();
+                }
+            }
         }
         public override void getMessage(Message aMessage){
             if(aMessage.name=="editPlayButtonPushed"){//編曲再生ボタン
@@ -30,6 +46,48 @@ partial class ScoreHandler{
             if (aMessage.name == "measureBpmButtonPushed"){//bpm測定ボタン
                 parent.changeState(new MeasureBpmState(parent));
                 return;
+            }
+            switch(mCreateObjectType){
+                case CreateObjectType.note:
+                    if (aMessage.name == "clickNote" || aMessage.name == "clickLyrics"){
+                        tryCreateNote(new KeyTime(aMessage.getParameter<float>("time")));
+                        return;
+                    }
+                    if (aMessage.name == "RightClickNote" || aMessage.name == "RightClickLyrics"){
+                        tryDeleteNote(new KeyTime(aMessage.getParameter<float>("time")));
+                        return;
+                    }
+                    break;
+                case CreateObjectType.lyrics:
+                    if (aMessage.name == "clickNote" || aMessage.name == "clickLyrics"){
+                        tryCreateLyrics(new KeyTime(aMessage.getParameter<float>("time")));
+                        return;
+                    }
+                    if (aMessage.name == "RightClickNote" || aMessage.name == "RightClickLyrics"){
+                        tryDeleteLyrics(new KeyTime(aMessage.getParameter<float>("time")));
+                        return;
+                    }
+                    break;
+                case CreateObjectType.changeBpm:
+                    if (aMessage.name == "clickNote" || aMessage.name == "clickLyrics"){
+                        tryCreateChangeBpm(new KeyTime(aMessage.getParameter<float>("time")));
+                        return;
+                    }
+                    if (aMessage.name == "RightClickNote" || aMessage.name == "RightClickLyrics"){
+                        tryDeleteChangeBpm(new KeyTime(aMessage.getParameter<float>("time")));
+                        return;
+                    }
+                    break;
+                case CreateObjectType.triplet:
+                    if (aMessage.name == "clickNote" || aMessage.name == "clickLyrics"){
+                        tryCreateTriplet(new KeyTime(aMessage.getParameter<float>("time")));
+                        return;
+                    }
+                    if (aMessage.name == "RightClickNote" || aMessage.name == "RightClickLyrics"){
+                        tryDeleteTriplet(new KeyTime(aMessage.getParameter<float>("time")));
+                        return;
+                    }
+                    break;
             }
             if(aMessage.name=="clickNote"){
                 Debug.Log("note : " + aMessage.getParameter<float>("time"));
@@ -47,6 +105,9 @@ partial class ScoreHandler{
                 Debug.Log("lyrics R : " + aMessage.getParameter<float>("time"));
                 return;
             }
+        }
+        public enum CreateObjectType{
+            triplet,changeBpm,note,lyrics
         }
     }
 }
