@@ -52,6 +52,11 @@ partial class ScoreHandler{
             float[] tNeighbor = parent.mScore.getNeighborTime(aTime);
             foreach (float tQuarterBeat in tNeighbor){
                 if (parent.mScore.getLyrics(new KeyTime(tQuarterBeat)) == null) continue;//歌詞がない
+                if(parent.mScore.getNote(new KeyTime(tQuarterBeat))!=null){
+                    //消そうとした歌詞に音符がついてる
+                    AlartCreater.alart("音符に付属した歌詞は削除できません");
+                    return false;
+                }
                 //削除できる
                 mCommandList.run(new DeleteLyricsCommand(new KeyTime(tQuarterBeat)));
                 parent.mScore.resetBars();
@@ -84,7 +89,7 @@ partial class ScoreHandler{
         }
         //bpm変更イベントを削除
         protected bool tryDeleteChangeBpm(KeyTime aTime){
-            if(aTime.mQuarterBeat==0){
+            if(aTime.mQuarterBeat < 1){
                 AlartCreater.alart("先頭のBPMは削除できません");
                 return false;
             }
@@ -100,7 +105,13 @@ partial class ScoreHandler{
         }
         //三連符を作成する
         protected bool tryCreateTriplet(KeyTime aTime){
-            if(parent.mScore.getBar(aTime).getBeat(aTime).isTriplet()){
+            Beat tBeat = parent.mScore.getBar(aTime).getBeat(aTime);
+            if(tBeat.isEmpty()){
+                //オブジェクトが配置されていない場合はCommandListには追加しない
+                tBeat.checkTriplet(true);
+                return true;
+            }
+            if(tBeat.isTriplet()){
                 //既に三連符がつけられている
                 return false;
             }
@@ -110,7 +121,13 @@ partial class ScoreHandler{
         }
         //三連符を削除する
         protected bool tryDeleteTriplet(KeyTime aTime){
-            if (!parent.mScore.getBar(aTime).getBeat(aTime).isTriplet()){
+            Beat tBeat = parent.mScore.getBar(aTime).getBeat(aTime);
+            if (tBeat.isEmpty()){
+                //オブジェクトが配置されていない場合はCommandListには追加しない
+                tBeat.checkTriplet(false);
+                return true;
+            }
+            if (!tBeat.isTriplet()){
                 //三連符がついていない
                 return false;
             }

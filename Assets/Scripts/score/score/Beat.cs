@@ -21,6 +21,16 @@ public class Beat : MyBehaviour {
     private Transform[] mNotePositions;
     private Transform[] mLyricsPositions;
     private Transform[] mBpmPositions;
+    //オブジェクトが何も配置されていない
+    public bool isEmpty(){
+        int tLength = (mTriplet) ? 3 : 4;
+        for (int i = 0; i < tLength;i++){
+            if (mNotes[i] != null) return false;
+            if (mLyricses[i] != null) return false;
+            if (mBpms[i] != null) return false;
+        }
+        return true;
+    }
 	void Awake () {
         createBeatObject();
 	}
@@ -32,6 +42,7 @@ public class Beat : MyBehaviour {
         mBeatObject = MyBehaviour.createObjectFromPrefab<MyBehaviour>("score/" + (aTriplet ? "beatTriplet" : "beat"));
         mBeatObject.transform.parent = this.gameObject.transform;
         mBeatObject.transform.localPosition = new Vector3(0, 0, 0);
+        mBeatObject.transform.localScale = new Vector3(1, 1, 1);
 
         //配列初期化
         if (aTriplet) { 
@@ -73,7 +84,7 @@ public class Beat : MyBehaviour {
         }
     }
     //三連符がついているか確認してbeatを生成し直す
-    private void checkTriplet(bool aTriplet){
+    public void checkTriplet(bool aTriplet){
         if (mTriplet == aTriplet) return;
         mTriplet = !mTriplet;
         createBeatObject(mTriplet);

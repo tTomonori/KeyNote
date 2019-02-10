@@ -73,12 +73,13 @@ public struct KeyTime {
         float tTimeOfBeat = mTopQuarterBeatInBeat;
         if (aIsTriplet){
             if (mQuarterBeat == tTimeOfBeat) return new float[1] { tTimeOfBeat + 0.1f };
-            if (mQuarterBeat < tTimeOfBeat + 2/3) return new float[2] { tTimeOfBeat, tTimeOfBeat + 1.3f };
-            if (mQuarterBeat < tTimeOfBeat + 4/3) return new float[2] { tTimeOfBeat + 1.3f, tTimeOfBeat };
-            if (mQuarterBeat == tTimeOfBeat + 4/3) return new float[1] { tTimeOfBeat + 1.3f };
-            if (mQuarterBeat < tTimeOfBeat + 6/3) return new float[2] { tTimeOfBeat + 1.3f, tTimeOfBeat + 2.6f };
-            if (mQuarterBeat < tTimeOfBeat + 8/3) return new float[2] { tTimeOfBeat + 2.6f, tTimeOfBeat + 1.3f };
-            if (mQuarterBeat == tTimeOfBeat + 8/3) return new float[1] { tTimeOfBeat + 2.6f };
+            if (mQuarterBeat == tTimeOfBeat + 0.1f) return new float[1] { tTimeOfBeat + 0.1f };//←誤差のせいで無意味になってる
+            if (mQuarterBeat < tTimeOfBeat + 2/3f) return new float[2] { tTimeOfBeat + 0.1f, tTimeOfBeat + 1.3f };
+            if (mQuarterBeat < tTimeOfBeat + 4/3f) return new float[2] { tTimeOfBeat + 1.3f, tTimeOfBeat + 0.1f };
+            if (mQuarterBeat == tTimeOfBeat + 4/3f) return new float[1] { tTimeOfBeat + 1.3f };
+            if (mQuarterBeat < tTimeOfBeat + 6/3f) return new float[2] { tTimeOfBeat + 1.3f, tTimeOfBeat + 2.6f };
+            if (mQuarterBeat < tTimeOfBeat + 8/3f) return new float[2] { tTimeOfBeat + 2.6f, tTimeOfBeat + 1.3f };
+            if (mQuarterBeat == tTimeOfBeat + 8/3f) return new float[1] { tTimeOfBeat + 2.6f };
             if (mQuarterBeat < tTimeOfBeat + 4){
                 if (aNextIsTriplet)
                     return new float[2] { tTimeOfBeat + 2.6f, tTimeOfBeat + 4.1f };

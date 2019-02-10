@@ -35,6 +35,7 @@ partial class ScoreHandler{
             }
         }
         public override void getMessage(Message aMessage){
+            //logClickPosition(aMessage);
             if(aMessage.name=="editPlayButtonPushed"){//編曲再生ボタン
                 parent.changeState(new EditPlayState(parent));
                 return;
@@ -89,25 +90,28 @@ partial class ScoreHandler{
                     }
                     break;
             }
-            if(aMessage.name=="clickNote"){
-                Debug.Log("note : " + aMessage.getParameter<float>("time"));
-                return;
-            }
-            if(aMessage.name=="clickLyrics"){
-                Debug.Log("lyrics : " + aMessage.getParameter<float>("time"));
-                return;
-            }
-            if(aMessage.name=="RightClickNote"){
-                Debug.Log("note R : " + aMessage.getParameter<float>("time"));
-                return;
-            }
-            if(aMessage.name=="RightClickLyrics"){
-                Debug.Log("lyrics R : " + aMessage.getParameter<float>("time"));
-                return;
-            }
         }
         public enum CreateObjectType{
             triplet,changeBpm,note,lyrics
+        }
+        //クリックしたQNを表示(デバッグ用)
+        private void logClickPosition(Message aMessage){
+            if (aMessage.name == "clickNote"){
+                Debug.Log("note : " + aMessage.getParameter<float>("time"));
+                return;
+            }
+            if (aMessage.name == "clickLyrics"){
+                Debug.Log("lyrics : " + aMessage.getParameter<float>("time"));
+                return;
+            }
+            if (aMessage.name == "RightClickNote"){
+                Debug.Log("note R : " + aMessage.getParameter<float>("time"));
+                return;
+            }
+            if (aMessage.name == "RightClickLyrics"){
+                Debug.Log("lyrics R : " + aMessage.getParameter<float>("time"));
+                return;
+            }
         }
     }
 }
