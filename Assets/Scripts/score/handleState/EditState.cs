@@ -55,6 +55,30 @@ partial class ScoreHandler{
                 });
                 return;
             }
+            if(aMessage.name=="configButtonPushed"){//File設定ボタン
+                parent.changeState(new InitialState(parent));
+                MySceneManager.openScene("musicConfig", new Arg(new Dictionary<string, object>(){
+                    {"title",MusicScoreData.mTitle},
+                    {"file",MusicScoreData.mSavePath},
+                    {"music",MusicScoreData.mMusicFileName},
+                    {"thumbnail",MusicScoreData.mThumbnail},
+                    {"back",MusicScoreData.mBack},
+                    {"movie",MusicScoreData.mMovie},
+                    {"originalFile",MusicScoreData.mOriginalFileName}
+                }), null, (aArg) =>{
+                    if (aArg.get<bool>("ok")){
+                        MusicScoreFileData tData = aArg.get<MusicScoreFileData>("scoreData");
+                        MusicScoreData.mTitle = tData.title;
+                        MusicScoreData.mSavePath = tData.fileName;
+                        MusicScoreData.mMusicFileName = tData.music;
+                        MusicScoreData.mThumbnail = tData.thumbnail;
+                        MusicScoreData.mBack = tData.back;
+                        MusicScoreData.mMovie = tData.movie;
+                    }
+                    parent.changeState(new EditState(parent));
+                });
+                return;
+            }
             if(aMessage.name=="selectRustFromScoreButtonPushed"){//譜面からサビの開始位置を選択するボタン
                 parent.changeState(new SelectRustFromScoreState(parent));
                 return;
@@ -88,6 +112,7 @@ partial class ScoreHandler{
                 mSettingForm.reset();
                 return;
             }
+            //譜面クリック
             switch(mCreateObjectType){
                 case CreateObjectType.note:
                     if (aMessage.name == "clickNote" || aMessage.name == "clickLyrics"){

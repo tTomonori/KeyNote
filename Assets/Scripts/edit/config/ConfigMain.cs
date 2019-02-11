@@ -7,6 +7,14 @@ public class ConfigMain : MonoBehaviour {
 
     private void Start(){
         Arg tArg = MySceneManager.getArg("musicConfig");
+        //初期値設定
+        GameObject.Find("title").GetComponentInChildren<InputField>().text = tArg.get<string>("title");
+        GameObject.Find("file").GetComponentInChildren<InputField>().text = tArg.get<string>("file");
+        GameObject.Find("music").GetComponentInChildren<InputField>().text = tArg.get<string>("music").Substring(0,tArg.get<string>("music").Length-4);
+        GameObject.Find("thumbnail").GetComponentInChildren<InputField>().text = tArg.get<string>("thumbnail");
+        GameObject.Find("back").GetComponentInChildren<InputField>().text = tArg.get<string>("back");
+        GameObject.Find("movie").GetComponentInChildren<InputField>().text=tArg.get<string>("movie");
+
         Subject.addObserver(new Observer("configMain", (message) =>{
             if (message.name == "cancelButtonPushed"){
                 MySceneManager.closeScene("musicConfig", new Arg(new Dictionary<string, object>() { { "ok", false } }));
@@ -25,9 +33,11 @@ public class ConfigMain : MonoBehaviour {
                 AlartCreater.alart("譜面ファイル名が入力されていません");
                 return;
             }
-            if(DataFolder.existScoreData(tData.get<string>("file"))){
-                AlartCreater.alart("譜面ファイル名が既に使われています");
-                return;
+            if (tData.get<string>("file") != tArg.get<string>("originalFile")){
+                if (DataFolder.existScoreData(tData.get<string>("file"))){
+                    AlartCreater.alart("譜面ファイル名が既に使われています");
+                    return;
+                }
             }
             //music
             if(tData.get<string>("music")==".wav"){
@@ -54,12 +64,12 @@ public class ConfigMain : MonoBehaviour {
     //入力したデータを取得
     private Arg getData(){
         return new Arg(new Dictionary<string,object>(){
-            {"title",GameObject.Find("title").GetComponentInChildren<MyBehaviour>().GetComponent<Text>().text},
-            {"file",GameObject.Find("file").GetComponentInChildren<MyBehaviour>().GetComponent<Text>().text},
-            {"music",GameObject.Find("music").GetComponentInChildren<MyBehaviour>().GetComponent<Text>().text + ".wav"},
-            {"thumbnail",GameObject.Find("thumbnail").GetComponentInChildren<MyBehaviour>().GetComponent<Text>().text},
-            {"back",GameObject.Find("back").GetComponentInChildren<MyBehaviour>().GetComponent<Text>().text},
-            {"movie",GameObject.Find("movie").GetComponentInChildren<MyBehaviour>().GetComponent<Text>().text}
+            {"title",GameObject.Find("title").GetComponentInChildren<InputField>().text},
+            {"file",GameObject.Find("file").GetComponentInChildren<InputField>().text},
+            {"music",GameObject.Find("music").GetComponentInChildren<InputField>().text + ".wav"},
+            {"thumbnail",GameObject.Find("thumbnail").GetComponentInChildren<InputField>().text},
+            {"back",GameObject.Find("back").GetComponentInChildren<InputField>().text},
+            {"movie",GameObject.Find("movie").GetComponentInChildren<InputField>().text}
         });
     }
     private void OnDestroy(){

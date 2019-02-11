@@ -8,10 +8,36 @@ static public partial class MusicScoreData {
     //曲名
     static public string mTitle{
         get { return mMusicDate.title; }
+        set { mMusicDate.title = value; }
     }
     //音声ファイル名
     static public string mMusicFileName{
         get { return mMusicDate.music; }
+        set { mMusicDate.music = value; }
+    }
+    //ロード元のファイル名
+    static public string mOriginalFileName{
+        get { return mMusicDate.originalFileName; }
+    }
+    //保存先ファイル名
+    static public string mSavePath{
+        get { return mMusicDate.fileName; }
+        set { mMusicDate.fileName = value; }
+    }
+    //サムネイル
+    static public string mThumbnail{
+        get { return mMusicDate.thumbnail; }
+        set { mMusicDate.thumbnail = value; }
+    }
+    //背景
+    static public string mBack{
+        get { return mMusicDate.back; }
+        set { mMusicDate.back = value; }
+    }
+    //動画
+    static public string mMovie{
+        get { return mMusicDate.movie; }
+        set { mMusicDate.movie = value; }
     }
     //bpm
     static public List<Arg> mBpm{
