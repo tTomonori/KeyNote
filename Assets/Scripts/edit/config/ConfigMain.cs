@@ -8,13 +8,14 @@ public class ConfigMain : MonoBehaviour {
     private void Start(){
         Arg tArg = MySceneManager.getArg("musicConfig");
         //初期値設定
-        GameObject.Find("title").GetComponentInChildren<InputField>().text = tArg.get<string>("title");
-        GameObject.Find("file").GetComponentInChildren<InputField>().text = tArg.get<string>("file");
-        GameObject.Find("music").GetComponentInChildren<InputField>().text = tArg.get<string>("music").Substring(0,tArg.get<string>("music").Length-4);
-        GameObject.Find("thumbnail").GetComponentInChildren<InputField>().text = tArg.get<string>("thumbnail");
-        GameObject.Find("back").GetComponentInChildren<InputField>().text = tArg.get<string>("back");
-        GameObject.Find("movie").GetComponentInChildren<InputField>().text=tArg.get<string>("movie");
-
+        if (tArg.ContainsKey("initialize") && tArg.get<bool>("initialize")){
+            GameObject.Find("title").GetComponentInChildren<InputField>().text = tArg.get<string>("title");
+            GameObject.Find("file").GetComponentInChildren<InputField>().text = tArg.get<string>("file");
+            GameObject.Find("music").GetComponentInChildren<InputField>().text = tArg.get<string>("music").Substring(0, tArg.get<string>("music").Length - 4);
+            GameObject.Find("thumbnail").GetComponentInChildren<InputField>().text = tArg.get<string>("thumbnail");
+            GameObject.Find("back").GetComponentInChildren<InputField>().text = tArg.get<string>("back");
+            GameObject.Find("movie").GetComponentInChildren<InputField>().text = tArg.get<string>("movie");
+        }
         Subject.addObserver(new Observer("configMain", (message) =>{
             if (message.name == "cancelButtonPushed"){
                 MySceneManager.closeScene("musicConfig", new Arg(new Dictionary<string, object>() { { "ok", false } }));
@@ -33,7 +34,7 @@ public class ConfigMain : MonoBehaviour {
                 AlartCreater.alart("譜面ファイル名が入力されていません");
                 return;
             }
-            if (tData.get<string>("file") != tArg.get<string>("originalFile")){
+            if (tArg.ContainsKey("initialize") || tData.get<string>("file") != tArg.get<string>("originalFile")){
                 if (DataFolder.existScoreData(tData.get<string>("file"))){
                     AlartCreater.alart("譜面ファイル名が既に使われています");
                     return;

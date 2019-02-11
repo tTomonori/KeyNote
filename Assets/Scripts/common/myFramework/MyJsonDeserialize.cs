@@ -5,12 +5,12 @@ using System.IO;
 using System;
 
 public static partial class MyJson {
-    static public Dictionary<string,object> deserializeFile(string fileName){
-        string jsonString = File.ReadAllText(fileName);
+    static public Dictionary<string,object> deserializeFile(string filePath){
+        string jsonString = File.ReadAllText(filePath);
         return deserialize(jsonString);
     }
-    static public Dictionary<string,object> deserializeResourse(string fileName){
-        string jsonString = ((TextAsset)Resources.Load(fileName)).text;
+    static public Dictionary<string,object> deserializeResourse(string filePath){
+        string jsonString = ((TextAsset)Resources.Load(filePath)).text;
         return deserialize(jsonString);
     }
     static public Dictionary<string,object> deserialize(string jsonString){

@@ -26,6 +26,7 @@ public class MusicScoreFileData {
         bpm = new List<Arg> { new Arg(new Dictionary<string, object>() { { "bpm", 100 }, { "time", 0 } }) };
         note = new List<Arg>();
         lyrics = new List<Arg>();
+        allLyrics = "";
     }
     //タイトル
     public string title{
@@ -121,6 +122,8 @@ public class MusicScoreFileData {
     }
     //保存する
     public void save(){
-        MyJson.serializeToFile(mData.dictionary as Dictionary<string,object>, fileName);
+        //元のファイル削除
+        //書き込み
+        DataFolder.writeScoreData(mData, fileName);
     }
 }

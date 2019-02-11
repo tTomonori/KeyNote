@@ -28,6 +28,7 @@ public class EditLyricsMain : MonoBehaviour {
                     AlartCreater.alart(tError);
                     return;
                 }
+                AlartCreater.alart("歌詞を適用しました");
                 return;
             }
         }));

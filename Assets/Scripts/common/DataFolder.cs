@@ -56,4 +56,9 @@ static public class DataFolder {
         while (!tW.isDone) { }//読み込み完了まで待機
         return Sprite.Create(tW.texture, new Rect(new Vector2(0, 0), tW.texture.texelSize), new Vector2(0.5f, 0.5f));
     }
+
+    //譜面データ書き込み
+    static public void writeScoreData(Arg aData,string aFileName){
+        MyJson.serializeToFile(aData.dictionary,DataFolder.path + "/score/" + aFileName + ".json", true);
+    }
 }

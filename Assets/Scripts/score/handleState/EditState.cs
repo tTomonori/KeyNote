@@ -58,6 +58,7 @@ partial class ScoreHandler{
             if(aMessage.name=="configButtonPushed"){//File設定ボタン
                 parent.changeState(new InitialState(parent));
                 MySceneManager.openScene("musicConfig", new Arg(new Dictionary<string, object>(){
+                    {"initialize",true},
                     {"title",MusicScoreData.mTitle},
                     {"file",MusicScoreData.mSavePath},
                     {"music",MusicScoreData.mMusicFileName},
