@@ -15,7 +15,19 @@ public class EditLyricsMain : MonoBehaviour {
                 return;
             }
             if(message.name=="applyLyricsButtonPushed"){
-
+                MusicScoreData.mAllLyrics = tLyricsText.text;
+                List<Arg> tNotes;
+                List<Arg> tLyrics;
+                string tError = LyricsStringConverter.convert(tLyricsText.text, out tNotes, out tLyrics);
+                if(tError!=""){
+                    AlartCreater.alart(tError);
+                    return;
+                }
+                tError = MusicScoreData.applyLyrics(tNotes, tLyrics);
+                if (tError != ""){
+                    AlartCreater.alart(tError);
+                    return;
+                }
                 return;
             }
         }));

@@ -95,4 +95,31 @@ static public partial class MusicScoreData{
         }
         return null;
     }
+    //歌詞割り当て
+    static public string applyLyrics(List<Arg> aNotes,List<Arg> aLyrics){
+        List<Arg> tNoteDataList = mMusicDate.note;
+        List<Arg> tLyricsDataList = mMusicDate.lyrics;
+        int tNoteIndex = 0;
+        int tLyricsIndex = 0;
+        while (tLyricsIndex < tLyricsDataList.Count){
+            if (aLyrics.Count == tLyricsIndex) return "歌詞が譜面のデータより短い";
+            Arg tNoteData = tNoteDataList[tNoteIndex];
+            Arg tLyricsData = tLyricsDataList[tLyricsIndex];
+            if(tNoteData.get<float>("time")==tLyricsData.get<float>("time")){
+                tNoteData.set("consonant", aNotes[tLyricsIndex].get<string>("consonant"));
+                tNoteData.set("vowel", aNotes[tLyricsIndex].get<string>("vowel"));
+                tLyricsData.set("char", aLyrics[tLyricsIndex].get<string>("char"));
+                tNoteIndex++;
+                tLyricsIndex++;
+            }else{
+                tLyricsData.set("char", aLyrics[tLyricsIndex].get<string>("char"));
+                tLyricsIndex++;
+            }
+        }
+        if (aLyrics.Count < tLyricsDataList.Count)
+            return "歌詞が譜面のデータより短い";
+        if (tLyricsDataList.Count < aLyrics.Count)
+            return "歌詞が譜面のデータより長い";
+        return "";
+    }
 }
