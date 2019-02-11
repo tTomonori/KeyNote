@@ -7,6 +7,8 @@ public class NoteStudent : Note {
         //画像
         SpriteRenderer tSprite = GetComponentInChildren<SpriteRenderer>();
         tSprite.sprite = getNoteSprite(aNoteData.get<string>("vowel"));
+        //母音
+        GetComponentInChildren<TextMesh>().text = aNoteData.get<string>("vowel");
     }
     //音符にhit済みかどうか
     private bool mHitted = false;
