@@ -35,3 +35,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/edit/editLyrics.unity
     guid: 69e19777520f8452c9be422daab60c52
+  - enabled: 1
+    path: Assets/Scenes/edit/measureBpm.unity
+    guid: 754a257297ba046428b01d65f888b45f

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MusicPlayer : MonoBehaviour {
+public class MusicPlayer : MyBehaviour {
     private AudioSource mAudio;
     //音声の現在位置
     public float mCurrentSecond{

@@ -38,7 +38,12 @@ partial class ScoreHandler{
                 return;
             }
             if (aMessage.name == "measureBpmButtonPushed"){//bpm測定ボタン
-                parent.changeState(new MeasureBpmState(parent));
+                parent.changeState(new InitialState(parent));
+                MySceneManager.openScene("measureBpm", new Arg(new Dictionary<string,object>(){
+                    {"second",MusicScoreData.quarterBeatToMusicTime(parent.mScore.mCurrentQuarterBeat)}
+                }), null, (obj) =>{
+                    parent.changeState(new EditState(parent));
+                });
                 return;
             }
             if(aMessage.name=="editLyricsButtonPushed"){//歌詞編集ボタン
