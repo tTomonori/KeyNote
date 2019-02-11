@@ -38,3 +38,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/edit/measureBpm.unity
     guid: 754a257297ba046428b01d65f888b45f
+  - enabled: 1
+    path: Assets/Scenes/edit/saveConfirmForm.unity
+    guid: fd8fe10884c6041f28352800d3baadbd

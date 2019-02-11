@@ -103,13 +103,20 @@ partial class ScoreHandler{
                         AlartCreater.alart("サビの位置が音声の長さを超えています");
                         return;
                     }
+                    AlartCreater.alart("設定を適用しました");
                     mCommandList.run(new ApplySettingCommand(mSettingForm));
                     parent.mScore.resetBars();
+                }else{
+                    AlartCreater.alart("値が変更されていません");
                 }
                 return;
             }
             if(aMessage.name=="resetSettingButtonPushed"){//設定リセットボタン
                 mSettingForm.reset();
+                return;
+            }
+            if(aMessage.name=="saveButtonPushed"){//保存ボタン
+                parent.changeState(new SaveState(parent));
                 return;
             }
             //譜面クリック

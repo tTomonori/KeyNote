@@ -122,4 +122,8 @@ static public partial class MusicScoreData{
             return "歌詞が譜面のデータより長い";
         return "";
     }
+    //保存する
+    static public void save(){
+        mMusicDate.save();
+    }
 }

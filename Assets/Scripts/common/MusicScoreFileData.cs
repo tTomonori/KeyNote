@@ -119,4 +119,8 @@ public class MusicScoreFileData {
         get { return mData.get<string>("allLyrics"); }
         set { mData.set("allLyrics", value); }
     }
+    //保存する
+    public void save(){
+        MyJson.serializeToFile(mData.dictionary as Dictionary<string,object>, fileName);
+    }
 }

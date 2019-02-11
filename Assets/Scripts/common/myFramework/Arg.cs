@@ -7,6 +7,9 @@ using System;
 //new Arg(new Dictionary<string, object>() { { "key", "value" } })
 public class Arg{
     private IDictionary arg;
+    public IDictionary dictionary{
+        get { return arg; }
+    }
     public Arg(IDictionary a){
         arg = a;
     }
