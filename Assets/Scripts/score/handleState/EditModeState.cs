@@ -7,10 +7,27 @@ partial class ScoreHandler{
     public class EditModeState : ScoreHandleState{
         public EditModeState(ScoreHandler aParent) : base(aParent) { }
         static protected MyCommandList mCommandList;
+        static protected ToggleButtonGroup mPlaceTggle;
+        static protected MusicSettingForm mSettingForm;
         public override void enter(){
+            //コマンドリスト生成
             mCommandList = new MyCommandList();
-            GameObject.Find("musicSettingForm").GetComponent<MusicSettingForm>().reset();
+            //配置オブジェクト選択欄
+            mPlaceTggle = GameObject.Find("placeObjectToggle").GetComponent<ToggleButtonGroup>();
+            mPlaceTggle.memberPushed("note");//配置するオブジェクトの初期設定
+            //設定欄
+            mSettingForm = GameObject.Find("musicSettingForm").GetComponent<MusicSettingForm>();
+            mSettingForm.reset();//設定欄表示リセット
+            //編集モードに即移行
             parent.changeState(new EditState(parent));
+        }
+        //マウス回転量を取得し譜面をスクロール
+        protected void scrollScore(){
+            float tScroll = Input.mouseScrollDelta.y;
+            parent.mScore.positionY -= tScroll;
+            //負の位置まではスクロールできないようにする
+            if (parent.mScore.mCurrentQuarterBeat < 0)
+                parent.mScore.mCurrentQuarterBeat = 0;
         }
         //音符を生成する
         protected bool tryCreateNote(KeyTime aTime){

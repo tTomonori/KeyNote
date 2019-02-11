@@ -61,4 +61,8 @@ public class MusicSettingForm : MonoBehaviour {
         if (mRust != MusicScoreData.mRust) return true;
         return false;
     }
+    //入力値を変更
+    public void setRustForm(string aValue){
+        mRustForm.text = aValue;
+    }
 }

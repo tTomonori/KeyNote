@@ -6,22 +6,13 @@ using UnityEngine.UI;
 partial class ScoreHandler{
     public class EditState : EditModeState{
         public EditState(ScoreHandler aParent) : base(aParent) { }
-        private ToggleButtonGroup mPlaceTggle;
-        private MusicSettingForm mSettingForm;
         public CreateObjectType mCreateObjectType{
             get { return EnumParser.parse<CreateObjectType>(mPlaceTggle.pushedButtonName); }
         }
         public override void enter(){
-            mPlaceTggle = GameObject.Find("placeObjectToggle").GetComponent<ToggleButtonGroup>();
-            mSettingForm = GameObject.Find("musicSettingForm").GetComponent<MusicSettingForm>();
         }
         public override void update(){
-            //譜面スクロール
-            float tScroll = Input.mouseScrollDelta.y;
-            parent.mScore.positionY -= tScroll;
-            //負の位置まではスクロールできないようにする
-            if (parent.mScore.mCurrentQuarterBeat < 0)
-                parent.mScore.mCurrentQuarterBeat = 0;
+            scrollScore();
             //command操作
             if(Input.GetKeyDown(KeyCode.Z)){
                 //cmd or ctr を押しているか
@@ -57,6 +48,10 @@ partial class ScoreHandler{
                     parent.mScore.resetBars();
                     parent.changeState(new EditState(parent));
                 });
+                return;
+            }
+            if(aMessage.name=="selectRustFromScoreButtonPushed"){//譜面からサビの開始位置を選択するボタン
+                parent.changeState(new SelectRustFromScoreState(parent));
                 return;
             }
             if(aMessage.name=="applySettingButtonPushed"){//設定適用ボタン
