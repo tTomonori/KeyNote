@@ -36,6 +36,10 @@ static public partial class MusicScoreData {
         get { return mMusicDate.rust; }
         set { mMusicDate.rust = value; }
     }
+    //全ての歌詞(編集フォームに入力した文章)
+    static public string mAllLyrics{
+        get { return mMusicDate.allLyrics; }
+    }
     //音声を再生開始するquarterBeat
     static public KeyTime mStartPlayMusicTime{
         get { return new KeyTime(KeyTime.secondsToQuarterBeat(mMargin, mInitialBpm)); }

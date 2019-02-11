@@ -35,13 +35,15 @@ public class MusicSettingForm : MonoBehaviour {
             return tValue;  
         }
     }
-    private void Start(){
+    private void getComponent(){
         mRhythmListButton = GameObject.Find("rhythmLabel").GetComponentInChildren<ListButton>();
         mMarginForm = GameObject.Find("marginLabel").GetComponentInChildren<InputField>();
         mRustForm = GameObject.Find("rustLabel").GetComponentInChildren<InputField>();
     }
     //表示を現在適用されている値に戻す
     public void reset(){
+        if(mRhythmListButton==null)
+            getComponent();
         //拍子
         mRhythmListButton.select(MusicScoreData.mRhythm.ToString());
         //margin

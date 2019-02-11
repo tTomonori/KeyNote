@@ -32,3 +32,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/edit/inputChangeBpmValueForm.unity
     guid: b67ac999fbac64ea28369bd43659bd74
+  - enabled: 1
+    path: Assets/Scenes/edit/editLyrics.unity
+    guid: 69e19777520f8452c9be422daab60c52

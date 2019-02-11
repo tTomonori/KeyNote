@@ -114,4 +114,9 @@ public class MusicScoreFileData {
         get { return mData.get<List<Arg>>("lyrics"); }
         set { mData.set("lyrics", value); }
     }
+    //全ての歌詞
+    public string allLyrics{
+        get { return mData.get<string>("allLyrics"); }
+        set { mData.set("allLyrics", value); }
+    }
 }

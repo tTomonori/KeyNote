@@ -50,6 +50,15 @@ partial class ScoreHandler{
                 parent.changeState(new MeasureBpmState(parent));
                 return;
             }
+            if(aMessage.name=="editLyricsButtonPushed"){//歌詞編集ボタン
+                parent.changeState(new InitialState(parent));
+                MySceneManager.openScene("editLyrics",null,null,(aArg) => {
+                    mCommandList.reset();
+                    parent.mScore.resetBars();
+                    parent.changeState(new EditState(parent));
+                });
+                return;
+            }
             if(aMessage.name=="applySettingButtonPushed"){//設定適用ボタン
                 if(mSettingForm.isChanged()){//変更がある時だけ適用
                     //marginが不正な値になっていないか
