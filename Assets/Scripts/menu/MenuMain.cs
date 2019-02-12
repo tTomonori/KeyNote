@@ -15,12 +15,8 @@ public class MenuMain : MonoBehaviour {
                 });
                 return;
             }
-            if(message.name=="editScoreButtonPushed"){//譜面編集
-                AlartCreater.alart("未実装");
-                return;
-            }
-            if(message.name=="sortScoreButtonPushed"){//譜面並び替え
-                AlartCreater.alart("未実装");
+            if(message.name=="browseScoreButtonPushed"){//譜面一覧
+                MySceneManager.changeScene("browseScoreList");
                 return;
             }
             if(message.name=="backMenuButtonPushed"){//戻る
