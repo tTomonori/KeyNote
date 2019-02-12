@@ -20,7 +20,7 @@ static public partial class MusicScoreData {
         get { return mMusicDate.originalFileName; }
     }
     //保存先ファイル名
-    static public string mSavePath{
+    static public string mSaveFile{
         get { return mMusicDate.fileName; }
         set { mMusicDate.fileName = value; }
     }

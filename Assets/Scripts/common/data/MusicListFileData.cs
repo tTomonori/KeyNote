@@ -70,12 +70,14 @@ public class MusicListFileData {
             });
         }
     }
-    //ハイスコア更新
-    public void updatePoint(string aFile,ScoreDifficult aDifficult,float aPoint){
+    //ハイスコア更新(更新できたらtrue)
+    public bool updatePoint(string aFile,ScoreDifficult aDifficult,float aPoint){
         Arg tPoint = getData(aFile).get<Arg>("point");
         if(aPoint>tPoint.get<float>(aDifficult.ToString())){
             tPoint.set(aDifficult.ToString(), aPoint);
+            return true;
         }
+        return false;
     }
     //jsonファイルに保存する
     public void save(){

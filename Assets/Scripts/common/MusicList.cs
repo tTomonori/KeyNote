@@ -24,9 +24,20 @@ static public class MusicList {
     static MusicList(){
         mData = DataFolder.loadListData();
     }
+    //指定したindexの曲データ取得
     static public MusicListFileData.MusicListElement get(int aNum){
         int tNum = aNum % mData.length;
         if (tNum < 0) tNum += mData.length;
         return mData.getData(tNum);
+    }
+    //ハイスコア更新
+    static public bool updatePoint(string aFile,ScoreDifficult aDifficult,float aPoint){
+        bool tUpdate = mData.updatePoint(aFile, aDifficult, aPoint);
+        if(tUpdate){
+            mData.save();
+            return true;
+        }else{
+            return false;
+        }
     }
 }
