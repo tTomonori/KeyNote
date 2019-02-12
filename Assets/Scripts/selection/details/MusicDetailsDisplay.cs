@@ -12,14 +12,14 @@ public class MusicDetailsDisplay : MyBehaviour {
     //選択中の曲の譜面データファイル
     public string mSelectedMusicFileName;
     //選択中の難易度
-    public string mDifficult{
-        get { return mButtons.pushedButtonName; }
+    public ScoreDifficult mDifficult{
+        get { return EnumParser.parse<ScoreDifficult>(mButtons.pushedButtonName); }
     }
 	void Awake () {
         Subject.addObserver(new Observer("details",(message) => {
             if (message.isMemberOf("difficultButton")){
                 if (mMusicData == null) return;
-                changeDifficult(message.name);
+                changeDifficult(EnumParser.parse<ScoreDifficult>(message.name));
                 return;
             }
             if(message.name=="initialDifficult"){
@@ -59,7 +59,7 @@ public class MusicDetailsDisplay : MyBehaviour {
             tRenderer.sprite = aSprite;
         });
     }
-    public void changeDifficult(string aDifficult){
+    public void changeDifficult(ScoreDifficult aDifficult){
         //難易度
         gameObject.GetComponentInChildren<DifficultDisplay>().set(mMusicData.getDifficult(aDifficult));
         //最高得点

@@ -14,7 +14,7 @@ public class EditMain : MonoBehaviour {
         MusicScoreFileData tData = tArg.get<MusicScoreFileData>("scoreData");
         //譜面設定
         mHandler = MyBehaviour.create<ScoreHandler>();
-        mHandler.set(tData, "edit");
+        mHandler.set(tData, ScoreDifficult.edit);
         mHandler.show(new KeyTime(0));
         mHandler.changeState(new ScoreHandler.EditModeState(mHandler));
 	}

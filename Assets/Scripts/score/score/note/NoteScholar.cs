@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NoteScholar : Note {
+    private string mConsonant;
     protected override void display(Arg aNoteData){
+        mConsonant = aNoteData.get<string>("consonant");
+        if (mConsonant == "") mConsonant = aNoteData.get<string>("vowel");//子音がないなら母音を使う
+
         //子音
         TextMesh tText = GetComponentInChildren<TextMesh>();
-        tText.text = aNoteData.get<string>("consonant");
+        tText.text = mConsonant;
         //画像
         SpriteRenderer tSprite = GetComponentInChildren<SpriteRenderer>();
         tSprite.sprite = getNoteSprite(aNoteData.get<string>("vowel"));
@@ -15,7 +19,7 @@ public class NoteScholar : Note {
     private bool mHitted = false;
     public override HitResult hit(KeyCode aKey,HitNoteType aType){
         if (mHitted) return HitResult.miss;//hit済み
-        if (KeyMonitor.convertToCode(mData.get<string>("consonant")) != aKey)
+        if (KeyMonitor.convertToCode(mConsonant) != aKey)
             return HitResult.miss;//タイプミス
         mHitted = true;
         hitted(this.gameObject, aType);

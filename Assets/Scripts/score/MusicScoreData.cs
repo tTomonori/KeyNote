@@ -72,8 +72,7 @@ static public partial class MusicScoreData {
         get { return new KeyTime(KeyTime.secondsToQuarterBeat(mMargin, mInitialBpm)); }
     }
     //選択した難易度
-    static public Difficult mSelectedDifficult;
-    public enum Difficult{child, student, scholar, guru, edit}
+    static public ScoreDifficult mSelectedDifficult;
     //曲データロード
     static public void load(string aFileName){
         mMusicDate = DataFolder.loadScoreData(aFileName);

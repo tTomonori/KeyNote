@@ -9,7 +9,7 @@ public class PlayMain : MonoBehaviour {
         Arg tArg = MySceneManager.getArg("play");
         //Arg tArg = new Arg(new Dictionary<string, object>() { { "file", "kawaikunaritai" }, { "difficult", "guru" } });
         string tFileName = tArg.get<string>("file");
-        string tDifficult = tArg.get<string>("difficult");
+        ScoreDifficult tDifficult = tArg.get<ScoreDifficult>("difficult");
 
         mHandler = MyBehaviour.create<ScoreHandler>();
         mHandler.load(tFileName, tDifficult);

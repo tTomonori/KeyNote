@@ -16,24 +16,24 @@ public partial class ScoreHandler : MyBehaviour{
     private void OnDestroy(){
         Subject.removeObserver("scoreHandler");
     }
-    public void load(string aFileName,string aDifficult){
+    public void load(string aFileName,ScoreDifficult aDifficult){
         //譜面
         mScore = MyBehaviour.create<MusicScore>();
         //曲情報ロード
         MusicScoreData.load(aFileName);
-        MusicScoreData.mSelectedDifficult = EnumParser.parse<MusicScoreData.Difficult>(aDifficult);
+        MusicScoreData.mSelectedDifficult = aDifficult;
         //ミュージックプレイヤー
         MusicPlayer tPlayer = MyBehaviour.create<MusicPlayer>();
         tPlayer.setAudio(DataFolder.loadMusic(MusicScoreData.mMusicFileName));
         //譜面と曲を同期させるシステム
         mPlayer = new KeyNotePlayer(mScore,tPlayer);
     }
-    public void set(MusicScoreFileData aData,string aDifficult){
+    public void set(MusicScoreFileData aData,ScoreDifficult aDifficult){
         //譜面
         mScore = MyBehaviour.create<MusicScore>();
         //曲情報ロード
         MusicScoreData.set(aData);
-        MusicScoreData.mSelectedDifficult = EnumParser.parse<MusicScoreData.Difficult>(aDifficult);
+        MusicScoreData.mSelectedDifficult = aDifficult;
         //ミュージックプレイヤー
         MusicPlayer tPlayer = MyBehaviour.create<MusicPlayer>();
         tPlayer.setAudio(DataFolder.loadMusic(MusicScoreData.mMusicFileName));

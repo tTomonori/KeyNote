@@ -15,15 +15,15 @@ public abstract class Note : MyBehaviour {
     }
     static public Note create(){
         switch(MusicScoreData.mSelectedDifficult){
-            case MusicScoreData.Difficult.child:
+            case ScoreDifficult.child:
                 return MyBehaviour.createObjectFromPrefab<NoteChild>("score/note/noteChild");
-            case MusicScoreData.Difficult.student:
+            case ScoreDifficult.student:
                 return MyBehaviour.createObjectFromPrefab<NoteStudent>("score/note/noteStudent");
-            case MusicScoreData.Difficult.scholar:
+            case ScoreDifficult.scholar:
                 return MyBehaviour.createObjectFromPrefab<NoteScholar>("score/note/noteScholar");
-            case MusicScoreData.Difficult.guru:
+            case ScoreDifficult.guru:
                 return MyBehaviour.createObjectFromPrefab<NoteGuru>("score/note/noteGuru");
-            case MusicScoreData.Difficult.edit:
+            case ScoreDifficult.edit:
                 return MyBehaviour.createObjectFromPrefab<NoteEdit>("score/note/noteEdit");
             default:
                 throw new Exception("Note : 未定義の難易度「" + MusicScoreData.mSelectedDifficult + "」");
