@@ -57,6 +57,18 @@ static public class DataFolder {
         return Sprite.Create(tW.texture, new Rect(new Vector2(0, 0), tW.texture.texelSize), new Vector2(0.5f, 0.5f));
     }
 
+    //譜面データフォルダ内の譜面ファイル名の一覧を取得
+    static public List<string> getScoreFileNameList(){
+        List<string> tList = new List<string>();
+        foreach(string tFileName in Directory.GetFiles(DataFolder.path + "/score")){
+            if (!tFileName.EndsWith(".json")) continue;
+            string[] tSplit = tFileName.Split('/');
+            string tName = tSplit[tSplit.Length - 1];
+            tList.Add(tName.Substring(0, tName.Length - 5));
+        }
+        return tList;
+    }
+
     //譜面データ書き込み
     static public void writeScoreData(Arg aData,string aFileName){
         MyJson.serializeToFile(aData.dictionary,DataFolder.path + "/score/" + aFileName + ".json", true);

@@ -45,15 +45,21 @@ public static partial class MyJson{
             string tOut = "";
             //一つ以上要素を書き込めたか
             bool tWritten = false;
+            //不正な要素があったか
+            bool tContainsError = false;
             foreach (DictionaryEntry tEntry in aDic){
                 //key書き出し
                 string tKeyString;
-                if (!toString(tEntry.Key, out tKeyString, aLineFeedCode))
+                if (!toString(tEntry.Key, out tKeyString, aLineFeedCode)){
+                    tContainsError = true;
                     continue;
+                }
                 //value書き出し
                 string tValueString;
-                if (!toString(tEntry.Value, out tValueString, aLineFeedCode))
+                if (!toString(tEntry.Value, out tValueString, aLineFeedCode)){
+                    tContainsError = true;
                     continue;
+                }
                 //keyもvalueも書き込める
                 tOut += tKeyString;
                 tOut += ":";
@@ -62,13 +68,15 @@ public static partial class MyJson{
                 tOut += newLineChar(aLineFeedCode);
                 tWritten = true;
             }
-            if(!tWritten){//一つも要素がない
+            if(!tWritten && tContainsError){//一つも要素がない かつ 不正な要素があった
                 oOut = "";
                 return false;
             }
             //一つ以上要素を書き込める
-            tOut = backLine(tOut, aLineFeedCode);//改行削除
-            tOut = back(tOut);//コンマ削除
+            if (tWritten){
+                tOut = backLine(tOut, aLineFeedCode);//改行削除
+                tOut = back(tOut);//コンマ削除
+            }
 
             oOut = "{" + newLineChar(aLineFeedCode) + tOut + newLineChar(aLineFeedCode) + "}";
             return true;
@@ -78,22 +86,28 @@ public static partial class MyJson{
             string tOut = "";
             //一つ以上要素を書き込めたか
             bool tWritten = false;
+            //不正な要素があったか
+            bool tContainsError = false;
             foreach(object tObject in aList){
                 string tElement;
-                if (!toString(tObject, out tElement, false))
+                if (!toString(tObject, out tElement, false)){
+                    tContainsError = true;
                     continue;
+                }
                 tOut += tElement;
                 tOut += ",";
                 tOut += newLineChar();
                 tWritten = true;
             }
-            if (!tWritten){//一つも要素がない
+            if (!tWritten && tContainsError){//一つも要素がない かつ 不正な要素があった
                 oOut = "";
                 return false;
             }
             //一つ以上要素を書き込める
-            tOut = backLine(tOut);//改行削除
-            tOut = back(tOut);//コンマ削除
+            if (tWritten){
+                tOut = backLine(tOut);//改行削除
+                tOut = back(tOut);//コンマ削除
+            }
 
             oOut = "[" + newLineChar() + tOut + newLineChar() + "]";
             return true;

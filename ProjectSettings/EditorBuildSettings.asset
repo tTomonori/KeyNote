@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/play/play.unity
     guid: 5c792e894c88e44759fca4de29fe473d
   - enabled: 1
-    path: Assets/Scenes/menu.unity
+    path: Assets/Scenes/menu/menu.unity
     guid: 683e6714881104100815eb69b329b92e
   - enabled: 1
     path: Assets/Scenes/edit/edit.unity
@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/play/pause.unity
     guid: 73f6dde0879de4dd59247ff949e3868f
   - enabled: 1
-    path: Assets/Scenes/result.unity
+    path: Assets/Scenes/play/result.unity
     guid: ad0a639818e474399a172012a70d9458
   - enabled: 1
     path: Assets/Scenes/edit/musicConfig.unity
@@ -41,3 +41,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/edit/saveConfirmForm.unity
     guid: fd8fe10884c6041f28352800d3baadbd
+  - enabled: 1
+    path: Assets/Scenes/menu/browseScoreList.unity
+    guid: 5294ece3efc9b43d1abc6f6d369cfda6

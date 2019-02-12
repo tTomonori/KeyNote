@@ -63,4 +63,24 @@ static public class MusicList {
         mData.update(aFile, aNewTitle, aNewFile);
         mData.save();
     }
+
+
+    //未完成の楽曲データファイル名一覧を取得
+    static public List<string> getUnfinishedScoreFileNameList(){
+        List<string> tList = new List<string>();
+        foreach(string tFileName in DataFolder.getScoreFileNameList()){
+            //楽曲リストに載っている(完成している)譜面は除く
+            if (isContainsByList(tFileName)) continue;
+            tList.Add(tFileName);
+        }
+        return tList;
+    }
+    //楽曲リストに含まれる
+    static public bool isContainsByList(string aFileName){
+        foreach (Arg tScoreData in mData.list){
+            if (tScoreData.get<string>("file") == aFileName)
+                return true;
+        }
+        return false;
+    }
 }

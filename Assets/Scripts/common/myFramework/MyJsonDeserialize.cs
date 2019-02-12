@@ -34,6 +34,10 @@ public static partial class MyJson {
             checkEnd();
             reader.Read(); 
         }
+        //最後まで読む
+        private string readToEnd(){
+            return reader.ReadToEnd();
+        }
         ///ファイルが読み終わっているか判定する(読み終わっていたらエラーを吐く)
         private void checkEnd() { if (reader.Peek() == -1) throw new Exception("不正なjson文字列 : fraudulent file end"); }
         ///次の、意味を持つcharの位置まで読み進める
@@ -168,8 +172,10 @@ public static partial class MyJson {
         private object readList(){
             search('[');
             readOneChar();
-            if (currenSense() == ']')
+            if (currenSense() == ']'){
+                readOneChar();
                 return new List<object>();
+            }
             
             object o = readValue();
             Type firstElementType = o.GetType();
@@ -238,7 +244,7 @@ public static partial class MyJson {
                     return dic;
                 }
                 else{
-                    throw new Exception("不正なjson文字列 : not found value separator");
+                    throw new Exception("不正なjson文字列 : not found value separator「"+currenSense()+"」");
                 }
             }
         }

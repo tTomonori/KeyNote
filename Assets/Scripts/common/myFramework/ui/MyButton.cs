@@ -10,7 +10,7 @@ public class MyButton : MyBehaviour {
     /// falseなら押されても処理を実行しない
     /// </summary>
     [SerializeField] public bool mActivated = true;
-    public Dictionary<string, object> mParameters=new Dictionary<string, object>();
+    public Arg mParameters=new Arg();
     //押されているか
     private bool isPushed = false;
     //押された時に大きさを変化させるbehaviour
@@ -52,7 +52,7 @@ public class MyButton : MyBehaviour {
     public void push(){
         pushed();
         string tMessage = (mPushedMessage == "") ? name + "Pushed" : mPushedMessage;
-        Subject.sendMessage(new Message(tMessage, new Arg(mParameters), mGroup));
+        Subject.sendMessage(new Message(tMessage, mParameters, mGroup));
     }
     /// <summary>
     /// ボタンが押された時の処理
