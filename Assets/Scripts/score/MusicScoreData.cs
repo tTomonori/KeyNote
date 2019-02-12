@@ -20,9 +20,13 @@ static public partial class MusicScoreData {
         get { return mMusicDate.originalFileName; }
     }
     //保存先ファイル名
-    static public string mSaveFile{
+    static public string mSaveFileName{
         get { return mMusicDate.fileName; }
         set { mMusicDate.fileName = value; }
+    }
+    //既にデータファイルが生成されている
+    static public bool isSaved{
+        get { return mMusicDate.isSaved; }
     }
     //サムネイル
     static public string mThumbnail{

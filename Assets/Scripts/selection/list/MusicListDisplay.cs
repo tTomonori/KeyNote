@@ -10,7 +10,9 @@ public class MusicListDisplay : MyBehaviour {
     }
     public int mSelectedIndex;
 	void Start () {
+        mSelectedIndex = MusicList.mLastPlayIndex;
         mLabels = new List<MusicLabel>();
+        positionY = indexToPositionY(MusicList.mLastPlayIndex);
         display(MusicList.mLastPlayIndex);
 
         //曲名のラベルクリック時の動作
@@ -48,6 +50,11 @@ public class MusicListDisplay : MyBehaviour {
         }
 	}
 
+    //曲リストのインデックスをdisplayの座標に変換
+    private float indexToPositionY(int aIndex){
+        return (float)aIndex;
+    }
+
     //リストを生成して表示
     void display(int aNum){
         for (int i = -10; i < 11;i++){
@@ -56,7 +63,7 @@ public class MusicListDisplay : MyBehaviour {
         }
     }
     //曲名のラベル生成
-    MusicLabel createLabel(int aNum){
+    private MusicLabel createLabel(int aNum){
         MusicLabel tLabel = MyBehaviour.createObjectFromPrefab<MusicLabel>("selection/musicLabel");
         tLabel.name = "musicLabel:" + aNum;
         tLabel.mNum = aNum;
@@ -67,10 +74,11 @@ public class MusicListDisplay : MyBehaviour {
     }
     //曲が選択された
     private void select(int aIndex){
-        if (aIndex == positionY) return;
+        float tGoal = indexToPositionY(aIndex);
+        if (tGoal == positionY) return;
         mDetails.initDetails();
-        this.moveBy(new Vector3(0, aIndex - positionY, 0), 0.5f, () => {
-            mSelectedIndex = aIndex;
+        this.moveBy(new Vector3(0, tGoal - positionY, 0), 0.5f, () => {
+            mSelectedIndex = MusicList.toCorrectIndex(aIndex);
             mDetails.showMusic(MusicList.get(aIndex));
         });
     }

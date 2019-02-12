@@ -60,7 +60,7 @@ partial class ScoreHandler{
                 MySceneManager.openScene("musicConfig", new Arg(new Dictionary<string, object>(){
                     {"initialize",true},
                     {"title",MusicScoreData.mTitle},
-                    {"file",MusicScoreData.mSaveFile},
+                    {"file",MusicScoreData.mSaveFileName},
                     {"music",MusicScoreData.mMusicFileName},
                     {"thumbnail",MusicScoreData.mThumbnail},
                     {"back",MusicScoreData.mBack},
@@ -70,7 +70,7 @@ partial class ScoreHandler{
                     if (aArg.get<bool>("ok")){
                         MusicScoreFileData tData = aArg.get<MusicScoreFileData>("scoreData");
                         MusicScoreData.mTitle = tData.title;
-                        MusicScoreData.mSaveFile = tData.fileName;
+                        MusicScoreData.mSaveFileName = tData.fileName;
                         MusicScoreData.mMusicFileName = tData.music;
                         MusicScoreData.mThumbnail = tData.thumbnail;
                         MusicScoreData.mBack = tData.back;

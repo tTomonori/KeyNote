@@ -20,6 +20,7 @@ public class MusicListFileData {
     //曲リスト
     public List<Arg> list{
         get { return mData.get<List<Arg>>("list"); }
+        set { mData.set("list", value); }
     }
     //曲の数
     public int length{
@@ -41,11 +42,13 @@ public class MusicListFileData {
     }
     //リストに楽曲追加
     public void addScore(string aTitle,string aFile){
-        list.Add(new Arg(new Dictionary<string, object>(){
+        List<Arg> tList = list;
+        tList.Add(new Arg(new Dictionary<string, object>(){
             {"title",aTitle},
             {"file",aFile},
             {"point",new Arg(new Dictionary<string,object>(){{"child", 0},{ "student", 0 },{ "scholar", 0 },{ "guru", 0 }})}
         }));
+        list = tList;
     }
     //リストから楽曲削除
     public void remove(string aFile){
@@ -54,6 +57,7 @@ public class MusicListFileData {
             Arg tData = tList[i];
             if (tData.get<string>("file") != aFile) continue;
             tList.RemoveAt(i);
+            list = tList;
             return;
         }
     }
@@ -68,6 +72,8 @@ public class MusicListFileData {
                 {"file",aNewFile},
                 {"point",new Arg(new Dictionary<string,object>(){{"child", 0},{ "student", 0 },{ "scholar", 0 },{ "guru", 0 }})}
             });
+            list = tList;
+            return;
         }
     }
     //ハイスコア更新(更新できたらtrue)

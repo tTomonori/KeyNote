@@ -8,7 +8,7 @@ partial class ScoreHandler {
         public override void enter(){
             MySceneManager.openScene("saveConfirmForm", null, null, (aArg) =>{
                 if (aArg.get<bool>("save"))
-                    save();
+                    save(isSelectedComplete());
                 if(aArg.get<bool>("continue")){
                     parent.changeState(new EditState(parent));
                     return;
@@ -23,7 +23,26 @@ partial class ScoreHandler {
         public override void getMessage(Message aMessage){
             
         }
-        private void save(){
+        //完成が選択されている
+        private bool isSelectedComplete(){
+            return GameObject.Find("completeListButton").GetComponent<ListButton>().mSelected == "完成";
+        }
+        private void save(bool aCompletion){
+            //楽曲リスト更新
+            if(aCompletion){
+                //完成
+                if (MusicScoreData.isSaved){
+                    MusicList.update(MusicScoreData.mOriginalFileName, MusicScoreData.mTitle, MusicScoreData.mSaveFileName);
+                }
+                else{
+                    MusicList.addScore(MusicScoreData.mTitle, MusicScoreData.mSaveFileName);
+                    MusicList.updateLastPlay(MusicList.mLength - 1, MusicList.mLastPlayDifficult);//追加した曲を最後に遊んだ曲とする
+                }
+            }else{
+                //未完成
+                MusicList.remove(MusicScoreData.mOriginalFileName);
+            }
+            //楽曲情報更新
             MusicScoreData.save();
         }
     }

@@ -27,6 +27,10 @@ public class MusicScoreFileData {
         lyrics = new List<Arg>();
         allLyrics = "";
     }
+    //既にデータファイルが生成されている
+    public bool isSaved{
+        get { return originalFileName != ""; }
+    }
     //タイトル
     public string title{
         get { return mData.get<string>("title"); }
@@ -113,5 +117,6 @@ public class MusicScoreFileData {
         //元のファイル削除
         //書き込み
         DataFolder.writeScoreData(mData, fileName);
+        originalFileName = fileName;
     }
 }

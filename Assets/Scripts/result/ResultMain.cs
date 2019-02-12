@@ -18,7 +18,7 @@ public class ResultMain : MonoBehaviour {
         GameObject.Find("endButton").GetComponent<LightButton>().hold();
 
         //ハイスコア更新
-        MusicList.updatePoint(MusicScoreData.mSaveFile, MusicScoreData.mSelectedDifficult, tTotalPoint);
+        MusicList.updatePoint(MusicScoreData.mSaveFileName, MusicScoreData.mSelectedDifficult, tTotalPoint);
 	}
 	void Update () {
 		
