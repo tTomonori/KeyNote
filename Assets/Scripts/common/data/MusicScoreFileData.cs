@@ -22,7 +22,6 @@ public class MusicScoreFileData {
         rhythm = 4;
         rust = 0;
         difficult = new Arg(new Dictionary<string, object>() { { "child", 0 }, { "student", 0 }, { "scholar", 0 }, { "guru", 0 } });
-        point = new Arg(new Dictionary<string, object>() { { "child", 0 }, { "student", 0 }, { "scholar", 0 }, { "guru", 0 } });
         bpm = new List<Arg> { new Arg(new Dictionary<string, object>() { { "bpm", 100 }, { "time", 0 } }) };
         note = new List<Arg>();
         lyrics = new List<Arg>();
@@ -88,17 +87,6 @@ public class MusicScoreFileData {
     }
     public void setDifficult(ScoreDifficult aDifficult,int value){
         mData.get<Arg>("difficult").set(aDifficult.ToString(), value);
-    }
-    //得点
-    public Arg point{
-        get { return mData.get<Arg>("point"); }
-        set { mData.set("point", value); }
-    }
-    public int getPoint(ScoreDifficult aDifficult){
-        return mData.get<Arg>("point").get<int>(aDifficult.ToString());
-    }
-    public void setPoint(ScoreDifficult aDifficult, int value){
-        mData.get<Arg>("point").set(aDifficult.ToString(), value);
     }
     //bpm
     public List<Arg> bpm{

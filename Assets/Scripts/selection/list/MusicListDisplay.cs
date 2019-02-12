@@ -4,31 +4,25 @@ using UnityEngine;
 using System.Linq;
 
 public class MusicListDisplay : MyBehaviour {
-    private MusicList mList;
     private List<MusicLabel> mLabels;
     private MusicDetailsDisplay mDetails{
         get { return GameObject.Find("detailsDisplay").GetComponent<MusicDetailsDisplay>(); }
     }
+    public int mSelectedIndex;
 	void Start () {
-        mList = new MusicList();
         mLabels = new List<MusicLabel>();
-        display(mList.mLastPlayIndex);
+        display(MusicList.mLastPlayIndex);
 
         //曲名のラベルクリック時の動作
         Subject.addObserver(new Observer("listDisplay",(message) => {
             if(message.name=="clickMusicLabel"){
-                if (message.getParameter<float>("num") == positionY) return;
-                mDetails.initDetails();
-                this.moveBy(new Vector3(0,message.getParameter<float>("num")-positionY,0),0.5f,() => {
-                    //曲が選択された
-                    mDetails.showMusic(mList.get(message.getParameter<int>("num")).mFileName);
-                });
+                select(message.getParameter<int>("num"));
             }
         }));
 
         //初期の設定の難易度を選択
-        Subject.sendMessage(new Message("initialDifficult", new Arg(new Dictionary<string,object>(){ { "difficult", mList.mLastPlayDifficult } })));
-        mDetails.showMusic(mList.get(mList.mLastPlayIndex).mFileName);
+        Subject.sendMessage(new Message("initialDifficult", new Arg(new Dictionary<string,object>(){ { "difficult", MusicList.mLastPlayDifficult } })));
+        mDetails.showMusic(MusicList.get(MusicList.mLastPlayIndex));
 	}
 	
 	void Update () {
@@ -66,10 +60,19 @@ public class MusicListDisplay : MyBehaviour {
         MusicLabel tLabel = MyBehaviour.createObjectFromPrefab<MusicLabel>("selection/musicLabel");
         tLabel.name = "musicLabel:" + aNum;
         tLabel.mNum = aNum;
-        tLabel.setLabel(mList.get(aNum).mTitle);
+        tLabel.setLabel(MusicList.get(aNum).title);
         tLabel.transform.parent = gameObject.transform;
         tLabel.positionY = -aNum;
         return tLabel;
+    }
+    //曲が選択された
+    private void select(int aIndex){
+        if (aIndex == positionY) return;
+        mDetails.initDetails();
+        this.moveBy(new Vector3(0, aIndex - positionY, 0), 0.5f, () => {
+            mSelectedIndex = aIndex;
+            mDetails.showMusic(MusicList.get(aIndex));
+        });
     }
     private void OnDestroy(){
         Subject.removeObserver("listDisplay");

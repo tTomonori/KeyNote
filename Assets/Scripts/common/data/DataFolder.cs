@@ -14,8 +14,8 @@ static public class DataFolder {
         }
     }
     //楽曲リスト取得
-    static public Arg loadListData(){
-        return new Arg(MyJson.deserializeFile(DataFolder.path + "/list.json"));
+    static public MusicListFileData loadListData(){
+        return new MusicListFileData(new Arg(MyJson.deserializeFile(DataFolder.path + "/list.json")));
     }
     //譜面データ取得
     static public MusicScoreFileData loadScoreData(string aFileName){
@@ -60,5 +60,9 @@ static public class DataFolder {
     //譜面データ書き込み
     static public void writeScoreData(Arg aData,string aFileName){
         MyJson.serializeToFile(aData.dictionary,DataFolder.path + "/score/" + aFileName + ".json", true);
+    }
+    //曲リストデータ書き込み
+    static public void writeListData(Arg aData){
+        MyJson.serializeToFile(aData.dictionary, DataFolder.path + "/list.json", true);
     }
 }

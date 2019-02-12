@@ -7,8 +7,12 @@ public class SelectionMain : MonoBehaviour {
         Subject.addObserver(new Observer("selectionMain",(message) => {
             if(message.name=="playButtonPushed"){//playボタン
                 MusicDetailsDisplay tDetails = GameObject.Find("detailsDisplay").GetComponent<MusicDetailsDisplay>();
+                MusicListDisplay tList = GameObject.Find("musicList").GetComponent<MusicListDisplay>();
+                //最後に遊んだ曲更新
+                MusicList.updateLastPlay(tList.mSelectedIndex, tDetails.mDifficult);
+                //playシーンを開く
                 MySceneManager.changeScene("play",new Arg(new Dictionary<string, object>() { 
-                    { "file", tDetails.mSelectedMusicFileName } ,
+                    { "file", tDetails.mSelectedMusic.file } ,
                     { "difficult", tDetails.mDifficult}
                 }));
                 return;

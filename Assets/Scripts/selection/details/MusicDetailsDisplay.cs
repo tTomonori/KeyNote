@@ -5,12 +5,13 @@ using System;
 using System.IO;
 
 public class MusicDetailsDisplay : MyBehaviour {
+    //選択中の曲の譜面データ
     private MusicScoreFileData mMusicData;
     private ToggleButtonGroup mButtons{
         get { return findChild<ToggleButtonGroup>("difficultButtons"); }
     }
-    //選択中の曲の譜面データファイル
-    public string mSelectedMusicFileName;
+    //選択中の曲のデータ
+    public MusicListFileData.MusicListElement mSelectedMusic;
     //選択中の難易度
     public ScoreDifficult mDifficult{
         get { return EnumParser.parse<ScoreDifficult>(mButtons.pushedButtonName); }
@@ -23,7 +24,7 @@ public class MusicDetailsDisplay : MyBehaviour {
                 return;
             }
             if(message.name=="initialDifficult"){
-                mButtons.memberPushed(message.getParameter<string>("difficult"));
+                mButtons.memberPushed(message.getParameter<ScoreDifficult>("difficult").ToString());
             }
         }));
 	}
@@ -41,9 +42,9 @@ public class MusicDetailsDisplay : MyBehaviour {
         //サムネイル
         findChild("thumbnail").GetComponent<SpriteRenderer>().sprite = null;
     }
-    public void showMusic(string aFileName){
-        mSelectedMusicFileName = aFileName;
-        mMusicData = DataFolder.loadScoreData(aFileName);
+    public void showMusic(MusicListFileData.MusicListElement aData){
+        mSelectedMusic = aData;
+        mMusicData = DataFolder.loadScoreData(aData.file);
         //曲名
         GameObject.Find("title").GetComponent<TextMesh>().text = mMusicData.title;
         //選択中の難易度に合わせて表示更新
@@ -63,7 +64,7 @@ public class MusicDetailsDisplay : MyBehaviour {
         //難易度
         gameObject.GetComponentInChildren<DifficultDisplay>().set(mMusicData.getDifficult(aDifficult));
         //最高得点
-        gameObject.GetComponentInChildren<ScoreDisplay>().set(mMusicData.getPoint(aDifficult));
+        gameObject.GetComponentInChildren<ScoreDisplay>().set(mSelectedMusic.getPoint(aDifficult));
     }
     private void OnDestroy(){
         Subject.removeObserver("details");
