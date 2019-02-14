@@ -383,7 +383,7 @@ static public class LyricsStringConverter {
     //先頭の音節取得
     static private string extractTopSyllable(string s){
         if (s.Length == 1) return s;
-        if (!isLowerJa(s[1])) return s;
+        if (!isLowerJa(s[1])) return s[0].ToString();
         return s.Substring(0, 2);
     }
     //次の文字を読み込む
