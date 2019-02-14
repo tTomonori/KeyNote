@@ -1,11 +1,12 @@
 ﻿<Properties StartupConfiguration="{FAA2A704-9CBD-045F-2725-8A96BDA8B211}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/edit/LyricsStringConverter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/selection/details/DifficultDisplay.cs">
     <Files>
       <File FileName="Assets/Scripts/edit/DifficultCalculator.cs" Line="79" Column="1" />
       <File FileName="Assets/Scripts/score/TypeEvaluation.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/score/score/note/NoteStudent.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/title/TitleMain.cs" Line="9" Column="9" />
-      <File FileName="Assets/Scripts/edit/LyricsStringConverter.cs" Line="398" Column="1" />
+      <File FileName="Assets/Scripts/edit/LyricsStringConverter.cs" Line="396" Column="25" />
+      <File FileName="Assets/Scripts/selection/details/DifficultDisplay.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
