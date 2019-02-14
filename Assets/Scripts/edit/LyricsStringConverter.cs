@@ -383,20 +383,20 @@ static public class LyricsStringConverter {
     }
     //次の文字を読み込む
     static private char loadNextChar(){
-        if (mIndex + 1 == mLength) return '\x1a';
+        if (mIndex + 1 >= mLength) return '\x1a';
         mIndex++;
         while (mInput[mIndex] == '\n'){
-            if (mIndex + 1 == mLength) return '\x1a';
+            if (mIndex + 1 >= mLength) return '\x1a';
             mIndex++;
         }
         return mInput[mIndex];
     }
     //次の文字を見る(indexは移動しない)
     static private char confirmNextChar(){
-        if (mIndex + 1 == mLength) return '\x1a';
+        if (mIndex + 1 >= mLength) return '\x1a';
         int i = 1;
         while (mInput[mIndex + i] == '\n'){
-            if (mIndex + i == mLength) return '\x1a';
+            if (mIndex + i >= mLength) return '\x1a';
             i++;
         }
         return mInput[mIndex + 1];

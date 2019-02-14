@@ -75,6 +75,14 @@ static public partial class MusicScoreData {
     static public KeyTime mStartPlayMusicTime{
         get { return new KeyTime(KeyTime.secondsToQuarterBeat(mMargin, mInitialBpm)); }
     }
+    //全ての音符
+    static public List<Arg> mNotes{
+        get { return mMusicDate.note; }
+    }
+    //難易度
+    static public void setDifficult(ScoreDifficult aDifficult,int aLevel){
+        mMusicDate.setDifficult(aDifficult, aLevel);
+    }
     //選択した難易度
     static public ScoreDifficult mSelectedDifficult;
     //曲データロード

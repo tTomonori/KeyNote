@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4313173689412282}
-  - component: {fileID: 114463096584507588}
   - component: {fileID: 61836603442687248}
   - component: {fileID: 114431316879585142}
   m_Layer: 0
@@ -369,20 +368,6 @@ MonoBehaviour:
   mPushedMessage: 
   mGroup: 
   mActivated: 1
---- !u!114 &114463096584507588
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1141876834737064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feb4fbe6b13fb4cfd8a62c044b71e6e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mPushedMessage: 
-  mGroup: 
-  mActivated: 1
 --- !u!114 &114886548129215074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -395,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mTitle: {fileID: 102775157178228640}
-  mEditButton: {fileID: 114463096584507588}
+  mEditButton: {fileID: 114431316879585142}
 --- !u!212 &212444303623554586
 SpriteRenderer:
   m_ObjectHideFlags: 1

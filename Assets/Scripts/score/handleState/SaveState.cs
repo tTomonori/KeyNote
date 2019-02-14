@@ -43,6 +43,10 @@ partial class ScoreHandler {
                 MusicList.remove(MusicScoreData.mOriginalFileName);
             }
             //楽曲情報更新
+            //難易度
+            foreach(KeyValuePair<ScoreDifficult,int> tPare in DifficultCalculator.calculateDifficult(MusicScoreData.mNotes)){
+                MusicScoreData.setDifficult(tPare.Key, tPare.Value);
+            }
             MusicScoreData.save();
         }
     }
