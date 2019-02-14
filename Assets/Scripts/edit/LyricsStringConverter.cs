@@ -259,6 +259,9 @@ static public class LyricsStringConverter {
             case "や": oConsonant = "y"; oVowel = "a"; return;
             case "ゆ": oConsonant = "y"; oVowel = "u"; return;
             case "よ": oConsonant = "y"; oVowel = "o"; return;
+            case "ゃ": oConsonant = "y"; oVowel = "a"; return;
+            case "ゅ": oConsonant = "y"; oVowel = "u"; return;
+            case "ょ": oConsonant = "y"; oVowel = "o"; return;
             case "ら": oConsonant = "r"; oVowel = "a"; return;
             case "り": oConsonant = "r"; oVowel = "i"; return;
             case "る": oConsonant = "r"; oVowel = "u"; return;
@@ -296,7 +299,9 @@ static public class LyricsStringConverter {
             case "ぽ": oConsonant = "p"; oVowel = "o"; return;
         }
         if (aSyllable.Length == 2){
-            decomposeSyllable(aSyllable[0].ToString(), out oConsonant, out oVowel);
+            string tTemp;
+            decomposeSyllable(aSyllable[0].ToString(), out oConsonant, out tTemp);
+            decomposeSyllable(aSyllable[1].ToString(), out tTemp, out oVowel);
             return;
         }
         oConsonant = "";
