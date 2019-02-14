@@ -52,19 +52,19 @@ public class MeasureBpmMain : MonoBehaviour {
     //拍入力
     private void tap(){
         mTaps.Add(mPlayer.mCurrentSecond);
-        if (mTaps.Count < 3) return;
-        //Margin計算
-        mMarginText.text = calculateMargin().ToString();
+        if (mTaps.Count < 2) return;
         //Bpm計算
         mBpmText.text = calculateBpm().ToString();
+        //Margin計算
+        mMarginText.text = calculateMargin().ToString();
     }
     //margin計算
     private float calculateMargin(){
         float tBeatSecond = getBeatLength();
-        float tBarSecond = tBeatSecond * 4;
+        float tBarSecond = tBeatSecond * MusicScoreData.mRhythm;
         List<float> tMargins = new List<float>();
         for (int i = 0; i < mTaps.Count;i++){
-            tMargins.Add((mTaps[i] - tBeatSecond * (i % 4)) % tBeatSecond);
+            tMargins.Add((mTaps[i] - tBeatSecond * (i % 4)) % tBarSecond);
         }
         float tAve = 0;
         foreach(float tMargin in tMargins){
@@ -76,7 +76,7 @@ public class MeasureBpmMain : MonoBehaviour {
     //bpm計算
     private float calculateBpm(){
         int tBeatNum = mTaps.Count - 1;
-        float tLength = mTaps[tBeatNum - 1] - mTaps[0];
+        float tLength = mTaps[tBeatNum] - mTaps[0];
         return 60f * (float)tBeatNum / tLength;
     }
     //1拍のながさ(second)
