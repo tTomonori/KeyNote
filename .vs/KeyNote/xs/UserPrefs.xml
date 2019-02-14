@@ -1,8 +1,9 @@
 ﻿<Properties StartupConfiguration="{FAA2A704-9CBD-045F-2725-8A96BDA8B211}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/edit/LyricsStringConverter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/edit/DifficultCalculator.cs">
     <Files>
       <File FileName="Assets/Scripts/edit/MusicSettingForm.cs" Line="61" Column="2" />
-      <File FileName="Assets/Scripts/edit/LyricsStringConverter.cs" Line="334" Column="19" />
+      <File FileName="Assets/Scripts/edit/LyricsStringConverter.cs" Line="409" Column="2" />
+      <File FileName="Assets/Scripts/edit/DifficultCalculator.cs" Line="78" Column="77" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

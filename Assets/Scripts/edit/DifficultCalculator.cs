@@ -76,7 +76,8 @@ public static class DifficultCalculator{
         if (kFurthestSecond < tDifference) return 0;
         float tSecondDifficult = calculateSecondDifficult(tDifference);
         float tKeyDifficult = calculateKeyDifficult(aNote1.key, aNote2.key);
-        return (tSecondDifficult + tKeyDifficult) / 200 * kDifficultStage;
+        float tDifficult = (tSecondDifficult * tSecondDifficult * tKeyDifficult) / 500000 * kDifficultStage;
+        return (tDifficult < kDifficultStage) ? tDifficult : kDifficultStage - 1;
     }
     //時間差による難易度
     static private float calculateSecondDifficult(float aSecond){
@@ -84,7 +85,7 @@ public static class DifficultCalculator{
     }
     //キーの違いによる難易度
     static private float calculateKeyDifficult(string aKey1,string aKey2){
-        return (aKey1 == aKey2) ? 0 : 100;
+        return (aKey1 == aKey2) ? 20 : 100;
     }
     //周囲の音符の数による難易度
     static private float calculateNoteNumDifficult(int aNum){
@@ -167,12 +168,12 @@ public static class DifficultCalculator{
     //    int tLength = tNotes.Count;
     //    if (tLength > 0)
     //    {
-    //        //tDifficult += calculateSecondDifficult(Mathf.Abs(aNote.second - tNotes[0].second));
+    //        tDifficult += calculateSecondDifficult(Mathf.Abs(aNote.second - tNotes[0].second));
     //        tDifficult += calculateKeyDifficult(aNote.key, tNotes[0].key) * 2;
     //        //if (tLength > 1)
     //        //tDifficult += calculateKeyDifficult(aNote.key, tNotes[1].key);
     //    }
-    //    //tDifficult += calculateNoteNumDifficult(tLength);
-    //    return Mathf.Sin(tDifficult / 200 / 2 * Mathf.PI) * kDifficultStage;
+    //    tDifficult += calculateNoteNumDifficult(tLength);
+    //    return tDifficult / 400 * kDifficultStage;
     //}
 }
