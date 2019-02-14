@@ -197,6 +197,7 @@ MonoBehaviour:
   mGroup: 
   mActivated: 1
   mSelections: []
+  mText: {fileID: 102113397397807904}
 --- !u!212 &212935601666622212
 SpriteRenderer:
   m_ObjectHideFlags: 1

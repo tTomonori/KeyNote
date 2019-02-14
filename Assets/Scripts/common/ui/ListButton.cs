@@ -8,11 +8,12 @@ public class ListButton : MyButton {
         get { return mSelections[mSelectionIndex]; }
     }
     private int mSelectionIndex = 0;
-    private TextMesh mText;
-    private void Start(){
-        mText = mContents.findChild<TextMesh>("text");
+    [SerializeField] private TextMesh mText;
+    private void Awake(){
         if (mSelections.Length == 0)
-            mSelections = new string[1] { "null" };
+            mSelections = new string[1] { "null" }; 
+    }
+    private void Start(){
         mText.text = mSelections[mSelectionIndex];
     }
     protected override void pushed(){

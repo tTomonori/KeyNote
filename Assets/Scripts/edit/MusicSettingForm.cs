@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MusicSettingForm : MonoBehaviour {
-    private ListButton mRhythmListButton;
-    private InputField mMarginForm;
-    private InputField mRustForm;
+    [SerializeField] private ListButton mRhythmListButton;
+    [SerializeField] private InputField mMarginForm;
+    [SerializeField] private InputField mRustForm;
     // X / 4 拍子
     public int mRhythm{
         get { return int.Parse(mRhythmListButton.mSelected); }
@@ -35,15 +35,8 @@ public class MusicSettingForm : MonoBehaviour {
             return tValue;  
         }
     }
-    private void getComponent(){
-        mRhythmListButton = GameObject.Find("rhythmLabel").GetComponentInChildren<ListButton>();
-        mMarginForm = GameObject.Find("marginLabel").GetComponentInChildren<InputField>();
-        mRustForm = GameObject.Find("rustLabel").GetComponentInChildren<InputField>();
-    }
     //表示を現在適用されている値に戻す
     public void reset(){
-        if(mRhythmListButton==null)
-            getComponent();
         //拍子
         mRhythmListButton.select(MusicScoreData.mRhythm.ToString());
         //margin

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DifficultDisplay : MonoBehaviour {
     private SpriteRenderer[] mStars;
-    [SerializeField] Sprite[] mStarImage;
+    [SerializeField] private Sprite[] mStarImage;
 	// Use this for initialization
 	void Start () {
         mStars = gameObject.GetComponentsInChildren<SpriteRenderer>();
