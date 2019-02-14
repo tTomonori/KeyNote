@@ -1398,6 +1398,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8905e48f6aaaa4892bbe2d89bb6edf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mStarImage:
+  - {fileID: 21300000, guid: 411ea113af91d4861b0304020d08fbb2, type: 3}
+  - {fileID: 21300000, guid: f4062424a8270490485b9073665e9b0c, type: 3}
+  - {fileID: 21300000, guid: 27ad78a78d8424eea8aba0dc2de5c96e, type: 3}
+  - {fileID: 21300000, guid: 928d014a6d8744bba94f8f02e897635b, type: 3}
 --- !u!1 &974115482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,6 +1634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d66172e3779094332b3bbd7ceef94ab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mSelectedIndex: 0
 --- !u!4 &1080009978
 Transform:
   m_ObjectHideFlags: 0
@@ -2206,7 +2212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f760e911bd3e4e08858121229ec0f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mSelectedMusicFileName: 
 --- !u!4 &1244843236
 Transform:
   m_ObjectHideFlags: 0

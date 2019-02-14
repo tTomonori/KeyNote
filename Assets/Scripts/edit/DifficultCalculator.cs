@@ -31,18 +31,18 @@ public static class DifficultCalculator{
             float tSecond1 = MusicScoreData.quarterBeatToMusicTime(tNote1.get<float>("time"));
             string tConsonant1 = tNote1.get<string>("consonant");
             string tVowel1 = tNote1.get<string>("vowel");
-            string tKey1 = (tConsonant1 == "") ? tVowel1 : tConsonant1;
+            string tKey1 = (tConsonant1 == " ") ? tVowel1 : tConsonant1;
 
             Arg tNote2 = aNotes[i + 1];
             float tSecond2 = MusicScoreData.quarterBeatToMusicTime(tNote2.get<float>("time"));
             string tConsonant2 = tNote2.get<string>("consonant");
             string tVowel2 = tNote2.get<string>("vowel");
-            string tKey2 = (tConsonant1 == "") ? tVowel2 : tConsonant2;
+            string tKey2 = (tConsonant1 == " ") ? tVowel2 : tConsonant2;
 
             tChild += calculateNoteDifficult(new NoteKey(tSecond1, " "), new NoteKey(tSecond2, " "));
             tStudent += calculateNoteDifficult(new NoteKey(tSecond1, tVowel1), new NoteKey(tSecond2, tVowel2));
             tScholar += calculateNoteDifficult(new NoteKey(tSecond1, tKey1), new NoteKey(tSecond2, tKey2));
-            if (tConsonant1 != "" && tVowel1 != ""){
+            if (tConsonant1 != " " && tVowel1 != " "){
                 tGuru += calculateNoteDifficult(new NoteKey(tSecond1, tConsonant1), new NoteKey(tSecond1, tVowel1));
                 tGuru += calculateNoteDifficult(new NoteKey(tSecond1, tVowel1), new NoteKey(tSecond2, tKey2));
                 //難易度guruの時の音符の数カウント

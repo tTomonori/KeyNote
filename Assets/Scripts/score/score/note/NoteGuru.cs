@@ -22,6 +22,7 @@ public class NoteGuru : Note {
             mConsonant = mVowel;
             mVowel = "";
         }
+        if (mConsonant == "") mConsonant = " ";
 
         //子音のテキスト
         tTexts[0].text = mConsonant;
@@ -37,7 +38,7 @@ public class NoteGuru : Note {
     public override HitResult hit(KeyCode aKey,HitNoteType aType){
         //子音hit判定
         if(!mHittedConsonant){
-            if (EnumParser.parse<KeyCode>(mConsonant) == aKey){
+            if (KeyMonitor.convertToCode(mConsonant) == aKey){
                 mHittedConsonant = true;
                 hitted(findChild("consonant"),aType);
                 return HitResult.consonant;
@@ -45,7 +46,7 @@ public class NoteGuru : Note {
         }
         //母音hit判定
         if(!mHittedVowel){
-            if (EnumParser.parse<KeyCode>(mVowel) == aKey){
+            if (KeyMonitor.convertToCode(mVowel) == aKey){
                 mHittedVowel = true;
                 hitted(findChild("vowel"),aType);
                 return HitResult.vowel;

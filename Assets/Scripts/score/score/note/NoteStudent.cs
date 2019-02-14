@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NoteStudent : Note {
+    private string mVowel;
     protected override void display(Arg aNoteData){
         //画像
         SpriteRenderer tSprite = GetComponentInChildren<SpriteRenderer>();
         tSprite.sprite = getNoteSprite(aNoteData.get<string>("vowel"));
         //母音
-        GetComponentInChildren<TextMesh>().text = aNoteData.get<string>("vowel");
+        mVowel = aNoteData.get<string>("vowel");
+        if (mVowel == "") mVowel = " ";
+        GetComponentInChildren<TextMesh>().text = mVowel;
     }
     //音符にhit済みかどうか
     private bool mHitted = false;
     public override HitResult hit(KeyCode aKey,HitNoteType aType){
         if (mHitted) return HitResult.miss;//hit済み
-        if (EnumParser.parse<KeyCode>(mData.get<string>("vowel")) != aKey)
+        if (KeyMonitor.convertToCode(mVowel) != aKey)
             return HitResult.miss;//タイプミス
         mHitted = true;
         hitted(this.gameObject, aType);

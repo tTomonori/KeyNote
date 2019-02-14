@@ -7,7 +7,7 @@ public class NoteScholar : Note {
     protected override void display(Arg aNoteData){
         mConsonant = aNoteData.get<string>("consonant");
         if (mConsonant == "") mConsonant = aNoteData.get<string>("vowel");//子音がないなら母音を使う
-
+        if (mConsonant == "") mConsonant = " ";
         //子音
         TextMesh tText = GetComponentInChildren<TextMesh>();
         tText.text = mConsonant;
