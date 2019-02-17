@@ -15,14 +15,14 @@ static public partial class MusicScoreData {
         get { return mMusicDate.music; }
         set { mMusicDate.music = value; }
     }
-    //ロード元のファイル名
-    static public string mOriginalFileName{
-        get { return mMusicDate.originalFileName; }
+    //ロード元のファイル名(拡張子抜き)
+    static public string mLoadPath{
+        get { return mMusicDate.loadPath; }
     }
-    //保存先ファイル名
-    static public string mSaveFileName{
-        get { return mMusicDate.fileName; }
-        set { mMusicDate.fileName = value; }
+    //保存先ファイル名(拡張子抜き)
+    static public string mSavePath{
+        get { return mMusicDate.savePath; }
+        set { mMusicDate.savePath = value; }
     }
     //既にデータファイルが生成されている
     static public bool isSaved{

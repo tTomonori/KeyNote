@@ -32,15 +32,15 @@ partial class ScoreHandler {
             if(aCompletion){
                 //完成
                 if (MusicScoreData.isSaved){
-                    MusicList.update(MusicScoreData.mOriginalFileName, MusicScoreData.mTitle, MusicScoreData.mSaveFileName);
+                    MusicList.update(MusicScoreData.mLoadPath, MusicScoreData.mTitle, MusicScoreData.mSavePath);
                 }
                 else{
-                    MusicList.addScore(MusicScoreData.mTitle, MusicScoreData.mSaveFileName);
+                    MusicList.addScore(MusicScoreData.mTitle, MusicScoreData.mSavePath);
                     MusicList.updateLastPlay(MusicList.mLength - 1, MusicList.mLastPlayDifficult);//追加した曲を最後に遊んだ曲とする
                 }
             }else{
                 //未完成
-                MusicList.remove(MusicScoreData.mOriginalFileName);
+                MusicList.remove(MusicScoreData.mLoadPath);
             }
             //楽曲情報更新
             //難易度

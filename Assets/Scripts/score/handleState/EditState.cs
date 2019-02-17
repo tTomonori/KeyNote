@@ -58,19 +58,19 @@ partial class ScoreHandler{
             if(aMessage.name=="configButtonPushed"){//File設定ボタン
                 parent.changeState(new InitialState(parent));
                 MySceneManager.openScene("musicConfig", new Arg(new Dictionary<string, object>(){
-                    {"initialize",true},
+                    {"new",false},
                     {"title",MusicScoreData.mTitle},
-                    {"file",MusicScoreData.mSaveFileName},
+                    {"savePath",MusicScoreData.mSavePath},
                     {"music",MusicScoreData.mMusicFileName},
                     {"thumbnail",MusicScoreData.mThumbnail},
                     {"back",MusicScoreData.mBack},
                     {"movie",MusicScoreData.mMovie},
-                    {"originalFile",MusicScoreData.mOriginalFileName}
+                    {"loadPath",MusicScoreData.mLoadPath}
                 }), null, (aArg) =>{
                     if (aArg.get<bool>("ok")){
                         MusicScoreFileData tData = aArg.get<MusicScoreFileData>("scoreData");
                         MusicScoreData.mTitle = tData.title;
-                        MusicScoreData.mSaveFileName = tData.fileName;
+                        MusicScoreData.mSavePath = tData.savePath;
                         MusicScoreData.mMusicFileName = tData.music;
                         MusicScoreData.mThumbnail = tData.thumbnail;
                         MusicScoreData.mBack = tData.back;

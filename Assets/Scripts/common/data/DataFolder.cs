@@ -19,7 +19,7 @@ static public class DataFolder {
     }
     //譜面データ取得
     static public MusicScoreFileData loadScoreData(string aFileName){
-        return new MusicScoreFileData(new Arg(MyJson.deserializeFile(DataFolder.path + "/score/" + aFileName + ".json")));
+        return new MusicScoreFileData(new Arg(MyJson.deserializeFile(DataFolder.path + "/score/" + aFileName + ".json")), aFileName);
     }
     //譜面データ存在確認
     static public bool existScoreData(string aFileName){

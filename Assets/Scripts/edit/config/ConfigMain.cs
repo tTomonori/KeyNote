@@ -8,9 +8,9 @@ public class ConfigMain : MonoBehaviour {
     private void Start(){
         Arg tArg = MySceneManager.getArg("musicConfig");
         //初期値設定
-        if (tArg.ContainsKey("initialize") && tArg.get<bool>("initialize")){
+        if (!tArg.get<bool>("new")){
             GameObject.Find("title").GetComponentInChildren<InputField>().text = tArg.get<string>("title");
-            GameObject.Find("file").GetComponentInChildren<InputField>().text = tArg.get<string>("file");
+            GameObject.Find("file").GetComponentInChildren<InputField>().text = tArg.get<string>("savePath");
             GameObject.Find("music").GetComponentInChildren<InputField>().text = tArg.get<string>("music").Substring(0, tArg.get<string>("music").Length - 4);
             GameObject.Find("thumbnail").GetComponentInChildren<InputField>().text = tArg.get<string>("thumbnail");
             GameObject.Find("back").GetComponentInChildren<InputField>().text = tArg.get<string>("back");
@@ -34,7 +34,7 @@ public class ConfigMain : MonoBehaviour {
                 AlartCreater.alart("譜面ファイル名が入力されていません");
                 return;
             }
-            if (tArg.ContainsKey("initialize") || tData.get<string>("file") != tArg.get<string>("originalFile")){
+            if (tArg.get<bool>("new") || tData.get<string>("file") != tArg.get<string>("loadPath")){
                 if (DataFolder.existScoreData(tData.get<string>("file"))){
                     AlartCreater.alart("譜面ファイル名が既に使われています");
                     return;
@@ -53,7 +53,7 @@ public class ConfigMain : MonoBehaviour {
             //譜面データ作成
             MusicScoreFileData tNewScore = new MusicScoreFileData();
             tNewScore.title = tData.get<string>("title");
-            tNewScore.fileName = tData.get<string>("file");
+            tNewScore.savePath = tData.get<string>("file");
             tNewScore.music = tData.get<string>("music");
             tNewScore.thumbnail = tData.get<string>("thumbnail");
             tNewScore.back = tData.get<string>("back");

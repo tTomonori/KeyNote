@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class MusicScoreFileData {
     private Arg mData;
-    public MusicScoreFileData(Arg aData){
+    public MusicScoreFileData(Arg aData,string aPath){
         mData = aData;
-        originalFileName = fileName;
+        mData.set("filePath", new ScoreFilePath(aPath, aPath));
     }
     //空の譜面データ作成
     public MusicScoreFileData(){
         mData = new Arg();
+        mData.set("filePath", new ScoreFilePath("", ""));
         title = "";
-        fileName = "";
-        originalFileName = "";
         music = "";
         thumbnail = "";
         back = "";
@@ -29,22 +28,22 @@ public class MusicScoreFileData {
     }
     //既にデータファイルが生成されている
     public bool isSaved{
-        get { return originalFileName != ""; }
+        get { return loadPath != ""; }
     }
     //タイトル
     public string title{
         get { return mData.get<string>("title"); }
         set { mData.set("title", value); }
     }
-    //保存先ファイル名
-    public string originalFileName{
-        get { return mData.get<string>("originalFileName"); }
-        set { mData.set("originalFileName", value); }
+    //保存先ファイル名(拡張子抜き)
+    public string savePath{
+        get { return mData.get<ScoreFilePath>("filePath").savePath; }
+        set { mData.get<ScoreFilePath>("filePath").setSavePath(value); }
     }
-    //読み込み元のファイル名
-    public string fileName{
-        get { return mData.get<string>("thisFileName"); }
-        set { mData.set("thisFileName", value); }
+    //読み込み元のファイル名(拡張子抜き)
+    public string loadPath{
+        get { return mData.get<ScoreFilePath>("filePath").loadPath; }
+        set { mData.get<ScoreFilePath>("filePath").setLoadPath(value); }
     }
     //音声ファイル
     public string music{
@@ -112,11 +111,26 @@ public class MusicScoreFileData {
         get { return mData.get<string>("allLyrics"); }
         set { mData.set("allLyrics", value); }
     }
+
+    private struct ScoreFilePath{
+        public string loadPath;
+        public string savePath;
+        public ScoreFilePath(string aLoadPath,string aSavePath){
+            loadPath = aLoadPath;
+            savePath = aSavePath;
+        }
+        public void setSavePath(string aPath){
+            savePath = aPath;
+        }
+        public void setLoadPath(string aPath){
+            loadPath = aPath;
+        }
+    }
     //保存する
     public void save(){
         //元のファイル削除
         //書き込み
-        DataFolder.writeScoreData(mData, fileName);
-        originalFileName = fileName;
+        DataFolder.writeScoreData(mData, savePath);
+        loadPath = savePath;
     }
 }

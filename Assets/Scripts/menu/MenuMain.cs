@@ -6,7 +6,7 @@ public class MenuMain : MonoBehaviour {
 	void Start () {
         Subject.addObserver(new Observer("menuMain", (message) =>{
             if(message.name=="createScoreButtonPushed"){//譜面作成
-                MySceneManager.changeScene("musicConfig", new Arg(new Dictionary<string, object>() { { "initialize", false } }), null, (aArg) =>{
+                MySceneManager.changeScene("musicConfig", new Arg(new Dictionary<string, object>() { { "new", true } }), null, (aArg) =>{
                     if(aArg.get<bool>("ok")){
                         MySceneManager.changeScene("edit", aArg);
                     }else{
