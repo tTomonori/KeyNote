@@ -112,7 +112,7 @@ public class MusicScoreFileData {
         set { mData.set("allLyrics", value); }
     }
 
-    private struct ScoreFilePath{
+    private class ScoreFilePath{
         public string loadPath;
         public string savePath;
         public ScoreFilePath(string aLoadPath,string aSavePath){

@@ -1,13 +1,13 @@
 ﻿<Properties StartupConfiguration="{FAA2A704-9CBD-045F-2725-8A96BDA8B211}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/score/handleState/EditState.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/edit/config/ConfigMain.cs">
     <Files>
-      <File FileName="Assets/Scripts/edit/config/ConfigMain.cs" Line="9" Column="57" />
+      <File FileName="Assets/Scripts/edit/config/ConfigMain.cs" Line="56" Column="61" />
       <File FileName="Assets/Scripts/score/MusicScoreData.cs" Line="22" Column="22" />
       <File FileName="Assets/Scripts/common/data/MusicScoreFileData.cs" Line="43" Column="25" />
       <File FileName="Assets/Scripts/common/data/DataFolder.cs" Line="22" Column="134" />
       <File FileName="Assets/Scripts/menu/MenuMain.cs" Line="9" Column="115" />
       <File FileName="Assets/Scripts/edit/EditMain.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/score/handleState/EditState.cs" Line="73" Column="66" />
+      <File FileName="Assets/Scripts/score/handleState/EditState.cs" Line="74" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
