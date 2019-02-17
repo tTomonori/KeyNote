@@ -399,10 +399,9 @@ static public class LyricsStringConverter {
     //次の文字を見る(indexは移動しない)
     static private char confirmNextChar(){
         if (mIndex + 1 >= mLength) return '\x1a';
-        int i = 1;
-        while (mInput[mIndex + i] == '\n'){
-            if (mIndex + i >= mLength) return '\x1a';
-            i++;
+        while (mInput[mIndex + 1] == '\n'){
+            if (mIndex + 1 >= mLength) return '\x1a';
+            mIndex++;
         }
         return mInput[mIndex + 1];
     }
