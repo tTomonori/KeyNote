@@ -27,6 +27,10 @@ public class KeyNotePlayer {
         mScore = aScore;
         mPlayer = aPlayer;
     }
+    //音声を変更
+    public void changeMusic(MusicPlayer aPlayer){
+        mPlayer = aPlayer;
+    }
     public void play(){
         float tCurrentMusicTime = MusicScoreData.quarterBeatToMusicTime(mScore.mCurrentQuarterBeat);
         mPlayer.mCurrentSecond = tCurrentMusicTime;

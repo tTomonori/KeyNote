@@ -69,6 +69,11 @@ partial class ScoreHandler{
                 }), null, (aArg) =>{
                     if (aArg.get<bool>("ok")){
                         MusicScoreFileData tData = aArg.get<MusicScoreFileData>("scoreData");
+                        if(MusicScoreData.mMusicFileName!=tData.music){//音声を変更
+                            MusicPlayer tPlayer = MyBehaviour.create<MusicPlayer>();
+                            tPlayer.setAudio(DataFolder.loadMusic(tData.music));
+                            parent.mPlayer.changeMusic(tPlayer);
+                        }
                         MusicScoreData.mTitle = tData.title;
                         MusicScoreData.mSavePath = tData.savePath;
                         MusicScoreData.mMusicFileName = tData.music;
