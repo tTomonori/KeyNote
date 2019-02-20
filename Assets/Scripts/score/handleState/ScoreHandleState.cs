@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 partial class ScoreHandler {
     public abstract class ScoreHandleState{
@@ -30,6 +31,7 @@ partial class ScoreHandler {
         }
         //音符を消した時の演出
         protected void productHit(Note aNote,TypeEvaluation.Evaluation aEvaluation){
+            //評価表示オブジェクト生成
             MyBehaviour tBehaviour = MyBehaviour.create<MyBehaviour>();
             tBehaviour.name = "evaluation";
             SpriteRenderer tRenderer = tBehaviour.gameObject.AddComponent<SpriteRenderer>();
@@ -38,6 +40,7 @@ partial class ScoreHandler {
             tBehaviour.transform.localPosition = new Vector3(0, 0, 0);
             tBehaviour.transform.Translate(aNote.transform.position - parent.mScore.transform.position);
             tBehaviour.positionZ = -2;
+            //sprite設定とアニメーション
             switch(aEvaluation){
                 case TypeEvaluation.Evaluation.perfect:
                     tRenderer.sprite = Resources.Load<Sprite>("sprites/point/perfect");
@@ -70,6 +73,35 @@ partial class ScoreHandler {
                     });
                     break;
             }
+        }
+        //理想のタイミングとの差の表示
+        protected void displayTimeDifference(Note aNote,float aDifference){
+            TextMesh tText = MyBehaviour.createObjectFromPrefab<TextMesh>("score/parts/evaluationDifference");
+            MyBehaviour tBehaviour = tText.GetComponent<MyBehaviour>();
+            tText.name = "timeDifference";
+            //テキスト設定
+            double tDifference = Math.Round(Mathf.Abs(aDifference), 2);
+            if(tDifference==0){
+                tText.text = "just";
+                tText.color = new Color(0, 1, 0);
+            }else if(aDifference<0){
+                tText.text = "-" + tDifference.ToString();
+                tText.color = new Color(0, 0, 1);
+            }else if(aDifference>0){
+                tText.text = "+" + tDifference.ToString();
+                tText.color = new Color(1, 0, 0);
+            }
+            //表示位置調整
+            tBehaviour.transform.parent = parent.mScore.transform;
+            tBehaviour.transform.localScale = new Vector3(1.7f, 1.7f, 1);
+            tBehaviour.transform.localPosition = new Vector3(0, 0, 0);
+            tBehaviour.transform.Translate(aNote.transform.position - parent.mScore.transform.position);
+            tBehaviour.positionZ = -2;
+            tBehaviour.positionY -= 1.5f;
+            //削除
+            tBehaviour.setTimeout(2, () =>{
+                tBehaviour.delete();
+            });
         }
     }
 }

@@ -24,6 +24,7 @@ partial class ScoreHandler{
         public override void getMessage(Message aMessage){
             if (aMessage.name == "hittedNote" || aMessage.name == "missedNote"){//タイピングの評価
                 productHit(aMessage.getParameter<Note>("note"), aMessage.getParameter<TypeEvaluation.Evaluation>("evaluation"));
+                displayTimeDifference(aMessage.getParameter<Note>("note"), aMessage.getParameter<float>("difference"));
                 return;
             }
             if (aMessage.name == "testPlayButtonPushed"){//編曲編集ボタン

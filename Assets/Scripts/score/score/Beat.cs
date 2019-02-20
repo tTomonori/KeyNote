@@ -145,7 +145,9 @@ public class Beat : MyBehaviour {
         int tLength = (mTriplet) ? 3 : 4;
         for (int i = 0; i < tLength;i++){
             if (mNotes[i] == null) continue;//音符なし
-            TypeEvaluation.Evaluation tEvaluation = TypeEvaluation.evaluate(aSecond, MusicScoreData.quarterBeatToMusicTime(mNotes[i].mCorrectQuarterBeat));
+
+            float tSecond = MusicScoreData.quarterBeatToMusicTime(mNotes[i].mCorrectQuarterBeat);
+            TypeEvaluation.Evaluation tEvaluation = TypeEvaluation.evaluate(aSecond, tSecond);
             if (tEvaluation == TypeEvaluation.Evaluation.miss) continue;//タイミングがあってない
 
             //タイミングOK
@@ -156,6 +158,7 @@ public class Beat : MyBehaviour {
             Subject.sendMessage(new Message("hittedNote", new Arg(new Dictionary<string, object>() {
                 {"note", mNotes[i] } ,
                 {"evaluation", tEvaluation },
+                {"difference", aSecond - tSecond},
                 {"hitResult", tHitResult}
             })));
             return true;
