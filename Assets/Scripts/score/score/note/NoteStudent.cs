@@ -20,7 +20,7 @@ public class NoteStudent : Note {
         if (KeyMonitor.convertToCode(mVowel) != aKey)
             return HitResult.miss;//タイプミス
         mHitted = true;
-        hitted(this.gameObject, aType);
+        hitted(this, aType);
         return HitResult.consonant;
     }
     //キー入力失敗(この音符をmiss判定にできるならtrue(既に評価がされていたらfalse))

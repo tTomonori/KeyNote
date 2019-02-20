@@ -40,7 +40,7 @@ public class NoteGuru : Note {
         if(!mHittedConsonant){
             if (KeyMonitor.convertToCode(mConsonant) == aKey){
                 mHittedConsonant = true;
-                hitted(findChild("consonant"),aType);
+                hitted(findChild<MyBehaviour>("consonant"),aType);
                 return HitResult.consonant;
             }
         }
@@ -48,7 +48,7 @@ public class NoteGuru : Note {
         if(!mHittedVowel){
             if (KeyMonitor.convertToCode(mVowel) == aKey){
                 mHittedVowel = true;
-                hitted(findChild("vowel"),aType);
+                hitted(findChild<MyBehaviour>("vowel"),aType);
                 return HitResult.vowel;
             }
         }

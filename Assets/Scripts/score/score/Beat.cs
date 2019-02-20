@@ -175,6 +175,7 @@ public class Beat : MyBehaviour {
             //missの評価にする
             Subject.sendMessage(new Message("missedNote", new Arg(new Dictionary<string, object>(){
                 {"note",tNote},
+                {"evaluation",TypeEvaluation.Evaluation.miss},
                 {"hitResult",tResult}
             })));
         }

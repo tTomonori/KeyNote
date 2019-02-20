@@ -17,6 +17,10 @@ partial class ScoreHandler {
             parent.mScore.missHit(parent.mPlayer.mCurrentSecond - TypeEvaluation.kWorstDifference);
         }
         public override void getMessage(Message aMessage){
+            if(aMessage.name=="hittedNote"||aMessage.name=="missedNote"){//タイピングの評価
+                productHit(aMessage.getParameter<Note>("note"), aMessage.getParameter<TypeEvaluation.Evaluation>("evaluation"));
+                return;
+            }
             if(aMessage.name=="pauseButtonPushed"){//ポーズ
                 parent.changeState(new PauseState(parent));
                 return;

@@ -64,7 +64,7 @@ public abstract class Note : MyBehaviour {
     //音符にhitするか
     public abstract HitResult hit(KeyCode aKey,HitNoteType aType);
     //音符にhitした
-    protected void hitted(GameObject aNoteObject,HitNoteType aType){
+    protected void hitted(MyBehaviour aNoteObject,HitNoteType aType){
         switch(aType){
             case HitNoteType.delete:
                 hitAndDelete(aNoteObject);
@@ -77,11 +77,16 @@ public abstract class Note : MyBehaviour {
     //キー入力失敗(この音符をmiss判定にできるならtrue(既に評価がされていたらfalse))
     public abstract HitResult missHit();
     //消滅
-    protected void hitAndDelete(GameObject aNoteObject){
-        aNoteObject.GetComponent<MyBehaviour>().delete();
+    protected void hitAndDelete(MyBehaviour aNoteObject){
+        //透明度
+        aNoteObject.opacityBy(-1, 0.4f, () => {
+            aNoteObject.delete();
+        });
+        //大きさ
+        aNoteObject.scaleBy(new Vector3(0.3f, 0.5f, 0), 0.2f, null);
     }
     //脱色
-    protected virtual void hitAndDecolorize(GameObject aNoteObject){
+    protected virtual void hitAndDecolorize(MyBehaviour aNoteObject){
         Debug.Log("decolorize");
     }
     public enum HitResult{

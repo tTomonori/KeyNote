@@ -13,7 +13,7 @@ public class NoteChild : Note {
     public override HitResult hit(KeyCode aKey,HitNoteType aType){
         if (mHitted) return HitResult.miss;//hit済み
         mHitted = true;
-        hitted(this.gameObject, aType);
+        hitted(this, aType);
         return HitResult.consonant;
     }
     //キー入力失敗(この音符をmiss判定にできるならtrue(既に評価がされていたらfalse))

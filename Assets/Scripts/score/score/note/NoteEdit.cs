@@ -23,13 +23,13 @@ public class NoteEdit : Note {
         //子音hit判定
         if(!mHittedConsonant){
             mHittedConsonant = true;
-            hitted(findChild("consonant"), aType);
+            hitted(findChild<MyBehaviour>("consonant"), aType);
             tResult = HitResult.consonant;
         }
         //母音hit判定
         if(!mHittedVowel){
                 mHittedVowel = true;
-                hitted(findChild("vowel"),aType);
+            hitted(findChild<MyBehaviour>("vowel"),aType);
             if (tResult == HitResult.consonant)
                 tResult = HitResult.consonantAndVowel;
             else
@@ -54,7 +54,7 @@ public class NoteEdit : Note {
         }
         return HitResult.miss;
     }
-    protected override void hitAndDecolorize(GameObject aNoteObject){
+    protected override void hitAndDecolorize(MyBehaviour aNoteObject){
         if(aNoteObject.name=="consonant")
             aNoteObject.GetComponent<MyBehaviour>().findChild<SpriteRenderer>("note").sprite = Resources.Load<Sprite>("sprites/score/note/note0");
         else

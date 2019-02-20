@@ -1,9 +1,11 @@
 ﻿<Properties StartupConfiguration="{FAA2A704-9CBD-045F-2725-8A96BDA8B211}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/selection/SelectionMain.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/score/score/note/Note.cs">
     <Files>
-      <File FileName="Assets/Scripts/edit/LyricsStringConverter.cs" Line="408" Column="2" />
-      <File FileName="Assets/Scripts/selection/details/MusicDetailsDisplay.cs" Line="30" Column="17" />
-      <File FileName="Assets/Scripts/selection/SelectionMain.cs" Line="12" Column="74" />
+      <File FileName="Assets/Scripts/score/handleState/ScoreHandleState.cs" Line="29" Column="68" />
+      <File FileName="Assets/Scripts/score/score/Beat.cs" Line="178" Column="63" />
+      <File FileName="Assets/Scripts/score/handleState/PlayState.cs" Line="17" Column="67" />
+      <File FileName="Assets/Scripts/score/handleState/TestPlayState.cs" Line="25" Column="80" />
+      <File FileName="Assets/Scripts/score/score/note/Note.cs" Line="82" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
