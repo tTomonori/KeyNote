@@ -19,6 +19,7 @@ public class ListButton : MyButton {
     protected override void pushed(){
         mSelectionIndex = (mSelectionIndex + 1) % mSelections.Length;
         mText.text = mSelections[mSelectionIndex];
+        mParameters.set("selected", mSelections[mSelectionIndex]);
     }
     //指定した選択肢を選択している状態にする
     public void select(string aChoice){

@@ -3171,7 +3171,7 @@ GameObject:
   - component: {fileID: 2041100515}
   - component: {fileID: 2041100514}
   m_Layer: 0
-  m_Name: placticeButton
+  m_Name: practiceButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3203,7 +3203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb4fbe6b13fb4cfd8a62c044b71e6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mPushedMessage: placticeButtonPushed
+  mPushedMessage: 
   mGroup: 
   mActivated: 1
 --- !u!58 &2041100515

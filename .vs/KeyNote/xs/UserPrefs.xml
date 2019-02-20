@@ -1,11 +1,12 @@
 ﻿<Properties StartupConfiguration="{FAA2A704-9CBD-045F-2725-8A96BDA8B211}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/score/score/note/Note.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/score/handleState/PracticePlayState.cs">
     <Files>
-      <File FileName="Assets/Scripts/score/handleState/ScoreHandleState.cs" Line="29" Column="68" />
-      <File FileName="Assets/Scripts/score/score/Beat.cs" Line="178" Column="63" />
-      <File FileName="Assets/Scripts/score/handleState/PlayState.cs" Line="17" Column="67" />
-      <File FileName="Assets/Scripts/score/handleState/TestPlayState.cs" Line="25" Column="80" />
-      <File FileName="Assets/Scripts/score/score/note/Note.cs" Line="82" Column="44" />
+      <File FileName="Assets/Scripts/score/handleState/ScoreHandleState.cs" Line="23" Column="9" />
+      <File FileName="Assets/Scripts/play/practice/PracticeMain.cs" Line="11" Column="38" />
+      <File FileName="Assets/Scripts/selection/SelectionMain.cs" Line="24" Column="93" />
+      <File FileName="Assets/Scripts/play/PlayMain.cs" Line="6" Column="35" />
+      <File FileName="Assets/Scripts/score/handleState/PracticeState.cs" Line="26" Column="1" />
+      <File FileName="Assets/Scripts/score/handleState/PracticePlayState.cs" Line="27" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

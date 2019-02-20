@@ -87,7 +87,8 @@ public abstract class Note : MyBehaviour {
     }
     //脱色
     protected virtual void hitAndDecolorize(MyBehaviour aNoteObject){
-        Debug.Log("decolorize");
+        SpriteRenderer tRenderer = aNoteObject.GetComponentInChildren<SpriteRenderer>();
+        tRenderer.sprite = Resources.Load<Sprite>("sprites/score/" + tRenderer.name + "/" + tRenderer.name + "0");
     }
     public enum HitResult{
         consonantAndVowel,consonant,vowel,miss

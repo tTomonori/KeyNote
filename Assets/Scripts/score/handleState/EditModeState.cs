@@ -21,14 +21,6 @@ partial class ScoreHandler{
             //編集モードに即移行
             parent.changeState(new EditState(parent));
         }
-        //マウス回転量を取得し譜面をスクロール
-        protected void scrollScore(){
-            float tScroll = Input.mouseScrollDelta.y;
-            parent.mScore.positionY -= tScroll;
-            //負の位置まではスクロールできないようにする
-            if (parent.mScore.mCurrentQuarterBeat < 0)
-                parent.mScore.mCurrentQuarterBeat = 0;
-        }
         //音符を生成する
         protected bool tryCreateNote(KeyTime aTime){
             if (aTime.mQuarterBeat < 0) return false;

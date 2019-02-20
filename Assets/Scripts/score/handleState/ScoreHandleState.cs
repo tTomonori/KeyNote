@@ -20,6 +20,14 @@ partial class ScoreHandler {
         virtual public void getMessage(Message aMessage){
             
         }
+        //マウス回転量を取得し譜面をスクロール
+        protected void scrollScore(){
+            float tScroll = Input.mouseScrollDelta.y;
+            parent.mScore.positionY -= tScroll;
+            //負の位置まではスクロールできないようにする
+            if (parent.mScore.mCurrentQuarterBeat < 0)
+                parent.mScore.mCurrentQuarterBeat = 0;
+        }
         //音符を消した時の演出
         protected void productHit(Note aNote,TypeEvaluation.Evaluation aEvaluation){
             MyBehaviour tBehaviour = MyBehaviour.create<MyBehaviour>();

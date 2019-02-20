@@ -54,10 +54,4 @@ public class NoteEdit : Note {
         }
         return HitResult.miss;
     }
-    protected override void hitAndDecolorize(MyBehaviour aNoteObject){
-        if(aNoteObject.name=="consonant")
-            aNoteObject.GetComponent<MyBehaviour>().findChild<SpriteRenderer>("note").sprite = Resources.Load<Sprite>("sprites/score/note/note0");
-        else
-            aNoteObject.GetComponent<MyBehaviour>().findChild<SpriteRenderer>("mininote").sprite = Resources.Load<Sprite>("sprites/score/mininote/mininote0");
-    }
 }
