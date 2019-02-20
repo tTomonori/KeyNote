@@ -1,14 +1,14 @@
 ﻿<Properties StartupConfiguration="{FAA2A704-9CBD-045F-2725-8A96BDA8B211}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/edit/LyricsStringConverter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/selection/SelectionMain.cs">
     <Files>
-      <File FileName="Assets/Scripts/edit/LyricsStringConverter.cs" Line="84" Column="1" />
+      <File FileName="Assets/Scripts/edit/LyricsStringConverter.cs" Line="408" Column="2" />
+      <File FileName="Assets/Scripts/selection/details/MusicDetailsDisplay.cs" Line="30" Column="17" />
+      <File FileName="Assets/Scripts/selection/SelectionMain.cs" Line="12" Column="74" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/tomo/Desktop/game/KeyNote/Assets/Scripts/edit/LyricsStringConverter.cs" relfile="Assets/Scripts/edit/LyricsStringConverter.cs" line="84" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.KeyNote PreferredExecutionTarget="Unity.Editor" />

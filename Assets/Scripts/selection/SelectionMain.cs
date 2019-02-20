@@ -9,11 +9,11 @@ public class SelectionMain : MonoBehaviour {
                 MusicDetailsDisplay tDetails = GameObject.Find("detailsDisplay").GetComponent<MusicDetailsDisplay>();
                 MusicListDisplay tList = GameObject.Find("musicList").GetComponent<MusicListDisplay>();
                 //最後に遊んだ曲更新
-                MusicList.updateLastPlay(tList.mSelectedIndex, tDetails.mDifficult);
+                MusicList.updateLastPlay(tList.mSelectedIndex, tDetails.mSelectedDifficult);
                 //playシーンを開く
                 MySceneManager.changeScene("play",new Arg(new Dictionary<string, object>() { 
                     { "file", tDetails.mSelectedMusic.file } ,
-                    { "difficult", tDetails.mDifficult}
+                    { "difficult", tDetails.mSelectedDifficult}
                 }));
                 return;
             }
