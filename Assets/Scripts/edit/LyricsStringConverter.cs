@@ -96,6 +96,7 @@ static public class LyricsStringConverter {
                 break;
             case ' ':
             case '_':
+            case '＿':
                 loadNextChar();
                 oLyrics = " ";
                 break;
