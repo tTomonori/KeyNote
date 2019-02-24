@@ -67,6 +67,11 @@ static public class MusicList {
         mData.update(aFile, aNewTitle, aNewFile);
         mData.save();
     }
+    //リストを全更新
+    static public void updateList(List<Arg> aList){
+        mData.list = aList;
+        mData.save();
+    }
 
 
     //未完成の楽曲データファイル名一覧を取得

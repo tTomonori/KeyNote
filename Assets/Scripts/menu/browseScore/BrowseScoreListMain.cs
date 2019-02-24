@@ -16,15 +16,20 @@ public class BrowseScoreListMain : MonoBehaviour {
         tScrollView.init(tList, tOption);
 
         Subject.addObserver(new Observer("browseScoreListMain", (message) =>{
-            if(message.name == "endBrowseButtonPushed"){
+            if(message.name == "endBrowseButtonPushed"){//譜面一覧を閉じる
                 MySceneManager.changeScene("selection");
                 return;
             }
-            if (message.name == "editButtonPushed"){
+            if (message.name == "editButtonPushed"){//編集へ移る
                 MySceneManager.changeScene("edit", new Arg(new Dictionary<string, object>(){
                                 {"scoreData",DataFolder.loadScoreData(message.getParameter<string>("file"))}
                             }));
                 return;
+            }
+            if(message.name == "sortButtonPushed"){//譜面の並び替え適用
+                List<Arg> tMusicList = tList.getCompletedMusicList();
+                MusicList.updateList(tMusicList);
+                AlartCreater.alart("曲の並びを保存しました");
             }
         }));
 	}
