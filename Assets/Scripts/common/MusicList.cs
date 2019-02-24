@@ -7,6 +7,10 @@ using System.IO;
 static public class MusicList {
     //曲リストデータ
     static private MusicListFileData mData;
+    //曲リスト
+    static public List<Arg> mMusicList{
+        get { return mData.list; }
+    }
     //最後にプレイした曲のindex
     static public int mLastPlayIndex{
         get { return mData.lastPlayIndex; }

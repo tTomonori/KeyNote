@@ -99,7 +99,7 @@ public partial class MyBehaviour : MonoBehaviour{
     /// <param name="delta">変化量</param>
     /// <param name="duration">変化時間</param>
     /// <param name="callback">完了時コールバック</param>
-    public Coroutine opacityBy(float delta,float duration, Action callback){
+    public Coroutine opacityBy(float delta,float duration, Action callback = null){
         return StartCoroutine(opacityDelta(delta, duration, callback));
     }
     private IEnumerator opacityDelta(float delta, float duration, Action callback){

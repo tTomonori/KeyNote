@@ -5,14 +5,18 @@ using System;
 using System.Linq;
 
 public partial class MyBehaviour : MonoBehaviour {
-    static private MyBehaviour instance;
-    static private MyBehaviour ins{
-        get{
-            if (instance == null){
-                instance = MyBehaviour.create<MyBehaviour>();
-                instance.name = "MyBehaviourInstance";
-            }
-            return instance;
+    /// <summary>
+    /// レイヤーを変更する
+    /// </summary>
+    /// <param name="aLayer">レイヤーの番号</param>
+    /// <param name="withChildren">子要素も同時にレイヤーを変更する</param>
+    public void changeLayer(int aLayer,bool withChildren=true){
+        if(!withChildren){
+            gameObject.layer = aLayer;
+            return;
+        }
+        foreach(Transform tObject in gameObject.GetComponentsInChildren<Transform>()){
+            tObject.gameObject.layer = aLayer;
         }
     }
     /// <summary>
@@ -152,5 +156,49 @@ public partial class MyBehaviour : MonoBehaviour {
             Vector3 tRotate = gameObject.transform.localRotation.eulerAngles;
             gameObject.transform.localRotation = Quaternion.Euler(tRotate.x, tRotate.y, value);
         }
+    }
+
+    //Behaviourの機能をstaticで使えるようにする
+    static private MyBehaviourInstance instance;
+    static private MyBehaviourInstance ins{
+        get{
+            if (instance == null){
+                instance = MyBehaviour.create<MyBehaviourInstance>();
+                instance.name = "MyBehaviourInstance";
+                DontDestroyOnLoad(instance);
+            }
+            return instance;
+        }
+    }
+    private class MyBehaviourInstance : MyBehaviour{
+        private List<UpdateFunctionDate> mFunctions=new List<UpdateFunctionDate>();
+        private void Update(){
+            foreach(UpdateFunctionDate tData in mFunctions){
+                tData.function();
+            }
+        }
+        public void addUpdate(Action aFunction,string aName){
+            UpdateFunctionDate tData = new UpdateFunctionDate();
+            tData.function = aFunction;
+            tData.name = aName;
+            mFunctions.Add(tData);
+        }
+        public void removeUpdate(string aName){
+            foreach(UpdateFunctionDate tData in mFunctions){
+                if (tData.name != aName) continue;
+                mFunctions.Remove(tData);
+                return;
+            }
+        }
+        private class UpdateFunctionDate{
+            public Action function;
+            public string name;
+        }
+    }
+    public void addUpdateFunction(Action aFunction, string aName){
+        ins.addUpdateFunction(aFunction, aName);
+    }
+    public void removeUpdateFunction(string aName){
+        ins.removeUpdateFunction(aName);
     }
 }

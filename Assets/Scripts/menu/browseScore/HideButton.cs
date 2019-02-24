@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HideButton : MyButton {
+    private void Start(){
+        opacityBy(-1, 0);
+    }
     private void OnMouseOver(){
-        positionZ = -1; 
+        opacityBy(1, 0.1f);
     }
     private void OnMouseExit(){
-        positionZ = 1;
+        opacityBy(-1, 0.1f);
     }
 }
