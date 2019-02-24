@@ -30,16 +30,16 @@ public class MyButton : MyBehaviour {
             tChild.SetParent(mContents.transform, true);
         }
     }
-    private void OnMouseDown(){
+    protected void OnMouseDown(){
         isPushed = true;
         mContents.scaleBy(new Vector3(-0.1f, -0.1f, 0), 0.1f);
     }
-    private void OnMouseExit(){
+    protected void OnMouseExit(){
         if (!isPushed) return;
         isPushed = false;
         mContents.scaleBy(new Vector3(0.1f, 0.1f, 0), 0.1f);
     }
-    private void OnMouseUp(){
+    protected void OnMouseUp(){
         if (!isPushed) return;
         isPushed = false;
         mContents.scaleBy(new Vector3(0.1f, 0.1f, 0), 0.1f);
