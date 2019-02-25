@@ -12,7 +12,6 @@ public class BrowseScoreListMain : MonoBehaviour {
         tOption.contentSize = new Vector2(12, 6);
         tOption.doubleTap = false;
         tOption.sortable = true;
-        tOption.designatedLayer = true;
         tScrollView.init(tList, tOption);
 
         Subject.addObserver(new Observer("browseScoreListMain", (message) =>{

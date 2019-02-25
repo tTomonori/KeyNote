@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using UnityEngine.UI;
 
 public partial class MyBehaviour : MonoBehaviour{
     /// <summary>
@@ -104,26 +104,29 @@ public partial class MyBehaviour : MonoBehaviour{
     }
     private IEnumerator opacityDelta(float delta, float duration, Action callback){
         //透明度を変化させるcomponent
-        SpriteRenderer[] tSprites = GetComponentsInChildren<SpriteRenderer>();
-        TextMesh[] tTexts = GetComponentsInChildren<TextMesh>();
+        List<object> tList = new List<object>();
+        foreach (SpriteRenderer tC in GetComponentsInChildren<SpriteRenderer>()) tList.Add(tC);
+        foreach (TextMesh tC in GetComponentsInChildren<TextMesh>()) tList.Add(tC);
+        foreach (Image tC in GetComponentsInChildren<Image>()) tList.Add(tC);
+        foreach (Text tC in GetComponentsInChildren<Text>()) tList.Add(tC);
 
         float tLeftTime = duration;
         float tLeftDistance = delta;
         while (true){
             tLeftTime -= Time.deltaTime;
             if (tLeftTime <= 0){//fade完了
-                foreach(SpriteRenderer tSprite in tSprites)
-                    tSprite.color = new Color(tSprite.color.r, tSprite.color.g, tSprite.color.b, tSprite.color.a + tLeftDistance);
-                foreach(TextMesh tText in tTexts)
-                    tText.color = new Color(tText.color.r, tText.color.g, tText.color.b, tText.color.a + tLeftDistance);
+                foreach(object tO in tList){
+                    Color tColor = (Color)tO.GetType().GetProperty("color").GetValue(tO,null);
+                    tO.GetType().GetProperty("color").SetValue(tO, new Color(tColor.r, tColor.g, tColor.b, tColor.a + tLeftDistance),null);
+                }
                 if (callback != null) callback();
                 yield break;
             }
             float tDelta = delta * (Time.deltaTime / duration);
-            foreach (SpriteRenderer tSprite in tSprites)
-                tSprite.color = new Color(tSprite.color.r, tSprite.color.g, tSprite.color.b, tSprite.color.a + tDelta);
-            foreach (TextMesh tText in tTexts)
-                tText.color = new Color(tText.color.r, tText.color.g, tText.color.b, tText.color.a + tDelta);
+            foreach (object tO in tList){
+                Color tColor = (Color)tO.GetType().GetProperty("color").GetValue(tO, null);
+                tO.GetType().GetProperty("color").SetValue(tO, new Color(tColor.r, tColor.g, tColor.b, tColor.a + tDelta), null);
+            }
             tLeftDistance -= tDelta;
             yield return null;
         }

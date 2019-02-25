@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using UnityEngine.UI;
 
 public partial class MyScrollView : MyBehaviour {
     //このオブジェクトを写しているカメラ
@@ -114,7 +115,11 @@ public partial class MyScrollView : MyBehaviour {
             mOption.doubleTapTime = 0;
             mOption.doubleTapSort = false;
         }
-        if (mOption.designatedLayer) setDesignatedLayer();
+        //マスク
+        gameObject.AddComponent<RectMask2D>();
+        RectTransform tRect = gameObject.GetComponent<RectTransform>();
+        tRect.sizeDelta = mOption.contentSize;
+        tRect.pivot = new Vector2(0, 1);
 
         mDataList = aDataList;
         mState = new MyScrollViewWaitState(this);
@@ -137,26 +142,6 @@ public partial class MyScrollView : MyBehaviour {
         mElements = new List<ElementTuple>();
 
         initElements();
-    }
-    //専用のレイヤーを使う
-    private void setDesignatedLayer(){
-        Camera tMainCamera = mCamera;
-        mCamera = MyBehaviour.create<MyBehaviour>().gameObject.AddComponent<Camera>();
-        mCamera.name = "scrollViewCamera";
-        mCamera.transform.parent = this.transform;
-        mCamera.transform.localPosition = new Vector3(mOption.contentSize.x / 2, -mOption.contentSize.y / 2, -1000);
-        Vector3 tMainLB = tMainCamera.ViewportToWorldPoint(new Vector3(0, 0));
-        Vector3 tMainRT = tMainCamera.ViewportToWorldPoint(new Vector3(1, 1));
-        Rect tMainCameraWorld = new Rect(new Vector2(tMainLB.x, tMainRT.y), new Vector2(tMainRT.x - tMainLB.x, tMainRT.y - tMainLB.y));
-        mCamera.rect = new Rect(tMainCamera.WorldToViewportPoint(new Vector2(this.positionX, this.positionY - mOption.contentSize.y)),
-                               new Vector2(mOption.contentSize.x / tMainCameraWorld.width, mOption.contentSize.y / tMainCameraWorld.height));
-        mCamera.orthographicSize = mOption.contentSize.y / 2;
-        mCamera.cullingMask = 0;
-        tMainCamera.cullingMask &= ~(1 << mDesignatedLayerNumber); 
-        mCamera.cullingMask |= (1 << mDesignatedLayerNumber);
-        mCamera.orthographic = true;
-        mCamera.clearFlags = CameraClearFlags.Depth;
-        changeLayer(mDesignatedLayerNumber);
     }
     private void Update(){
         if (mOption == null) return;
@@ -270,8 +255,6 @@ public partial class MyScrollView : MyBehaviour {
         //要素生成
         ElementTuple tTuple = new ElementTuple(aIndex, tElementNum, mDataList.createElement(tElementNum));
         tTuple.element.name = "myScrollViewElement " + aIndex.ToString();
-        //レイヤー
-        if (mOption.designatedLayer) tTuple.element.changeLayer(mDesignatedLayerNumber);
         //シーンに追加
         tTuple.element.transform.parent = mContent.transform;
         tTuple.element.transform.SetParent(mContent.transform, false);
@@ -387,11 +370,7 @@ public partial class MyScrollView : MyBehaviour {
         public float doubleTapTime = 0.2f;
         /// <summary>ダブルタップでソート機能を起動</summary>
         public bool doubleTapSort = false;
-        /// <summary>専用のレイヤーを生成して表示する</summary>
-        public bool designatedLayer = false;
     }
-    //専用レイヤーの番号
-    static public int mDesignatedLayerNumber = 31;
     public enum scrollDirection{
         vertical,horizontal
     }

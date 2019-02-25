@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreItem : MyScrollViewElement {
-    [SerializeField] private TextMesh mTitle;
+    [SerializeField] private Text mTitle;
     [SerializeField] private HideButton mEditButton;
     public void set(string aTitle,Arg aParameters){
         mTitle.text = aTitle;
