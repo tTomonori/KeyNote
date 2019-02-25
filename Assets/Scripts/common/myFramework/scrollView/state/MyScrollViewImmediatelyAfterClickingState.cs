@@ -33,7 +33,7 @@ public partial class MyScrollView{
             }
             //ダブルタップ判定
             if (tTouches[0].state != MyTouchState.begin) return;
-            if (!parent.contains(tTouches[0].position)) return;
+            if (!parent.targeting(tTouches[0].position)) return;
             ElementTuple tTuple = parent.getElement(tTouches[0].position);
             if(mTuple.index==tTuple.index){
                 //１回目と２回目で同じ要素をタップ

@@ -147,18 +147,20 @@ public partial class MyScrollView : MyBehaviour {
         if (mOption == null) return;
         mState.update();
     }
-    //マウスによるスクロール
+    //マウスホイールによるスクロール
     private void scrollByWheel(){
+        Vector3 tMousePosition = mCamera.ScreenToWorldPoint(Input.mousePosition);
+        if (!overlap(new Vector2(tMousePosition.x, tMousePosition.y))) return;
+        //カーソルがビュー上にある時のみ適用
         scrollPositionVector -= Input.mouseScrollDelta;
     }
     //ドラッグによるスクロール
     private void scrollByDrag(){
         MyTouchInfo[] tInfos = MyTouchInput.getTouch(mCamera);
-        if(tInfos.Count()>0){
-            if(tInfos[0].state== MyTouchState.moved){
-                scrollPositionVector += new Vector2(-tInfos[0].deltaPosition.x, tInfos[0].deltaPosition.y);
-            }
-        }
+        if (tInfos.Count() == 0) return;
+        if (tInfos[0].state != MyTouchState.moved) return;
+        //ドラッグ操作した時のみ適用
+        scrollPositionVector += new Vector2(-tInfos[0].deltaPosition.x, tInfos[0].deltaPosition.y);
     }
     //スクロールしすぎた時の調整
     private void remediateScrollPosition(){
@@ -276,14 +278,18 @@ public partial class MyScrollView : MyBehaviour {
         if (mDataList.lastNum < tNum) return null;
         return tNum;
     }
-    //指定した座標がこのオブジェクトに含まれている
-    private bool contains(Vector2 aPosition){
-        //if (aPosition.x < this.transform.position.x) return false;
-        //if (this.transform.position.x + mOption.contentSize.x < aPosition.x) return false;
-        //if (aPosition.y < this.transform.position.y-mOption.contentSize.y) return false;
-        //if (this.transform.position.y < aPosition.y) return false;
+    //指定した座標がこのオブジェクトに衝突している
+    private bool targeting(Vector2 aPosition){
         Collider2D tCollider = Physics2D.OverlapPoint(aPosition);
         return (tCollider == mCollider);
+    }
+    //指定した座標がこのオブジェクトに含まれている
+    private bool overlap(Vector2 aPosition){
+        if (aPosition.x < this.transform.position.x) return false;
+        if (this.transform.position.x + mOption.contentSize.x < aPosition.x) return false;
+        if (aPosition.y < this.transform.position.y-mOption.contentSize.y) return false;
+        if (this.transform.position.y < aPosition.y) return false;
+        return true;
     }
     //指定したワールド座標に配置しているelementを取得
     private ElementTuple getElement(Vector2 aPosition){

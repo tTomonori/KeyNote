@@ -15,7 +15,7 @@ public partial class MyScrollView{
             }
             //タッチ操作開始
             if (tTouches[0].state != MyTouchState.begin) return;
-            if (!parent.contains(tTouches[0].position)) return;
+            if (!parent.targeting(tTouches[0].position)) return;
             parent.changeState(new MyScrollViewLongTapState(parent));
         }
     }
