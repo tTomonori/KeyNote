@@ -51,10 +51,9 @@ static public class DataFolder {
     }
     //背景取得
     static public Sprite loadBackImage(string aFileName){
-        Resources.Load<Sprite>("sprites/star/star");
         WWW tW = new WWW("file:///" + DataFolder.path + "/back/" + aFileName);
         while (!tW.isDone) { }//読み込み完了まで待機
-        return Sprite.Create(tW.texture, new Rect(new Vector2(0, 0), tW.texture.texelSize), new Vector2(0.5f, 0.5f));
+        return Sprite.Create(tW.texture, new Rect(new Vector2(0, 0), new Vector2(tW.texture.width,tW.texture.height)), new Vector2(0.5f, 0.5f));
     }
 
     //譜面データフォルダ内の譜面ファイル名の一覧を取得

@@ -6,6 +6,8 @@ public partial class ScoreHandler : MyBehaviour{
     private KeyNotePlayer mPlayer;
     private MusicScore mScore;
     private ScoreHandleState mState;
+    //背景画像
+    private SpriteRenderer mBackground;
     private void Awake(){
         name = "scoreHandler";
         mState = new InitialState(this);
@@ -27,6 +29,8 @@ public partial class ScoreHandler : MyBehaviour{
         tPlayer.setAudio(DataFolder.loadMusic(MusicScoreData.mMusicFileName));
         //譜面と曲を同期させるシステム
         mPlayer = new KeyNotePlayer(mScore,tPlayer);
+        //背景
+        resetScoreBackground();
     }
     public void set(MusicScoreFileData aData,ScoreDifficult aDifficult){
         //譜面
@@ -39,6 +43,8 @@ public partial class ScoreHandler : MyBehaviour{
         tPlayer.setAudio(DataFolder.loadMusic(MusicScoreData.mMusicFileName));
         //譜面と曲を同期させるシステム
         mPlayer = new KeyNotePlayer(mScore, tPlayer);
+        //背景
+        resetScoreBackground();
     }
     //譜面の位置
     public void show(KeyTime aTime){
@@ -49,6 +55,32 @@ public partial class ScoreHandler : MyBehaviour{
         if (mState != null) mState.exit();
         mState = aState;
         mState.enter();
+    }
+    //譜面の背景画像更新
+    public void resetScoreBackground(){
+        Sprite tSprite;
+        if (MusicScoreData.mBack != "")
+            tSprite = DataFolder.loadBackImage(MusicScoreData.mBack);
+        else{
+            if (Random.value > 0.5)
+                tSprite = Resources.Load<Sprite>("sprites/default/blueScore");
+            else 
+                tSprite = Resources.Load<Sprite>("sprites/default/greenScore");
+        }
+        setBackground(tSprite);
+    }
+    //背景画像設定
+    public void setBackground(Sprite aSprite){
+        if(mBackground==null){
+            MyBehaviour tBackground = MyBehaviour.create<MyBehaviour>();
+            tBackground.name = "background";
+            tBackground.transform.parent = this.transform;
+            tBackground.position = new Vector3(0, 0, 10);
+            mBackground = tBackground.gameObject.AddComponent<SpriteRenderer>();
+            mBackground.color = new Color(0.8f, 0.8f, 0.8f);
+        }
+        mBackground.sprite = aSprite;
+        mBackground.transform.localScale = new Vector3(16 / aSprite.bounds.size.x, 16 / aSprite.bounds.size.x, 1);
     }
     private void Update(){
         mState.update();

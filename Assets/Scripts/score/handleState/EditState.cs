@@ -80,6 +80,8 @@ partial class ScoreHandler{
                         MusicScoreData.mThumbnail = tData.thumbnail;
                         MusicScoreData.mBack = tData.back;
                         MusicScoreData.mMovie = tData.movie;
+                        //譜面の背景更新
+                        parent.resetScoreBackground();
                     }
                     parent.changeState(new EditState(parent));
                 });

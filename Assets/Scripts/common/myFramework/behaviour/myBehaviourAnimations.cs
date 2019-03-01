@@ -34,10 +34,38 @@ public partial class MyBehaviour : MonoBehaviour{
     /// 移動させる
     /// </summary>
     /// <param name="delta">移動量</param>
+    /// <param name="speed">移動速度</param>
+    /// <param name="callback">移動終了時関数</param>
+    public Coroutine moveByWithSpeed(Vector3 delta, float speed, Action callback = null){
+        return StartCoroutine(moveDelta(delta, delta.magnitude / speed, callback));
+    }
+    /// <summary>
+    /// 移動させる
+    /// </summary>
+    /// <param name="delta">移動量</param>
     /// <param name="duration">移動時間</param>
     /// <param name="callback">移動終了時関数</param>
     public Coroutine moveBy(Vector3 delta, float duration, Action callback = null){
         return StartCoroutine(moveDelta(delta, duration, callback));
+    }
+    /// <summary>
+    /// 移動させる
+    /// </summary>
+    /// <param name="destination">移動先座標</param>
+    /// <param name="speed">移動速度</param>
+    /// <param name="callback">移動終了時関数</param>
+    public Coroutine moveToWithSpeed(Vector3 destination, float speed, Action callback = null){
+        Vector3 delta = destination - position;
+        return StartCoroutine(moveDelta(delta, delta.magnitude / speed, callback));
+    }
+    /// <summary>
+    /// 移動させる
+    /// </summary>
+    /// <param name="destination">移動先座標</param>
+    /// <param name="duration">移動時間</param>
+    /// <param name="callback">移動終了時関数</param>
+    public Coroutine moveTo(Vector3 destination, float duration, Action callback = null){
+        return StartCoroutine(moveDelta(destination - position, duration, callback));
     }
     private IEnumerator moveDelta(Vector3 delta, float duration, Action callback){
         float tLeftTime = duration;
