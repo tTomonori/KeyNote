@@ -66,6 +66,14 @@ public static partial class MyJson {
             readToNextSense();
             return currentChar;
         }
+        ///次の、指定した文字の前の位置まで読む(readerは指定した文字の位置)
+        private string readToNextSpecificChar(char c){
+            string readed = "";
+            while(true){
+                if (currentChar == c) return readed;
+                readed += nextChar;
+            }
+        }
         ///指定した文字の位置まで読み進める(次の、意味を持つcharが指定した文字でないならエラーを吐く)(readerの位置はその文字)
         private void search(char c){
             readToNextSense();
@@ -167,6 +175,25 @@ public static partial class MyJson {
                 default:
                     throw new Exception("想定不能なエラー : 「"+currentChar+"」 != t nor f");
             }
+        }
+        ///Enumを読む
+        private object readEnum(){
+            search("<");
+            readOneChar();//<を読む
+            //Enumの型名
+            string type = readToNextSpecificChar('>');
+            readOneChar();//>を読む
+            char next = nextChar;
+            if(next!='('){
+                throw new Exception("不正なjson文字列 : invalid char 「" + next + "」, expected 「 ( 」");
+            }
+            //Enumの値
+            string value = readToNextSpecificChar(')');
+            next = nextChar;
+            if (next != ')'){
+                throw new Exception("不正なjson文字列 : invalid char 「" + next + "」, expected 「 ) 」");
+            }
+            return Enum.Parse(Type.GetType(type), value);
         }
         ///Listを読む
         private object readList(){
@@ -326,6 +353,8 @@ public static partial class MyJson {
                 case '+':
                 case '-':
                     return readNumber();
+                case '<'://Enum
+                    return readEnum();
                 default://不正
                     throw new Exception("不正なjson文字列 : invalid value start from 「"+currenSense()+"」");
             }

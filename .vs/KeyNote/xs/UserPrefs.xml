@@ -1,10 +1,12 @@
 ﻿<Properties StartupConfiguration="{FAA2A704-9CBD-045F-2725-8A96BDA8B211}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/menu/browseScore/BrowseScoreListMain.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/common/myFramework/MyJsonSerialize.cs">
     <Files>
-      <File FileName="Assets/Scripts/common/myFramework/scrollView/MyScrollView.cs" Line="154" Column="28" />
+      <File FileName="Assets/Scripts/common/myFramework/scrollView/MyScrollView.cs" Line="393" Column="2" />
       <File FileName="Assets/Scripts/menu/browseScore/BrowseScoreListMain.cs" Line="42" Column="2" />
       <File FileName="Assets/Scripts/menu/browseScore/ScoreItemList.cs" Line="14" Column="1" />
       <File FileName="Assets/Scripts/menu/browseScore/ScoreItem.cs" Line="4" Column="22" />
+      <File FileName="Assets/Scripts/common/myFramework/MyJsonSerialize.cs" Line="148" Column="2" />
+      <File FileName="Assets/Scripts/common/myFramework/MyJsonDeserialize.cs" Line="10" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
