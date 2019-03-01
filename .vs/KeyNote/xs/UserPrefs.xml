@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{FAA2A704-9CBD-045F-2725-8A96BDA8B211}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/common/myFramework/behaviour/myBehaviourAnimations.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/title/TitleMain.cs">
     <Files>
       <File FileName="Assets/Scripts/score/score/MusicScore.cs" Line="50" Column="3" />
       <File FileName="Assets/Scripts/score/handleState/EditState.cs" Line="84" Column="55" />
@@ -8,8 +8,10 @@
       <File FileName="Assets/Scripts/selection/details/MusicDetailsDisplay.cs" Line="76" Column="124" />
       <File FileName="Assets/Scripts/edit/EditLyricsMain.cs" Line="10" Column="1" />
       <File FileName="Assets/Scripts/common/data/DataFolder.cs" Line="56" Column="116" />
-      <File FileName="Assets/Scripts/common/MovingBack.cs" Line="17" Column="22" />
-      <File FileName="Assets/Scripts/common/myFramework/behaviour/myBehaviourAnimations.cs" Line="41" Column="6" />
+      <File FileName="Assets/Scripts/common/MovingBack.cs" Line="21" Column="2" />
+      <File FileName="Assets/Scripts/common/myFramework/behaviour/myBehaviourAnimations.cs" Line="56" Column="39" />
+      <File FileName="Assets/Scripts/common/ui/LightButton.cs" Line="15" Column="29" />
+      <File FileName="Assets/Scripts/title/TitleMain.cs" Line="11" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
