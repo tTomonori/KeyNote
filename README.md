@@ -17,3 +17,7 @@ http://gahag.net/010282-wave-music/
 http://gahag.net/004885-music-shooting-star/  
 http://gahag.net/010231-milky-way-music/  
 http://gahag.net/007522-parchment-music-note/ (加工済み)
+
+アイコン  
+http://gahag.net/010234-books-educatetrain/ (加工済み)  
+http://gahag.net/008200-music-nots-background/ (加工済み)
