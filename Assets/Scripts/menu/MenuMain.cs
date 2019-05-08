@@ -23,6 +23,13 @@ public class MenuMain : MonoBehaviour {
                 MySceneManager.closeScene("menu");
                 return;
             }
+            if (message.name == "quitButtonPushed"){//ゲーム終了
+                #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;//エディタ用
+                #endif
+                UnityEngine.Application.Quit();//パッケージ版用
+                return;
+            }
         }));
 	}
 	void Update () {
