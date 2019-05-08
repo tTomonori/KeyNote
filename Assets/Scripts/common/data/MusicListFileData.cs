@@ -75,6 +75,7 @@ public class MusicListFileData {
             list = tList;
             return;
         }
+        addScore(aNewTitle, aNewFile);
     }
     //ハイスコア更新(更新できたらtrue)
     public bool updatePoint(string aFile,ScoreDifficult aDifficult,float aPoint){
