@@ -21,6 +21,11 @@ public class KeyNotePlayer {
     public float mCurrentSecond{
         get { return mPlayer.mCurrentSecond; }
     }
+    //再生速度
+    public float mPitch{
+        get { return mPlayer.mPitch; }
+        set { mPlayer.mPitch = value; }
+    }
     public KeyNotePlayer(MusicScore aScore,MusicPlayer aPlayer){
         mBehaviour = MyBehaviour.create<MyBehaviour>();
         mBehaviour.name = "KeyNotePlayer's CoroutineRunner";

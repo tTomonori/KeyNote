@@ -17,9 +17,28 @@ public class EditMain : MonoBehaviour {
         mHandler.set(tData, ScoreDifficult.edit);
         mHandler.show(new KeyTime(0));
         mHandler.changeState(new ScoreHandler.EditModeState(mHandler));
+
+        //再生速度変更イベント
+        Subject.addObserver(new Observer("changeAudioEventMonitor", (message) =>{
+            if (message.name != "audioSpeedListPushed") return;
+            switch (message.getParameter<string>("selected")){
+                case "1倍速":
+                    mHandler.mPlayer.mPitch = 1;
+                    break;
+                case "3/4倍速":
+                    mHandler.mPlayer.mPitch = 3f / 4f;
+                    break;
+                case "1/2倍速":
+                    mHandler.mPlayer.mPitch = 1f / 2f;
+                    break;
+            }
+        }));
 	}
 	
 	void Update () {
 		
 	}
+    private void OnDestroy(){
+        Subject.removeObserver("changeAudioEventMonitor");
+    }
 }

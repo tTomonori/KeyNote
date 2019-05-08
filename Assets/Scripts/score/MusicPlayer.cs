@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Audio;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MusicPlayer : MyBehaviour {
+    private AudioMixer mMixer;
+    private AudioMixerGroup mMixerGroup;
     private AudioSource mAudio;
     //音声の現在位置
     public float mCurrentSecond{
@@ -22,10 +26,24 @@ public class MusicPlayer : MyBehaviour {
     public float mLength{
         get { return mAudio.clip.length; }
     }
-	void Awake () {
+    //再生速度(音の高さはそのまま)
+    public float mPitch{
+        get { return mAudio.pitch; }
+        set {
+            if (mMixer == null){
+                //再生速度調整用(これを設定すると音声の先頭に雑音が入るので、必要な時のみロードする)
+                mMixer = Resources.Load<AudioMixer>("myMixer");
+                mMixerGroup = mMixer.FindMatchingGroups("editorMixer")[0];
+                mAudio.outputAudioMixerGroup = mMixerGroup;
+            }
+            mAudio.pitch = value;
+            mMixer.SetFloat("shift", 1 / value);
+        }
+    }
+    void Awake () {
         name = "musicPlayer";
         mAudio = gameObject.AddComponent<AudioSource>();
-	}
+    }
     //音声ファイル読み込み
     public void loadMusic(){
         

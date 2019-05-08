@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public partial class ScoreHandler : MyBehaviour{
-    private KeyNotePlayer mPlayer;
+    public KeyNotePlayer mPlayer;
     private MusicScore mScore;
     private ScoreHandleState mState;
     //背景画像
