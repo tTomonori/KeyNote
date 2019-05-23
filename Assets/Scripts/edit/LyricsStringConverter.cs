@@ -61,19 +61,22 @@ static public class LyricsStringConverter {
             return decomposeKey(tKey, out oConsonant, out oVowel);
         }
         //歌詞から母音子音決定
-        switch(analysePhonemeLanguage(oLyrics[0])){
-            case PhonemeLanguage.ja:
-                decomposeSyllable(extractTopSyllable(StringCaseConverter.ToHiragana(oLyrics)), out oConsonant, out oVowel);
-                return "";
-            case PhonemeLanguage.en:
-                decomposeAlphabet(StringCaseConverter.ToLower(oLyrics), out oConsonant, out oVowel);
-                return "";
-            case PhonemeLanguage.other:
-                oConsonant = "";
-                oVowel = "";
-                return "";
+        for(int i = 0; i < oLyrics.Length; i++){
+            switch (analysePhonemeLanguage(oLyrics[i])){
+                case PhonemeLanguage.ja:
+                    decomposeSyllable(extractTopSyllable(StringCaseConverter.ToHiragana(oLyrics.Substring(i))), out oConsonant, out oVowel);
+                    return "";
+                case PhonemeLanguage.en:
+                    decomposeAlphabet(StringCaseConverter.ToLower(oLyrics.Substring(i)), out oConsonant, out oVowel);
+                    return "";
+                case PhonemeLanguage.other:
+                    continue;
+            }
         }
-        throw new Exception("LyricsStringConverter : ここは実行されないはず");
+        oConsonant = "";
+        oVowel = "";
+        return "";
+        //throw new Exception("LyricsStringConverter : ここは実行されないはず");
     }
     //次の一音を読み込む
     static private string loadNextSyllableInput(out string oLyrics,out string oKey){

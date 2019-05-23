@@ -29,6 +29,7 @@ sysinfo.txt
 *.unitypackage
 
 # My Setting
+Packages
 .DS_Store
 KeyNote.app
 data/back/*
