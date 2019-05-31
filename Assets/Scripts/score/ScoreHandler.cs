@@ -82,6 +82,20 @@ public partial class ScoreHandler : MyBehaviour{
         mBackground.sprite = aSprite;
         mBackground.transform.localScale = new Vector3(16 / aSprite.bounds.size.x, 16 / aSprite.bounds.size.x, 1);
     }
+    //キー入力
+    public bool hit(KeyCode aKey, float aSecond, Note.HitNoteType aType,string aHitSound,string aMissSound){
+        if(mScore.hit(aKey, mPlayer.mCurrentSecond, Note.HitNoteType.delete)){
+            //hit
+            if (aHitSound != "")
+                SoundPlayer.playSe(aHitSound);
+            return true;
+        }else{
+            //miss
+            if (aMissSound != "")
+                SoundPlayer.playSe(aMissSound);
+            return false;
+        }
+    }
     private void Update(){
         mState.update();
     }

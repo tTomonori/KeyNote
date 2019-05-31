@@ -11,7 +11,7 @@ partial class ScoreHandler {
         public override void update(){
             //キー入力
             foreach(KeyCode tKey in KeyMonitor.getInputKey()){
-                parent.mScore.hit(tKey,parent.mPlayer.mCurrentSecond,Note.HitNoteType.delete);
+                parent.hit(tKey,parent.mPlayer.mCurrentSecond,Note.HitNoteType.delete,"tambourine","castanet");
             }
             //Miss判定
             parent.mScore.missHit(parent.mPlayer.mCurrentSecond - TypeEvaluation.kWorstDifference);

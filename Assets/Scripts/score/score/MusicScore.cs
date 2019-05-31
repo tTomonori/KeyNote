@@ -127,15 +127,14 @@ public class MusicScore : MyBehaviour {
     public void adjustPozitionToMusicTime(float aMusicTime){
         show(MusicScoreData.musicTimeToQuarterBeat(aMusicTime));
     }
-    //キー入力
-    public void hit(KeyCode aKey,float aSecond,Note.HitNoteType aType){
+    //キー入力(hitしたらtrue)
+    public bool hit(KeyCode aKey,float aSecond,Note.HitNoteType aType){
         foreach(Bar tBar in mBars){
             if (tBar.hit(aKey, aSecond, aType)){
-                SoundPlayer.playSe("tambourine");//hit時のse
-                return;
+                return true;
             }
         }
-        SoundPlayer.playSe("castanet");//外した時のse
+        return false;
     }
     //miss判定
     public void missHit(float aSecond){

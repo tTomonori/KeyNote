@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class ScoreItem : MyScrollViewElement {
     [SerializeField] private Text mTitle;
     [SerializeField] private HideButton mEditButton;
+    private void Start(){
+        mEditButton.mActionChildrenOnly = true;
+    }
     public void set(string aTitle,Arg aParameters){
         mTitle.text = aTitle;
         mEditButton.mParameters = aParameters;
