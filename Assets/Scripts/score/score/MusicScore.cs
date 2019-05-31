@@ -130,9 +130,12 @@ public class MusicScore : MyBehaviour {
     //キー入力
     public void hit(KeyCode aKey,float aSecond,Note.HitNoteType aType){
         foreach(Bar tBar in mBars){
-            if (tBar.hit(aKey,aSecond,aType))
+            if (tBar.hit(aKey, aSecond, aType)){
+                SoundPlayer.playSe("tambourine");//hit時のse
                 return;
+            }
         }
+        SoundPlayer.playSe("castanet");//外した時のse
     }
     //miss判定
     public void missHit(float aSecond){

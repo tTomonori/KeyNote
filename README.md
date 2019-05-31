@@ -21,3 +21,7 @@ http://gahag.net/007522-parchment-music-note/ (加工済み)
 アイコン  
 http://gahag.net/010234-books-educatetrain/ (加工済み)  
 http://gahag.net/008200-music-nots-background/ (加工済み)
+
+音声
+https://dova-s.jp/se/play847.html(加工済み)
+(OtoLogic)https://otologic.jp/free/se/instruments01.html(加工済み)
