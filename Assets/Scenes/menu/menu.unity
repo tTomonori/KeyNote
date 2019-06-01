@@ -436,6 +436,7 @@ MonoBehaviour:
   mPushedMessage: 
   mGroup: 
   mActivated: 1
+  mActionChildrenOnly: 1
 --- !u!1 &812599324
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,6 +555,7 @@ MonoBehaviour:
   mPushedMessage: 
   mGroup: 
   mActivated: 1
+  mActionChildrenOnly: 1
 --- !u!1 &1156408300
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,6 +732,7 @@ MonoBehaviour:
   mPushedMessage: backMenuButtonPushed
   mGroup: 
   mActivated: 1
+  mActionChildrenOnly: 1
 --- !u!1 &1244968433
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,6 +901,11 @@ PrefabInstance:
     - target: {fileID: 1821187151102970, guid: 65fefb6b571184db5b3624de6dc46aac, type: 3}
       propertyPath: m_Name
       value: quitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867887246791708, guid: 65fefb6b571184db5b3624de6dc46aac,
+        type: 3}
+      propertyPath: mActionChildrenOnly
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4819850190521216, guid: 65fefb6b571184db5b3624de6dc46aac, type: 3}
       propertyPath: m_LocalPosition.x
