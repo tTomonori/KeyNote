@@ -11,8 +11,8 @@ public struct KeyTime {
         get{
             float tFew = mQuarterBeat - Mathf.Floor(mQuarterBeat);
             if (tFew < 0.2) return Mathf.Floor(mQuarterBeat);
-            if (tFew < 0.4) return Mathf.Floor(mQuarterBeat)+1/3;
-            return Mathf.Floor(mQuarterBeat)+2/3;
+            if (tFew < 0.4) return Mathf.Floor(mQuarterBeat)+1f/3f;
+            return Mathf.Floor(mQuarterBeat)+2f/3f;
         }
     }
     //三連符に属する
