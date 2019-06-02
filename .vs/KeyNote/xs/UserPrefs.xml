@@ -1,19 +1,16 @@
 ﻿<Properties StartupConfiguration="{EC0A1FA8-C302-50B5-51CA-B75CC59687BF}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/menu/browseScore/ScoreItem.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/score/ScoreHandler.cs">
     <Files>
-      <File FileName="Assets/Scripts/score/handleState/PlayState.cs" Line="14" Column="89" />
-      <File FileName="Assets/Scripts/score/score/MusicScore.cs" Line="138" Column="1" />
-      <File FileName="Assets/Scripts/score/ScoreHandler.cs" Line="86" Column="11" />
+      <File FileName="Assets/Scripts/score/score/MusicScore.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/score/ScoreHandler.cs" Line="91" Column="25" />
       <File FileName="Assets/Scripts/score/handleState/ScoreHandleState.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/score/handleState/PracticePlayState.cs" Line="32" Column="1" />
-      <File FileName="Assets/Scripts/score/handleState/EditState.cs" Line="17" Column="45" />
+      <File FileName="Assets/Scripts/score/handleState/PracticePlayState.cs" Line="32" Column="116" />
       <File FileName="Assets/Scripts/score/handleState/EditModeState.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/menu/browseScore/ScoreItemList.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/menu/browseScore/ScoreItem.cs" Line="11" Column="47" />
+      <File FileName="Assets/Scripts/score/handleState/EditPlayState.cs" Line="21" Column="50" />
+      <File FileName="Assets/Scripts/score/handleState/TestPlayState.cs" Line="21" Column="120" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.KeyNote PreferredExecutionTarget="Unity.Editor" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
