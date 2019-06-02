@@ -29,7 +29,7 @@ partial class ScoreHandler {
             }
             //キー入力
             foreach(KeyCode tKey in KeyMonitor.getInputKey()){
-                parent.hit(tKey, parent.mPlayer.mCurrentSecond, Note.HitNoteType.delete, "tambourine", "castanet");
+                parent.hit(tKey, parent.getCurrentTime(), Note.HitNoteType.delete, "tambourine", "castanet");
             }
         }
         public override void getMessage(Message aMessage){

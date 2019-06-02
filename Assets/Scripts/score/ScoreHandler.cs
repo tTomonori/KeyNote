@@ -84,7 +84,7 @@ public partial class ScoreHandler : MyBehaviour{
     }
     //キー入力
     public bool hit(KeyCode aKey, float aSecond, Note.HitNoteType aType,string aHitSound,string aMissSound){
-        if(mScore.hit(aKey, mPlayer.mCurrentSecond, Note.HitNoteType.delete)){
+        if(mScore.hit(aKey, aSecond, Note.HitNoteType.delete)){
             //hit
             if (aHitSound != "")
                 SoundPlayer.playSe(aHitSound);
@@ -94,6 +94,15 @@ public partial class ScoreHandler : MyBehaviour{
             if (aMissSound != "")
                 SoundPlayer.playSe(aMissSound);
             return false;
+        }
+    }
+    //現在の譜面時間を取得
+    public float getCurrentTime(){
+        float tCurrentScond = mPlayer.mCurrentSecond;
+        if (tCurrentScond <= 0){
+            return MusicScoreData.quarterBeatToMusicTime(mScore.mCurrentQuarterBeat);
+        }else{
+            return tCurrentScond;
         }
     }
     private void Update(){
