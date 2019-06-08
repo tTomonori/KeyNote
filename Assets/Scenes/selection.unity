@@ -3484,6 +3484,11 @@ PrefabInstance:
       propertyPath: mSelections.Array.data[1]
       value: "\u30A4\u30F3\u30C8\u30ED"
       objectReference: {fileID: 0}
+    - target: {fileID: 114996069643628694, guid: f7322fa2bd43840418222c19b5d37ab7,
+        type: 3}
+      propertyPath: mActionChildrenOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 102113397397807904, guid: f7322fa2bd43840418222c19b5d37ab7,
         type: 3}
       propertyPath: m_FontSize

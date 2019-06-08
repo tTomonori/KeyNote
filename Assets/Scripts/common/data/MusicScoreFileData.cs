@@ -129,6 +129,7 @@ public class MusicScoreFileData {
     //保存する
     public void save(){
         //元のファイル削除
+        DataFolder.removeScoreData(loadPath);
         //書き込み
         DataFolder.writeScoreData(mData, savePath);
         loadPath = savePath;

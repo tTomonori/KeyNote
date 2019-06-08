@@ -72,6 +72,11 @@ static public class DataFolder {
     static public void writeScoreData(Arg aData,string aFileName){
         MyJson.serializeToFile(aData.dictionary,DataFolder.path + "/score/" + aFileName + ".json", true);
     }
+    //譜面データ削除
+    static public void removeScoreData(string aFileName){
+        FileInfo tFile = new FileInfo(DataFolder.path + "/score/" + aFileName + ".json");
+        tFile.Delete();
+    }
     //曲リストデータ書き込み
     static public void writeListData(Arg aData){
         MyJson.serializeToFile(aData.dictionary, DataFolder.path + "/list.json", true);

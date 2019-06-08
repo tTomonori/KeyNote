@@ -234,6 +234,7 @@ MonoBehaviour:
   mPushedMessage: 
   mGroup: 
   mActivated: 1
+  mActionChildrenOnly: 0
   mName: 
 --- !u!58 &33648034
 CircleCollider2D:
@@ -894,6 +895,7 @@ MonoBehaviour:
   mPushedMessage: 
   mGroup: 
   mActivated: 1
+  mActionChildrenOnly: 0
   mName: 
 --- !u!58 &296762319
 CircleCollider2D:
@@ -1027,7 +1029,7 @@ Transform:
   - {fileID: 296762317}
   - {fileID: 2007520628}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &338763173
 MonoBehaviour:
@@ -1307,6 +1309,11 @@ PrefabInstance:
         type: 3}
       propertyPath: mSelections.Array.data[1]
       value: "3/4\u500D\u901F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114996069643628694, guid: f7322fa2bd43840418222c19b5d37ab7,
+        type: 3}
+      propertyPath: mActionChildrenOnly
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 102113397397807904, guid: f7322fa2bd43840418222c19b5d37ab7,
         type: 3}
@@ -1800,6 +1807,7 @@ MonoBehaviour:
   mPushedMessage: 
   mGroup: 
   mActivated: 1
+  mActionChildrenOnly: 0
   mName: 
 --- !u!58 &945750034
 CircleCollider2D:
@@ -2017,6 +2025,7 @@ MonoBehaviour:
   mPushedMessage: 
   mGroup: 
   mActivated: 1
+  mActionChildrenOnly: 0
   mName: 
 --- !u!1 &1132024895
 GameObject:
@@ -2521,7 +2530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4819850190521216, guid: 65fefb6b571184db5b3624de6dc46aac, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 102774853030169534, guid: 65fefb6b571184db5b3624de6dc46aac,
         type: 3}
@@ -3048,6 +3057,7 @@ MonoBehaviour:
   mPushedMessage: 
   mGroup: 
   mActivated: 1
+  mActionChildrenOnly: 0
   mName: 
 --- !u!1001 &1692701095
 PrefabInstance:
@@ -3090,7 +3100,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4819850190521216, guid: 65fefb6b571184db5b3624de6dc46aac, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 212241987560444484, guid: 65fefb6b571184db5b3624de6dc46aac,
         type: 3}
@@ -3216,6 +3226,7 @@ MonoBehaviour:
   mPushedMessage: 
   mGroup: 
   mActivated: 1
+  mActionChildrenOnly: 0
   mName: 
 --- !u!1 &1802011168
 GameObject:
@@ -3609,6 +3620,7 @@ MonoBehaviour:
   mPushedMessage: 
   mGroup: 
   mActivated: 1
+  mActionChildrenOnly: 0
   mName: 
 --- !u!1 &2007520627
 GameObject:
@@ -3661,6 +3673,7 @@ MonoBehaviour:
   mPushedMessage: 
   mGroup: 
   mActivated: 1
+  mActionChildrenOnly: 0
   mName: 
 --- !u!58 &2007520630
 CircleCollider2D:
