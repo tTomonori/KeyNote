@@ -185,4 +185,15 @@ static public partial class MusicScoreData {
                     + KeyTime.quarterBeatToSeconds(aQuarterBeat - tBpms[i].get<float>("time"), tBpms[i].get<float>("bpm"))
                              - mMusicDate.margin;
     }
+    //指定したQNのBPMを返す
+    static public float getBpm(float aQuarterBeat){
+        float tBpm = mBpm[0].get<float>("bpm");
+        foreach(Arg tBpmData in mBpm){
+            if (aQuarterBeat < tBpmData.get<float>("time")){
+                return tBpm;
+            }
+            tBpm = tBpmData.get<float>("bpm");
+        }
+        return tBpm;
+    }
 }

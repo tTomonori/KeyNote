@@ -6,7 +6,10 @@ public class MeasureBpmMain : MonoBehaviour {
     private MusicPlayer mPlayer;
     private TextMesh mMarginText;
     private TextMesh mBpmText;
+    private TextMesh mStaticBpmText;
     private float mStartMeasureTime;
+    //margin計算で固定で使うbpm
+    private float mStaticBpm;
     private List<float> mTaps;
 	void Start () {
         Arg tArg = MySceneManager.getArg("measureBpm");
@@ -14,9 +17,13 @@ public class MeasureBpmMain : MonoBehaviour {
         //テキストオブジェクト取得
         mMarginText = GameObject.Find("measuredMarginLabel").GetComponent<MyBehaviour>().findChild<TextMesh>("value");
         mBpmText = GameObject.Find("measuredBpmLabel").GetComponent<MyBehaviour>().findChild<TextMesh>("value");
+        mStaticBpmText = GameObject.Find("measuredStaticMarginLabel").GetComponent<MyBehaviour>().findChild<TextMesh>("value");
         //audio用意
         mPlayer = MyBehaviour.create<MusicPlayer>();
         mPlayer.setAudio(DataFolder.loadMusic(MusicScoreData.mMusicFileName));
+        //margin計算で固定で使うbpm
+        mStaticBpm = tArg.get<float>("staticBpm");
+        GameObject.Find("measuredStaticMarginLabel").GetComponent<MyBehaviour>().findChild<TextMesh>("bpm").text = "(" + mStaticBpm.ToString() + " BPM)";
 
         Subject.addObserver(new Observer("measureBpmMain", (message) =>{
             if(message.name=="endMeasureBpmButtonPushed"){
@@ -47,6 +54,7 @@ public class MeasureBpmMain : MonoBehaviour {
         mPlayer.mCurrentSecond = mStartMeasureTime;
         mMarginText.text = "0";
         mBpmText.text = "0";
+        mStaticBpmText.text = "0";
         mPlayer.play();
     }
     //拍入力
@@ -54,13 +62,16 @@ public class MeasureBpmMain : MonoBehaviour {
         mTaps.Add(mPlayer.mCurrentSecond);
         if (mTaps.Count < 2) return;
         //Bpm計算
-        mBpmText.text = calculateBpm().ToString();
+        float tBpm = calculateBpm();
+        mBpmText.text = tBpm.ToString();
         //Margin計算
-        mMarginText.text = calculateMargin().ToString();
+        mMarginText.text = calculateMargin(tBpm).ToString();
+        //固定BpmでMargin計算
+        mStaticBpmText.text = calculateMargin(mStaticBpm).ToString();
     }
     //margin計算
-    private float calculateMargin(){
-        float tBeatSecond = getBeatLength();
+    private float calculateMargin(float aBpm){
+        float tBeatSecond = 60f/aBpm;//1拍のながさ(second)
         float tBarSecond = tBeatSecond * MusicScoreData.mRhythm;
         List<float> tMargins = new List<float>();
         for (int i = 0; i < mTaps.Count;i++){

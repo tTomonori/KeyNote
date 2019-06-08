@@ -40,7 +40,8 @@ partial class ScoreHandler{
             if (aMessage.name == "measureBpmButtonPushed"){//bpm測定ボタン
                 parent.changeState(new InitialState(parent));
                 MySceneManager.openScene("measureBpm", new Arg(new Dictionary<string,object>(){
-                    {"second",MusicScoreData.quarterBeatToMusicTime(parent.mScore.mCurrentQuarterBeat)}
+                    {"second",MusicScoreData.quarterBeatToMusicTime(parent.mScore.mCurrentQuarterBeat)},
+                    {"staticBpm",MusicScoreData.getBpm(parent.mScore.mCurrentQuarterBeat)}
                 }), null, (obj) =>{
                     parent.changeState(new EditState(parent));
                 });
