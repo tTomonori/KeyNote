@@ -98,11 +98,17 @@ public struct KeyTime {
             if (mQuarterBeat < tTimeOfBeat + 2.5f) return new float[2] { tTimeOfBeat + 2, tTimeOfBeat + 3 };
             if (mQuarterBeat < tTimeOfBeat + 3) return new float[2] { tTimeOfBeat + 3, tTimeOfBeat + 2 };
             if (mQuarterBeat == tTimeOfBeat + 3) return new float[1] { tTimeOfBeat + 3 };
+            if (mQuarterBeat < tTimeOfBeat + 3.5f) {
+                if (aNextIsTriplet)
+                    return new float[2] { tTimeOfBeat + 3, tTimeOfBeat + 4.1f };
+                else
+                    return new float[2] { tTimeOfBeat + 3, tTimeOfBeat + 4 };
+            }
             if (mQuarterBeat < tTimeOfBeat + 4) {
                 if(aNextIsTriplet)
-                    return new float[2] { tTimeOfBeat + 3, tTimeOfBeat + 4.1f };
+                    return new float[2] { tTimeOfBeat + 4.1f, tTimeOfBeat + 3 };
                 else 
-                    return new float[2] { tTimeOfBeat + 3, tTimeOfBeat + 4 };
+                    return new float[2] { tTimeOfBeat + 4, tTimeOfBeat + 3 };
             }
         }
         throw new Exception("KeyTime : 隣接したQN取得でエラー aIsTriplet = "+aIsTriplet+", aNextIsTriplet = "+aNextIsTriplet+
