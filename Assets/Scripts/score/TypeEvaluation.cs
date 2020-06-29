@@ -14,9 +14,9 @@ static public class TypeEvaluation {
         return evaluate(Mathf.Abs(aSeconds1 - aSeconds2));
     }
     static public Evaluation evaluate(float aDifference){
-        if (aDifference < 0.03) return Evaluation.perfect;
-        if (aDifference < 0.07) return Evaluation.great;
-        if (aDifference < 0.1) return Evaluation.good;
+        if (aDifference < 0.04) return Evaluation.perfect;
+        if (aDifference < 0.072) return Evaluation.great;
+        if (aDifference < 0.112) return Evaluation.good;
         if (aDifference < kWorstDifference) return Evaluation.bad;
         return Evaluation.miss;
     }
