@@ -80,15 +80,15 @@ public class MeasureBpmMain : MonoBehaviour {
         float tBeatSecond = 60f/aBpm;//1拍のながさ(second)
         float tBarSecond = tBeatSecond * MusicScoreData.mRhythm;
         List<float> tMargins = new List<float>();
+        float tMeasuredFirstTapSecond;
+        float tMeasuredFirstTapSecondTotal = 0;
         for (int i = 0; i < mTaps.Count;i++){
-            tMargins.Add((mTaps[i] - tBeatSecond * (i % 4)) % tBarSecond);
+            tMeasuredFirstTapSecond = mTaps[i] - i * tBeatSecond;
+            tMeasuredFirstTapSecondTotal += tMeasuredFirstTapSecond;
         }
-        float tAve = 0;
-        foreach(float tMargin in tMargins){
-            tAve += tMargin;
-        }
-        tAve /= tMargins.Count;
-        return tBarSecond - tAve;
+        tMeasuredFirstTapSecond = tMeasuredFirstTapSecondTotal / mTaps.Count;
+        float tGap=tMeasuredFirstTapSecond%tBarSecond;
+        return tBarSecond - tGap;
     }
     //bpm計算
     private float calculateBpm(){
