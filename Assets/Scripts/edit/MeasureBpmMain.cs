@@ -38,7 +38,13 @@ public class MeasureBpmMain : MonoBehaviour {
         restartMeasure();
 	}
     private void Update(){
-        if(Input.GetKeyDown(KeyCode.Z)){
+        if (!Input.anyKeyDown) return;
+        for(int i = 97; i < 123; i++) {
+            if (Input.GetKeyDown((UnityEngine.KeyCode)i)){
+                tap();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Tab)){
             restartMeasure();
             return;
         }
