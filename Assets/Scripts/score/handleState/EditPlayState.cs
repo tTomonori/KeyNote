@@ -18,7 +18,7 @@ partial class ScoreHandler{
             //キー入力
             foreach (KeyCode tKey in KeyMonitor.getInputKey()){
                 tryCreateNote(new KeyTime(MusicScoreData.musicTimeToQuarterBeat(parent.getCurrentTime())));
-                SoundPlayer.playSe("tanbourine");
+                //SoundPlayer.playSe("tambourine");
             }
         }
         public override void getMessage(Message aMessage){

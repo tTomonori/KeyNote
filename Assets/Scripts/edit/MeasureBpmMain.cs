@@ -66,6 +66,7 @@ public class MeasureBpmMain : MonoBehaviour {
     //拍入力
     private void tap(){
         mTaps.Add(mPlayer.mCurrentSecond);
+        SoundPlayer.playSe("tambourine");
         if (mTaps.Count < 2) return;
         //Bpm計算
         float tBpm = calculateBpm();
