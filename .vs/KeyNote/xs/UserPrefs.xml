@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{EC0A1FA8-C302-50B5-51CA-B75CC59687BF}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MyUnityFrameworks/myFramework/sound/SoundPlayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/edit/MeasureBpmMain.cs">
     <Files>
       <File FileName="Assets/Scripts/score/TypeEvaluation.cs" Line="23" Column="2" />
-      <File FileName="Assets/Scripts/score/handleState/EditPlayState.cs" Line="21" Column="32" />
+      <File FileName="Assets/Scripts/score/handleState/EditPlayState.cs" Line="21" Column="42" />
       <File FileName="Assets/Scripts/score/handleState/EditModeState.cs" Line="27" Column="57" />
-      <File FileName="Assets/Scripts/edit/MeasureBpmMain.cs" Line="70" Column="37" />
+      <File FileName="Assets/Scripts/edit/MeasureBpmMain.cs" Line="45" Column="23" />
       <File FileName="Assets/Scripts/score/handleState/TestPlayState.cs" Line="21" Column="26" />
       <File FileName="Assets/Scripts/score/ScoreHandler.cs" Line="76" Column="45" />
       <File FileName="Assets/Scripts/MyUnityFrameworks/myFramework/sound/SoundPlayer.cs" Line="10" Column="24" />

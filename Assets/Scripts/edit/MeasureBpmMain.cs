@@ -41,6 +41,7 @@ public class MeasureBpmMain : MonoBehaviour {
         if (!Input.anyKeyDown) return;
         for(int i = 97; i < 123; i++) {
             if (Input.GetKeyDown((UnityEngine.KeyCode)i)){
+                SoundPlayer.playSe("tambourine");
                 tap();
             }
         }
@@ -66,7 +67,6 @@ public class MeasureBpmMain : MonoBehaviour {
     //拍入力
     private void tap(){
         mTaps.Add(mPlayer.mCurrentSecond);
-        SoundPlayer.playSe("tambourine");
         if (mTaps.Count < 2) return;
         //Bpm計算
         float tBpm = calculateBpm();
