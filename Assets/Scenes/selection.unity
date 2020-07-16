@@ -554,6 +554,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &152113389 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5020673497811721062, guid: f7322fa2bd43840418222c19b5d37ab7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1892953018}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e5bc97a49054b1fa8412de8bf915ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &201439739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,18 +1404,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1892953018}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &663497341 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114996069643628694, guid: f7322fa2bd43840418222c19b5d37ab7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1892953018}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92d5d6ff936584114bd5de2546b8f6ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &668101528
 GameObject:
   m_ObjectHideFlags: 0
@@ -2503,7 +2503,7 @@ MonoBehaviour:
   mScoreDisplay: {fileID: 1338653436}
   mAudioSource: {fileID: 97363031}
   mDifficultToggle: {fileID: 396068594}
-  mPlayPositionListButton: {fileID: 663497341}
+  mPlayPositionListButton: {fileID: 152113389}
 --- !u!4 &1244843236
 Transform:
   m_ObjectHideFlags: 0
@@ -3500,6 +3500,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 9791778358fba4e2fb4b02afbc95b72f,
         type: 3}
+    - target: {fileID: 5020673497811721062, guid: f7322fa2bd43840418222c19b5d37ab7,
+        type: 3}
+      propertyPath: mSelections.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020673497811721062, guid: f7322fa2bd43840418222c19b5d37ab7,
+        type: 3}
+      propertyPath: mSelections.Array.data[0]
+      value: "\u30B5\u30D3"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020673497811721062, guid: f7322fa2bd43840418222c19b5d37ab7,
+        type: 3}
+      propertyPath: mSelections.Array.data[1]
+      value: "\u30A4\u30F3\u30C8\u30ED"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7322fa2bd43840418222c19b5d37ab7, type: 3}
 --- !u!1 &2041100512

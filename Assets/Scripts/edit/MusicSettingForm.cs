@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MusicSettingForm : MonoBehaviour {
-    [SerializeField] private ListButton mRhythmListButton;
+    [SerializeField] private MyListButton mRhythmListButton;
     [SerializeField] private InputField mMarginForm;
     [SerializeField] private InputField mRustForm;
     // X / 4 拍子

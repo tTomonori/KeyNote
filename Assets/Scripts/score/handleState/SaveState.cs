@@ -25,7 +25,7 @@ partial class ScoreHandler {
         }
         //完成が選択されている
         private bool isSelectedComplete(){
-            return GameObject.Find("completeListButton").GetComponent<ListButton>().mSelected == "完成";
+            return GameObject.Find("completeListButton").GetComponent<MyListButton>().mSelected == "完成";
         }
         private void save(bool aCompletion){
             //楽曲リスト更新

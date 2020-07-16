@@ -22,7 +22,7 @@ public class MusicDetailsDisplay : MyBehaviour {
     //難易度選択ボタンのグループ
     [SerializeField] private ToggleButtonGroup mDifficultToggle;
     //曲の再生位置選択ボタン
-    [SerializeField] private ListButton mPlayPositionListButton;
+    [SerializeField] private MyListButton mPlayPositionListButton;
     //選択中の難易度
     public ScoreDifficult mSelectedDifficult{
         get { return EnumParser.parse<ScoreDifficult>(mDifficultToggle.pushedButtonName); }

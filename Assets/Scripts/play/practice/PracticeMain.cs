@@ -12,7 +12,7 @@ public class PracticeMain : MonoBehaviour {
 
         //難易度選択ボタン
         string tDifficultString = StringCaseConverter.ToUpper(tDifficult.ToString())[0] + tDifficult.ToString().Substring(1);
-        GameObject.Find("difficultButton").GetComponent<ListButton>().select(tDifficultString);
+        GameObject.Find("difficultButton").GetComponent<MyListButton>().select(tDifficultString);
 
         mHandler = MyBehaviour.create<ScoreHandler>();
         mHandler.load(tFileName, tDifficult);
