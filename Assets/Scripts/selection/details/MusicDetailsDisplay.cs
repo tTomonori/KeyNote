@@ -73,8 +73,9 @@ public class MusicDetailsDisplay : MyBehaviour {
         playMusic();
         //サムネイル
         DataFolder.loadThumbnailAsync(mMusicData.thumbnail, (aSprite) =>{
-            mThumbnailRenderer.transform.localScale = new Vector3(7 / aSprite.bounds.size.x, 7 / aSprite.bounds.size.x, 1);
-            mThumbnailRenderer.sprite = aSprite;
+            Sprite tSprite = SpriteCutter.setRatio(aSprite, 7, 6);
+            mThumbnailRenderer.transform.localScale = new Vector3(7 / tSprite.bounds.size.x, 7 / tSprite.bounds.size.x, 1);
+            mThumbnailRenderer.sprite = tSprite;
         });
     }
     //指定した難易度に合わせて表示更新

@@ -35,11 +35,10 @@ Packages
 Assets/Scripts/MyUnityFrameworks
 Assets/Scripts/MyUnityFrameworks.meta
 
-KeyNote.app
+*.app
 data/back/*
 data/movie/*
 data/music/*
 data/score/*
 data/thumbnail/*
 data/list.json
-myFrameworkを削除し
